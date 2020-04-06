@@ -1,0 +1,1386 @@
+/home/shinhwan/anaconda2/envs/icml18_l1000/lib/python2.7/site-packages/torch/nn/_reduction.py:43: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Namespace(anneal_iter=40000, anneal_rate=0.9, batch_size=16, beta=0.0, clip_norm=50.0, depthG=3, depthT=20, epoch=20, gene='../data/l1000/max40/train_emb_max40.txt', hidden_size=200, kl_anneal_iter=2000, latent_size=56, load_epoch=0, lr=0.001, max_beta=1.0, pre_model_dir='./pre_model/l1000_h200_b16_2epoch/model.iter-1', pre_vocab_dir='../data/l1000/max40/train_max40_vocab.txt', print_iter=50, save_dir='./train_model/', step_beta=0.002, train='../data/l1000/max40/processed', vocab='../data/l1000/max40/train_max40_vocab.txt', warmup=40000)
+./pre_model/l1000_h200_b16_2epoch/model.iter-1 loading finish
+Finish Embedding Loading
+Model #Params: 1212K
+...Finish Making Plot Folder...
+EPOCH: 1 | TIME: 2020-04-04 07:49:28.050255 
+../data/l1000/max40/train_emb_max40.txt
+Finish gene exp loading
+Len(all_gen) is 137914
+/home/shinhwan/anaconda2/envs/icml18_l1000/lib/python2.7/site-packages/torch/nn/functional.py:1351: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+/home/shinhwan/anaconda2/envs/icml18_l1000/lib/python2.7/site-packages/torch/nn/functional.py:1340: UserWarning: nn.functional.tanh is deprecated. Use torch.tanh instead.
+  warnings.warn("nn.functional.tanh is deprecated. Use torch.tanh instead.")
+[0][50] Beta: 0.000000, KL: 783.08, Word: 70.53, Topo: 96.42, Assm: 91.12, PNorm: 191.01, GNorm: 50.00
+Wloss: 44.63, Tloss: 6.84, Aloss: 1.31
+[0][100] Beta: 0.000000, KL: 822.86, Word: 84.35, Topo: 98.57, Assm: 94.46, PNorm: 192.12, GNorm: 41.58
+Wloss: 11.28, Tloss: 1.60, Aloss: 0.79
+[0][150] Beta: 0.000000, KL: 915.97, Word: 88.73, Topo: 99.03, Assm: 95.49, PNorm: 192.67, GNorm: 45.52
+Wloss: 7.70, Tloss: 1.15, Aloss: 0.63
+[0][200] Beta: 0.000000, KL: 980.22, Word: 91.05, Topo: 99.19, Assm: 95.96, PNorm: 193.11, GNorm: 34.23
+Wloss: 5.93, Tloss: 0.88, Aloss: 0.53
+[0][250] Beta: 0.000000, KL: 1036.55, Word: 93.28, Topo: 99.27, Assm: 96.73, PNorm: 193.46, GNorm: 31.49
+Wloss: 4.44, Tloss: 0.75, Aloss: 0.42
+[0][300] Beta: 0.000000, KL: 1065.20, Word: 94.13, Topo: 99.42, Assm: 97.48, PNorm: 193.88, GNorm: 25.70
+Wloss: 4.00, Tloss: 0.65, Aloss: 0.35
+[0][350] Beta: 0.000000, KL: 1131.37, Word: 94.93, Topo: 99.53, Assm: 97.37, PNorm: 194.27, GNorm: 32.90
+Wloss: 3.37, Tloss: 0.60, Aloss: 0.41
+[0][400] Beta: 0.000000, KL: 1169.39, Word: 96.05, Topo: 99.63, Assm: 97.60, PNorm: 194.56, GNorm: 18.90
+Wloss: 2.64, Tloss: 0.45, Aloss: 0.32
+[0][450] Beta: 0.000000, KL: 1205.22, Word: 96.73, Topo: 99.65, Assm: 97.92, PNorm: 194.83, GNorm: 17.48
+Wloss: 2.35, Tloss: 0.41, Aloss: 0.30
+[0][500] Beta: 0.000000, KL: 1222.85, Word: 97.25, Topo: 99.64, Assm: 98.05, PNorm: 195.07, GNorm: 23.28
+Wloss: 1.86, Tloss: 0.40, Aloss: 0.28
+[0][550] Beta: 0.000000, KL: 1226.95, Word: 97.16, Topo: 99.60, Assm: 97.95, PNorm: 195.36, GNorm: 35.00
+Wloss: 2.01, Tloss: 0.43, Aloss: 0.26
+[0][600] Beta: 0.000000, KL: 1288.20, Word: 97.38, Topo: 99.75, Assm: 98.17, PNorm: 195.66, GNorm: 28.23
+Wloss: 1.75, Tloss: 0.32, Aloss: 0.28
+[0][650] Beta: 0.000000, KL: 1285.26, Word: 97.71, Topo: 99.71, Assm: 98.15, PNorm: 195.89, GNorm: 17.03
+Wloss: 1.88, Tloss: 0.36, Aloss: 0.27
+[0][700] Beta: 0.000000, KL: 1332.47, Word: 97.56, Topo: 99.69, Assm: 98.02, PNorm: 196.14, GNorm: 27.06
+Wloss: 1.60, Tloss: 0.37, Aloss: 0.29
+[0][750] Beta: 0.000000, KL: 1353.21, Word: 98.05, Topo: 99.70, Assm: 98.62, PNorm: 196.39, GNorm: 11.65
+Wloss: 1.24, Tloss: 0.35, Aloss: 0.24
+[0][800] Beta: 0.000000, KL: 1344.88, Word: 98.12, Topo: 99.73, Assm: 98.45, PNorm: 196.59, GNorm: 15.96
+Wloss: 1.25, Tloss: 0.30, Aloss: 0.21
+[0][850] Beta: 0.000000, KL: 1360.05, Word: 98.22, Topo: 99.78, Assm: 98.49, PNorm: 196.78, GNorm: 28.39
+Wloss: 1.27, Tloss: 0.26, Aloss: 0.27
+[0][900] Beta: 0.000000, KL: 1287.59, Word: 82.14, Topo: 97.42, Assm: 87.97, PNorm: 197.55, GNorm: 42.23
+Wloss: 10.75, Tloss: 2.26, Aloss: 1.98
+[0][950] Beta: 0.000000, KL: 1243.23, Word: 84.61, Topo: 97.98, Assm: 90.68, PNorm: 198.62, GNorm: 34.16
+Wloss: 8.18, Tloss: 1.66, Aloss: 1.30
+[0][1000] Beta: 0.000000, KL: 1244.75, Word: 89.86, Topo: 98.71, Assm: 94.56, PNorm: 199.23, GNorm: 32.79
+Wloss: 5.19, Tloss: 1.09, Aloss: 0.84
+[0][1050] Beta: 0.000000, KL: 1268.66, Word: 92.38, Topo: 98.99, Assm: 96.15, PNorm: 199.66, GNorm: 24.37
+Wloss: 3.95, Tloss: 0.83, Aloss: 0.59
+[0][1100] Beta: 0.000000, KL: 1290.60, Word: 94.51, Topo: 99.24, Assm: 97.02, PNorm: 200.00, GNorm: 30.63
+Wloss: 2.81, Tloss: 0.69, Aloss: 0.48
+[0][1150] Beta: 0.000000, KL: 1310.85, Word: 95.92, Topo: 99.44, Assm: 98.07, PNorm: 200.27, GNorm: 28.80
+Wloss: 2.19, Tloss: 0.46, Aloss: 0.35
+[0][1200] Beta: 0.000000, KL: 1327.09, Word: 97.02, Topo: 99.60, Assm: 98.03, PNorm: 200.50, GNorm: 29.48
+Wloss: 1.49, Tloss: 0.40, Aloss: 0.31
+[0][1250] Beta: 0.000000, KL: 1363.41, Word: 97.69, Topo: 99.59, Assm: 98.34, PNorm: 200.72, GNorm: 15.58
+Wloss: 1.33, Tloss: 0.37, Aloss: 0.34
+[0][1300] Beta: 0.000000, KL: 1390.82, Word: 98.21, Topo: 99.72, Assm: 98.71, PNorm: 200.90, GNorm: 18.74
+Wloss: 1.09, Tloss: 0.29, Aloss: 0.25
+[0][1350] Beta: 0.000000, KL: 1394.21, Word: 98.25, Topo: 99.73, Assm: 98.15, PNorm: 201.07, GNorm: 12.18
+Wloss: 1.07, Tloss: 0.29, Aloss: 0.39
+[0][1400] Beta: 0.000000, KL: 1410.20, Word: 99.01, Topo: 99.82, Assm: 98.49, PNorm: 201.21, GNorm: 11.05
+Wloss: 0.71, Tloss: 0.20, Aloss: 0.24
+[0][1450] Beta: 0.000000, KL: 1430.66, Word: 99.00, Topo: 99.83, Assm: 98.52, PNorm: 201.34, GNorm: 14.61
+Wloss: 0.69, Tloss: 0.18, Aloss: 0.22
+[0][1500] Beta: 0.000000, KL: 1429.70, Word: 99.04, Topo: 99.83, Assm: 99.08, PNorm: 201.47, GNorm: 15.52
+Wloss: 0.62, Tloss: 0.20, Aloss: 0.21
+[0][1550] Beta: 0.000000, KL: 1468.21, Word: 99.25, Topo: 99.84, Assm: 98.67, PNorm: 201.59, GNorm: 21.84
+Wloss: 0.56, Tloss: 0.18, Aloss: 0.22
+[0][1600] Beta: 0.000000, KL: 1452.37, Word: 99.15, Topo: 99.84, Assm: 98.86, PNorm: 201.72, GNorm: 8.07
+Wloss: 0.55, Tloss: 0.17, Aloss: 0.17
+[0][1650] Beta: 0.000000, KL: 1471.93, Word: 99.32, Topo: 99.77, Assm: 98.71, PNorm: 201.85, GNorm: 16.85
+Wloss: 0.48, Tloss: 0.27, Aloss: 0.19
+[0][1700] Beta: 0.000000, KL: 1472.13, Word: 99.24, Topo: 99.80, Assm: 99.01, PNorm: 201.99, GNorm: 15.58
+Wloss: 0.50, Tloss: 0.26, Aloss: 0.15
+[0][1750] Beta: 0.000000, KL: 1439.47, Word: 95.07, Topo: 99.41, Assm: 96.65, PNorm: 202.12, GNorm: 38.08
+Wloss: 3.51, Tloss: 0.66, Aloss: 0.55
+[0][1800] Beta: 0.000000, KL: 1327.11, Word: 96.32, Topo: 99.51, Assm: 98.39, PNorm: 202.36, GNorm: 26.61
+Wloss: 2.22, Tloss: 0.52, Aloss: 0.25
+[0][1850] Beta: 0.000000, KL: 1292.78, Word: 97.77, Topo: 99.84, Assm: 98.73, PNorm: 202.49, GNorm: 11.45
+Wloss: 1.28, Tloss: 0.19, Aloss: 0.20
+[0][1900] Beta: 0.000000, KL: 1340.30, Word: 98.47, Topo: 99.86, Assm: 99.20, PNorm: 202.57, GNorm: 18.78
+Wloss: 0.91, Tloss: 0.15, Aloss: 0.11
+[0][1950] Beta: 0.000000, KL: 1378.70, Word: 98.94, Topo: 99.89, Assm: 99.31, PNorm: 202.66, GNorm: 12.20
+Wloss: 0.65, Tloss: 0.13, Aloss: 0.10
+[0][2000] Beta: 0.000000, KL: 1404.93, Word: 98.97, Topo: 99.88, Assm: 99.32, PNorm: 202.71, GNorm: 9.12
+Wloss: 0.59, Tloss: 0.12, Aloss: 0.11
+[0][2050] Beta: 0.000000, KL: 1401.99, Word: 99.19, Topo: 99.91, Assm: 99.08, PNorm: 202.76, GNorm: 10.91
+Wloss: 0.44, Tloss: 0.09, Aloss: 0.13
+[0][2100] Beta: 0.000000, KL: 1450.69, Word: 99.42, Topo: 99.93, Assm: 99.37, PNorm: 202.82, GNorm: 4.12
+Wloss: 0.38, Tloss: 0.08, Aloss: 0.07
+[0][2150] Beta: 0.000000, KL: 1458.03, Word: 99.45, Topo: 99.92, Assm: 99.36, PNorm: 202.88, GNorm: 11.85
+Wloss: 0.37, Tloss: 0.10, Aloss: 0.11
+[0][2200] Beta: 0.000000, KL: 1468.47, Word: 99.51, Topo: 99.96, Assm: 99.16, PNorm: 202.93, GNorm: 9.00
+Wloss: 0.34, Tloss: 0.07, Aloss: 0.10
+[0][2250] Beta: 0.000000, KL: 1472.12, Word: 99.57, Topo: 99.92, Assm: 99.31, PNorm: 202.97, GNorm: 23.29
+Wloss: 0.30, Tloss: 0.07, Aloss: 0.09
+[0][2300] Beta: 0.000000, KL: 1511.35, Word: 99.58, Topo: 99.90, Assm: 99.55, PNorm: 203.01, GNorm: 8.58
+Wloss: 0.28, Tloss: 0.12, Aloss: 0.05
+[0][2350] Beta: 0.000000, KL: 1525.71, Word: 99.68, Topo: 99.96, Assm: 99.20, PNorm: 203.06, GNorm: 10.76
+Wloss: 0.22, Tloss: 0.04, Aloss: 0.13
+[0][2400] Beta: 0.000000, KL: 1494.47, Word: 99.68, Topo: 99.98, Assm: 99.56, PNorm: 203.09, GNorm: 7.17
+Wloss: 0.20, Tloss: 0.04, Aloss: 0.05
+[0][2450] Beta: 0.000000, KL: 1507.94, Word: 99.63, Topo: 99.98, Assm: 99.34, PNorm: 203.14, GNorm: 12.55
+Wloss: 0.21, Tloss: 0.05, Aloss: 0.07
+[0][2500] Beta: 0.000000, KL: 1522.40, Word: 99.82, Topo: 99.98, Assm: 99.27, PNorm: 203.17, GNorm: 11.57
+Wloss: 0.16, Tloss: 0.02, Aloss: 0.08
+[0][2550] Beta: 0.000000, KL: 1508.78, Word: 99.79, Topo: 99.96, Assm: 99.50, PNorm: 203.20, GNorm: 5.48
+Wloss: 0.16, Tloss: 0.04, Aloss: 0.06
+[0][2600] Beta: 0.000000, KL: 1509.83, Word: 94.71, Topo: 99.27, Assm: 95.17, PNorm: 203.23, GNorm: 50.00
+Wloss: 3.27, Tloss: 0.73, Aloss: 0.77
+[0][2650] Beta: 0.000000, KL: 1338.29, Word: 86.18, Topo: 97.76, Assm: 91.14, PNorm: 203.95, GNorm: 32.90
+Wloss: 6.93, Tloss: 1.66, Aloss: 1.19
+[0][2700] Beta: 0.000000, KL: 1333.81, Word: 91.65, Topo: 98.74, Assm: 94.48, PNorm: 204.54, GNorm: 32.50
+Wloss: 4.09, Tloss: 0.95, Aloss: 0.80
+[0][2750] Beta: 0.000000, KL: 1354.55, Word: 93.88, Topo: 99.07, Assm: 96.58, PNorm: 204.88, GNorm: 29.69
+Wloss: 2.90, Tloss: 0.67, Aloss: 0.53
+[0][2800] Beta: 0.000000, KL: 1352.47, Word: 95.24, Topo: 99.36, Assm: 97.53, PNorm: 205.18, GNorm: 21.79
+Wloss: 2.25, Tloss: 0.52, Aloss: 0.38
+[0][2850] Beta: 0.000000, KL: 1372.39, Word: 96.51, Topo: 99.36, Assm: 97.68, PNorm: 205.41, GNorm: 23.19
+Wloss: 1.75, Tloss: 0.53, Aloss: 0.35
+[0][2900] Beta: 0.000000, KL: 1391.98, Word: 97.53, Topo: 99.49, Assm: 98.33, PNorm: 205.60, GNorm: 17.22
+Wloss: 1.20, Tloss: 0.49, Aloss: 0.28
+[0][2950] Beta: 0.000000, KL: 1406.42, Word: 97.87, Topo: 99.58, Assm: 97.97, PNorm: 205.75, GNorm: 9.50
+Wloss: 0.98, Tloss: 0.40, Aloss: 0.33
+[0][3000] Beta: 0.000000, KL: 1438.51, Word: 98.41, Topo: 99.63, Assm: 98.18, PNorm: 205.89, GNorm: 16.22
+Wloss: 0.75, Tloss: 0.28, Aloss: 0.25
+[0][3050] Beta: 0.000000, KL: 1466.49, Word: 98.57, Topo: 99.74, Assm: 98.66, PNorm: 206.01, GNorm: 9.27
+Wloss: 0.66, Tloss: 0.23, Aloss: 0.18
+[0][3100] Beta: 0.000000, KL: 1448.94, Word: 98.71, Topo: 99.86, Assm: 98.79, PNorm: 206.13, GNorm: 15.46
+Wloss: 0.68, Tloss: 0.13, Aloss: 0.23
+[0][3150] Beta: 0.000000, KL: 1482.22, Word: 98.91, Topo: 99.81, Assm: 98.96, PNorm: 206.22, GNorm: 9.32
+Wloss: 0.57, Tloss: 0.16, Aloss: 0.18
+[0][3200] Beta: 0.000000, KL: 1478.62, Word: 99.03, Topo: 99.85, Assm: 98.70, PNorm: 206.32, GNorm: 12.67
+Wloss: 0.48, Tloss: 0.13, Aloss: 0.17
+[0][3250] Beta: 0.000000, KL: 1512.11, Word: 99.19, Topo: 99.77, Assm: 98.47, PNorm: 206.40, GNorm: 12.50
+Wloss: 0.45, Tloss: 0.22, Aloss: 0.27
+[0][3300] Beta: 0.000000, KL: 1495.22, Word: 99.37, Topo: 99.85, Assm: 98.48, PNorm: 206.50, GNorm: 15.22
+Wloss: 0.32, Tloss: 0.15, Aloss: 0.23
+[0][3350] Beta: 0.000000, KL: 1518.09, Word: 99.14, Topo: 99.86, Assm: 99.01, PNorm: 206.59, GNorm: 11.56
+Wloss: 0.44, Tloss: 0.11, Aloss: 0.13
+[0][3400] Beta: 0.000000, KL: 1518.56, Word: 99.43, Topo: 99.83, Assm: 98.52, PNorm: 206.68, GNorm: 20.79
+Wloss: 0.36, Tloss: 0.15, Aloss: 0.21
+[0][3450] Beta: 0.000000, KL: 1542.36, Word: 98.96, Topo: 99.84, Assm: 98.84, PNorm: 206.76, GNorm: 48.55
+Wloss: 0.71, Tloss: 0.16, Aloss: 0.19
+[0][3500] Beta: 0.000000, KL: 1561.40, Word: 90.03, Topo: 98.60, Assm: 93.29, PNorm: 207.21, GNorm: 34.09
+Wloss: 5.47, Tloss: 1.17, Aloss: 1.07
+[0][3550] Beta: 0.000000, KL: 1476.78, Word: 95.12, Topo: 99.17, Assm: 97.12, PNorm: 207.59, GNorm: 23.01
+Wloss: 2.21, Tloss: 0.75, Aloss: 0.42
+[0][3600] Beta: 0.000000, KL: 1510.01, Word: 97.49, Topo: 99.51, Assm: 98.59, PNorm: 207.80, GNorm: 13.09
+Wloss: 1.25, Tloss: 0.49, Aloss: 0.24
+[0][3650] Beta: 0.000000, KL: 1500.01, Word: 98.69, Topo: 99.75, Assm: 98.44, PNorm: 207.96, GNorm: 13.58
+Wloss: 0.67, Tloss: 0.24, Aloss: 0.26
+[0][3700] Beta: 0.000000, KL: 1498.94, Word: 99.12, Topo: 99.89, Assm: 99.25, PNorm: 208.08, GNorm: 10.80
+Wloss: 0.46, Tloss: 0.13, Aloss: 0.13
+[0][3750] Beta: 0.000000, KL: 1508.71, Word: 99.66, Topo: 99.89, Assm: 99.17, PNorm: 208.16, GNorm: 14.09
+Wloss: 0.22, Tloss: 0.11, Aloss: 0.18
+[0][3800] Beta: 0.000000, KL: 1529.73, Word: 99.73, Topo: 99.93, Assm: 98.76, PNorm: 208.22, GNorm: 2.87
+Wloss: 0.22, Tloss: 0.12, Aloss: 0.21
+[0][3850] Beta: 0.000000, KL: 1537.90, Word: 99.82, Topo: 99.98, Assm: 99.12, PNorm: 208.27, GNorm: 4.59
+Wloss: 0.13, Tloss: 0.02, Aloss: 0.12
+[0][3900] Beta: 0.000000, KL: 1566.02, Word: 99.90, Topo: 99.99, Assm: 99.13, PNorm: 208.31, GNorm: 3.19
+Wloss: 0.09, Tloss: 0.02, Aloss: 0.13
+[0][3950] Beta: 0.000000, KL: 1575.40, Word: 99.94, Topo: 99.97, Assm: 99.27, PNorm: 208.34, GNorm: 2.95
+Wloss: 0.06, Tloss: 0.03, Aloss: 0.12
+[0][4000] Beta: 0.000000, KL: 1588.29, Word: 99.97, Topo: 99.99, Assm: 98.80, PNorm: 208.37, GNorm: 2.50
+Wloss: 0.05, Tloss: 0.02, Aloss: 0.16
+[0][4050] Beta: 0.000000, KL: 1572.99, Word: 99.98, Topo: 99.99, Assm: 99.10, PNorm: 208.41, GNorm: 0.52
+Wloss: 0.03, Tloss: 0.01, Aloss: 0.14
+[0][4100] Beta: 0.000000, KL: 1624.67, Word: 100.00, Topo: 99.97, Assm: 99.01, PNorm: 208.45, GNorm: 1.52
+Wloss: 0.02, Tloss: 0.02, Aloss: 0.13
+[0][4150] Beta: 0.000000, KL: 1567.59, Word: 99.98, Topo: 99.97, Assm: 98.99, PNorm: 208.48, GNorm: 1.12
+Wloss: 0.03, Tloss: 0.03, Aloss: 0.12
+[0][4200] Beta: 0.000000, KL: 1598.54, Word: 100.00, Topo: 99.99, Assm: 99.07, PNorm: 208.51, GNorm: 0.60
+Wloss: 0.02, Tloss: 0.02, Aloss: 0.14
+[0][4250] Beta: 0.000000, KL: 1606.38, Word: 99.99, Topo: 99.99, Assm: 99.04, PNorm: 208.53, GNorm: 0.82
+Wloss: 0.02, Tloss: 0.01, Aloss: 0.10
+[0][4300] Beta: 0.000000, KL: 1635.90, Word: 99.98, Topo: 99.99, Assm: 99.45, PNorm: 208.55, GNorm: 1.17
+Wloss: 0.03, Tloss: 0.01, Aloss: 0.09
+[0][4350] Beta: 0.000000, KL: 1531.01, Word: 88.68, Topo: 97.80, Assm: 88.55, PNorm: 208.95, GNorm: 46.78
+Wloss: 6.75, Tloss: 2.02, Aloss: 1.74
+[0][4400] Beta: 0.000000, KL: 1373.14, Word: 88.50, Topo: 98.10, Assm: 92.49, PNorm: 209.83, GNorm: 31.89
+Wloss: 6.09, Tloss: 1.50, Aloss: 1.05
+[0][4450] Beta: 0.000000, KL: 1369.51, Word: 90.66, Topo: 98.34, Assm: 94.01, PNorm: 210.48, GNorm: 44.37
+Wloss: 4.74, Tloss: 1.33, Aloss: 0.84
+[0][4500] Beta: 0.000000, KL: 1383.40, Word: 92.69, Topo: 98.75, Assm: 94.26, PNorm: 210.94, GNorm: 37.84
+Wloss: 3.39, Tloss: 0.95, Aloss: 0.78
+[0][4550] Beta: 0.000000, KL: 1384.82, Word: 94.34, Topo: 98.84, Assm: 95.46, PNorm: 211.39, GNorm: 23.66
+Wloss: 2.59, Tloss: 0.89, Aloss: 0.62
+[0][4600] Beta: 0.000000, KL: 1389.17, Word: 95.37, Topo: 99.18, Assm: 96.77, PNorm: 211.71, GNorm: 31.35
+Wloss: 2.24, Tloss: 0.70, Aloss: 0.46
+[0][4650] Beta: 0.000000, KL: 1386.50, Word: 95.90, Topo: 99.33, Assm: 97.01, PNorm: 211.99, GNorm: 17.55
+Wloss: 1.98, Tloss: 0.69, Aloss: 0.45
+[0][4700] Beta: 0.000000, KL: 1431.89, Word: 96.59, Topo: 99.42, Assm: 97.82, PNorm: 212.25, GNorm: 32.54
+Wloss: 1.57, Tloss: 0.44, Aloss: 0.33
+[0][4750] Beta: 0.000000, KL: 1445.84, Word: 97.79, Topo: 99.55, Assm: 98.24, PNorm: 212.44, GNorm: 29.72
+Wloss: 1.18, Tloss: 0.36, Aloss: 0.23
+[0][4800] Beta: 0.000000, KL: 1468.29, Word: 97.24, Topo: 99.57, Assm: 97.63, PNorm: 212.64, GNorm: 14.41
+Wloss: 1.33, Tloss: 0.40, Aloss: 0.33
+[0][4850] Beta: 0.000000, KL: 1468.47, Word: 97.61, Topo: 99.56, Assm: 97.83, PNorm: 212.87, GNorm: 29.49
+Wloss: 1.28, Tloss: 0.41, Aloss: 0.30
+[0][4900] Beta: 0.000000, KL: 1501.22, Word: 97.84, Topo: 99.63, Assm: 98.52, PNorm: 213.03, GNorm: 8.68
+Wloss: 1.08, Tloss: 0.31, Aloss: 0.24
+[0][4950] Beta: 0.000000, KL: 1457.15, Word: 98.52, Topo: 99.77, Assm: 98.59, PNorm: 213.18, GNorm: 24.43
+Wloss: 0.72, Tloss: 0.23, Aloss: 0.22
+[0][5000] Beta: 0.000000, KL: 1477.33, Word: 98.29, Topo: 99.71, Assm: 98.63, PNorm: 213.32, GNorm: 19.13
+Wloss: 0.85, Tloss: 0.24, Aloss: 0.21
+[0][5050] Beta: 0.000000, KL: 1513.87, Word: 98.69, Topo: 99.75, Assm: 98.37, PNorm: 213.46, GNorm: 17.50
+Wloss: 0.75, Tloss: 0.24, Aloss: 0.23
+[0][5100] Beta: 0.000000, KL: 1492.37, Word: 98.53, Topo: 99.80, Assm: 99.19, PNorm: 213.59, GNorm: 15.11
+Wloss: 0.69, Tloss: 0.18, Aloss: 0.14
+[0][5150] Beta: 0.000000, KL: 1509.31, Word: 98.70, Topo: 99.77, Assm: 98.84, PNorm: 213.72, GNorm: 20.47
+Wloss: 0.70, Tloss: 0.21, Aloss: 0.19
+[0][5200] Beta: 0.000000, KL: 1480.16, Word: 93.03, Topo: 99.22, Assm: 95.83, PNorm: 213.90, GNorm: 50.00
+Wloss: 4.60, Tloss: 0.68, Aloss: 0.92
+[0][5250] Beta: 0.000000, KL: 1358.63, Word: 94.08, Topo: 99.42, Assm: 98.63, PNorm: 214.18, GNorm: 27.36
+Wloss: 3.31, Tloss: 0.59, Aloss: 0.23
+[0][5300] Beta: 0.000000, KL: 1323.18, Word: 96.55, Topo: 99.76, Assm: 98.75, PNorm: 214.32, GNorm: 30.18
+Wloss: 1.75, Tloss: 0.25, Aloss: 0.22
+[0][5350] Beta: 0.000000, KL: 1369.96, Word: 98.04, Topo: 99.77, Assm: 99.13, PNorm: 214.41, GNorm: 21.57
+Wloss: 1.06, Tloss: 0.22, Aloss: 0.20
+[0][5400] Beta: 0.000000, KL: 1409.23, Word: 98.25, Topo: 99.88, Assm: 99.05, PNorm: 214.50, GNorm: 10.30
+Wloss: 0.94, Tloss: 0.10, Aloss: 0.18
+[0][5450] Beta: 0.000000, KL: 1429.38, Word: 98.66, Topo: 99.90, Assm: 99.16, PNorm: 214.57, GNorm: 12.89
+Wloss: 0.73, Tloss: 0.11, Aloss: 0.17
+[0][5500] Beta: 0.000000, KL: 1423.13, Word: 98.79, Topo: 99.86, Assm: 99.23, PNorm: 214.64, GNorm: 7.19
+Wloss: 0.68, Tloss: 0.12, Aloss: 0.13
+[0][5550] Beta: 0.000000, KL: 1440.48, Word: 99.21, Topo: 99.91, Assm: 99.36, PNorm: 214.71, GNorm: 11.11
+Wloss: 0.43, Tloss: 0.10, Aloss: 0.09
+[0][5600] Beta: 0.000000, KL: 1465.03, Word: 99.24, Topo: 99.91, Assm: 99.49, PNorm: 214.75, GNorm: 4.40
+Wloss: 0.46, Tloss: 0.09, Aloss: 0.07
+[0][5650] Beta: 0.000000, KL: 1473.35, Word: 99.45, Topo: 99.94, Assm: 99.70, PNorm: 214.80, GNorm: 10.92
+Wloss: 0.31, Tloss: 0.08, Aloss: 0.05
+[0][5700] Beta: 0.000000, KL: 1474.56, Word: 99.47, Topo: 99.93, Assm: 99.50, PNorm: 214.85, GNorm: 14.48
+Wloss: 0.32, Tloss: 0.07, Aloss: 0.08
+[0][5750] Beta: 0.000000, KL: 1470.94, Word: 99.44, Topo: 99.92, Assm: 99.57, PNorm: 214.91, GNorm: 9.36
+Wloss: 0.34, Tloss: 0.09, Aloss: 0.06
+[0][5800] Beta: 0.000000, KL: 1492.20, Word: 99.51, Topo: 99.94, Assm: 99.53, PNorm: 214.94, GNorm: 8.07
+Wloss: 0.29, Tloss: 0.07, Aloss: 0.06
+[0][5850] Beta: 0.000000, KL: 1470.48, Word: 99.61, Topo: 99.95, Assm: 99.42, PNorm: 215.00, GNorm: 4.22
+Wloss: 0.27, Tloss: 0.05, Aloss: 0.09
+[0][5900] Beta: 0.000000, KL: 1487.52, Word: 99.65, Topo: 99.97, Assm: 99.50, PNorm: 215.06, GNorm: 7.71
+Wloss: 0.23, Tloss: 0.03, Aloss: 0.09
+[0][5950] Beta: 0.000000, KL: 1529.20, Word: 99.51, Topo: 99.97, Assm: 99.49, PNorm: 215.10, GNorm: 11.92
+Wloss: 0.29, Tloss: 0.06, Aloss: 0.07
+[0][6000] Beta: 0.000000, KL: 1495.13, Word: 99.57, Topo: 99.97, Assm: 99.57, PNorm: 215.14, GNorm: 8.07
+Wloss: 0.28, Tloss: 0.04, Aloss: 0.09
+[0][6050] Beta: 0.000000, KL: 1570.19, Word: 95.52, Topo: 99.26, Assm: 96.13, PNorm: 215.28, GNorm: 42.25
+Wloss: 2.50, Tloss: 0.73, Aloss: 0.64
+[0][6100] Beta: 0.000000, KL: 1494.31, Word: 92.00, Topo: 98.72, Assm: 93.51, PNorm: 215.90, GNorm: 50.00
+Wloss: 3.94, Tloss: 1.09, Aloss: 0.95
+[0][6150] Beta: 0.000000, KL: 1475.24, Word: 94.99, Topo: 99.28, Assm: 96.32, PNorm: 216.31, GNorm: 21.56
+Wloss: 2.42, Tloss: 0.60, Aloss: 0.58
+[0][6200] Beta: 0.000000, KL: 1499.32, Word: 97.48, Topo: 99.70, Assm: 98.22, PNorm: 216.52, GNorm: 16.04
+Wloss: 1.20, Tloss: 0.30, Aloss: 0.25
+[0][6250] Beta: 0.000000, KL: 1512.57, Word: 98.38, Topo: 99.79, Assm: 98.51, PNorm: 216.71, GNorm: 19.23
+Wloss: 0.85, Tloss: 0.19, Aloss: 0.25
+[0][6300] Beta: 0.000000, KL: 1516.03, Word: 99.09, Topo: 99.83, Assm: 98.57, PNorm: 216.86, GNorm: 5.17
+Wloss: 0.52, Tloss: 0.20, Aloss: 0.24
+[0][6350] Beta: 0.000000, KL: 1552.56, Word: 99.48, Topo: 99.88, Assm: 98.60, PNorm: 216.96, GNorm: 5.87
+Wloss: 0.35, Tloss: 0.17, Aloss: 0.23
+[0][6400] Beta: 0.000000, KL: 1531.78, Word: 99.70, Topo: 99.91, Assm: 99.25, PNorm: 217.04, GNorm: 6.82
+Wloss: 0.25, Tloss: 0.11, Aloss: 0.11
+[0][6450] Beta: 0.000000, KL: 1555.64, Word: 99.58, Topo: 99.97, Assm: 98.82, PNorm: 217.12, GNorm: 4.46
+Wloss: 0.31, Tloss: 0.05, Aloss: 0.18
+[0][6500] Beta: 0.000000, KL: 1580.02, Word: 99.60, Topo: 99.98, Assm: 98.67, PNorm: 217.18, GNorm: 1.90
+Wloss: 0.26, Tloss: 0.03, Aloss: 0.17
+[0][6550] Beta: 0.000000, KL: 1570.52, Word: 99.88, Topo: 99.97, Assm: 99.28, PNorm: 217.22, GNorm: 0.94
+Wloss: 0.11, Tloss: 0.03, Aloss: 0.12
+[0][6600] Beta: 0.000000, KL: 1594.68, Word: 99.93, Topo: 99.98, Assm: 99.18, PNorm: 217.25, GNorm: 6.62
+Wloss: 0.08, Tloss: 0.04, Aloss: 0.11
+[0][6650] Beta: 0.000000, KL: 1585.99, Word: 99.83, Topo: 100.00, Assm: 98.63, PNorm: 217.29, GNorm: 0.61
+Wloss: 0.11, Tloss: 0.01, Aloss: 0.14
+[0][6700] Beta: 0.000000, KL: 1594.58, Word: 99.85, Topo: 99.99, Assm: 98.85, PNorm: 217.33, GNorm: 1.39
+Wloss: 0.15, Tloss: 0.01, Aloss: 0.17
+[0][6750] Beta: 0.000000, KL: 1618.03, Word: 99.89, Topo: 99.98, Assm: 99.00, PNorm: 217.39, GNorm: 1.21
+Wloss: 0.09, Tloss: 0.01, Aloss: 0.15
+[0][6800] Beta: 0.000000, KL: 1602.56, Word: 99.91, Topo: 99.99, Assm: 99.01, PNorm: 217.43, GNorm: 3.07
+Wloss: 0.07, Tloss: 0.01, Aloss: 0.13
+[0][6850] Beta: 0.000000, KL: 1632.66, Word: 99.91, Topo: 100.00, Assm: 99.14, PNorm: 217.47, GNorm: 2.56
+Wloss: 0.07, Tloss: 0.01, Aloss: 0.12
+[0][6900] Beta: 0.000000, KL: 1621.25, Word: 98.47, Topo: 99.71, Assm: 98.01, PNorm: 217.50, GNorm: 50.00
+Wloss: 1.09, Tloss: 0.30, Aloss: 0.39
+[0][6950] Beta: 0.000000, KL: 1444.88, Word: 86.13, Topo: 97.43, Assm: 87.68, PNorm: 218.22, GNorm: 50.00
+Wloss: 7.77, Tloss: 2.15, Aloss: 1.85
+[0][7000] Beta: 0.000000, KL: 1414.41, Word: 89.96, Topo: 98.19, Assm: 93.69, PNorm: 219.05, GNorm: 37.57
+Wloss: 4.83, Tloss: 1.48, Aloss: 0.97
+[0][7050] Beta: 0.000000, KL: 1378.43, Word: 92.91, Topo: 98.81, Assm: 95.21, PNorm: 219.61, GNorm: 25.77
+Wloss: 3.47, Tloss: 0.92, Aloss: 0.75
+[0][7100] Beta: 0.000000, KL: 1407.54, Word: 95.32, Topo: 99.23, Assm: 96.35, PNorm: 219.99, GNorm: 29.51
+Wloss: 2.35, Tloss: 0.75, Aloss: 0.54
+[0][7150] Beta: 0.000000, KL: 1408.42, Word: 96.26, Topo: 99.48, Assm: 97.38, PNorm: 220.27, GNorm: 17.62
+Wloss: 1.79, Tloss: 0.43, Aloss: 0.41
+[0][7200] Beta: 0.000000, KL: 1479.01, Word: 97.09, Topo: 99.54, Assm: 97.74, PNorm: 220.48, GNorm: 20.38
+Wloss: 1.48, Tloss: 0.46, Aloss: 0.42
+[0][7250] Beta: 0.000000, KL: 1466.02, Word: 98.03, Topo: 99.69, Assm: 97.75, PNorm: 220.71, GNorm: 32.34
+Wloss: 1.08, Tloss: 0.30, Aloss: 0.45
+[0][7300] Beta: 0.000000, KL: 1520.86, Word: 98.13, Topo: 99.57, Assm: 98.61, PNorm: 220.89, GNorm: 26.72
+Wloss: 1.05, Tloss: 0.33, Aloss: 0.32
+[0][7350] Beta: 0.000000, KL: 1476.27, Word: 98.31, Topo: 99.75, Assm: 97.41, PNorm: 221.10, GNorm: 11.21
+Wloss: 0.94, Tloss: 0.22, Aloss: 0.55
+[0][7400] Beta: 0.000000, KL: 1487.97, Word: 98.62, Topo: 99.69, Assm: 98.12, PNorm: 221.26, GNorm: 24.39
+Wloss: 0.83, Tloss: 0.27, Aloss: 0.32
+[0][7450] Beta: 0.000000, KL: 1494.56, Word: 98.73, Topo: 99.80, Assm: 98.57, PNorm: 221.41, GNorm: 23.26
+Wloss: 0.78, Tloss: 0.20, Aloss: 0.33
+[0][7500] Beta: 0.000000, KL: 1514.73, Word: 98.85, Topo: 99.86, Assm: 98.72, PNorm: 221.55, GNorm: 19.60
+Wloss: 0.70, Tloss: 0.16, Aloss: 0.23
+[0][7550] Beta: 0.000000, KL: 1533.59, Word: 98.55, Topo: 99.78, Assm: 98.21, PNorm: 221.68, GNorm: 20.47
+Wloss: 0.78, Tloss: 0.23, Aloss: 0.35
+[0][7600] Beta: 0.000000, KL: 1549.33, Word: 99.21, Topo: 99.86, Assm: 99.12, PNorm: 221.81, GNorm: 22.83
+Wloss: 0.48, Tloss: 0.15, Aloss: 0.17
+[0][7650] Beta: 0.000000, KL: 1561.32, Word: 98.96, Topo: 99.86, Assm: 98.32, PNorm: 221.91, GNorm: 19.93
+Wloss: 0.62, Tloss: 0.16, Aloss: 0.29
+[0][7700] Beta: 0.000000, KL: 1534.45, Word: 99.01, Topo: 99.85, Assm: 98.61, PNorm: 222.04, GNorm: 29.90
+Wloss: 0.53, Tloss: 0.15, Aloss: 0.26
+[0][7750] Beta: 0.000000, KL: 1549.31, Word: 98.88, Topo: 99.85, Assm: 98.37, PNorm: 222.18, GNorm: 14.77
+Wloss: 0.67, Tloss: 0.19, Aloss: 0.31
+[0][7800] Beta: 0.000000, KL: 1528.55, Word: 96.89, Topo: 99.31, Assm: 96.62, PNorm: 222.36, GNorm: 25.82
+Wloss: 1.58, Tloss: 0.53, Aloss: 0.51
+[0][7850] Beta: 0.000000, KL: 1476.88, Word: 96.79, Topo: 99.28, Assm: 96.91, PNorm: 222.62, GNorm: 22.47
+Wloss: 1.42, Tloss: 0.59, Aloss: 0.46
+[0][7900] Beta: 0.000000, KL: 1493.32, Word: 96.89, Topo: 99.50, Assm: 97.03, PNorm: 222.82, GNorm: 20.74
+Wloss: 1.44, Tloss: 0.43, Aloss: 0.40
+[0][7950] Beta: 0.000000, KL: 1502.07, Word: 97.00, Topo: 99.48, Assm: 97.10, PNorm: 223.03, GNorm: 21.32
+Wloss: 1.33, Tloss: 0.41, Aloss: 0.38
+[0][8000] Beta: 0.000000, KL: 1524.35, Word: 97.50, Topo: 99.50, Assm: 97.76, PNorm: 223.21, GNorm: 18.43
+Wloss: 1.14, Tloss: 0.38, Aloss: 0.35
+[0][8050] Beta: 0.000000, KL: 1513.34, Word: 97.79, Topo: 99.58, Assm: 98.05, PNorm: 223.36, GNorm: 17.18
+Wloss: 1.14, Tloss: 0.37, Aloss: 0.29
+[0][8100] Beta: 0.000000, KL: 1473.98, Word: 98.06, Topo: 99.64, Assm: 98.20, PNorm: 223.52, GNorm: 12.01
+Wloss: 0.91, Tloss: 0.31, Aloss: 0.28
+[0][8150] Beta: 0.000000, KL: 1517.17, Word: 98.50, Topo: 99.66, Assm: 97.81, PNorm: 223.66, GNorm: 25.02
+Wloss: 0.69, Tloss: 0.30, Aloss: 0.34
+[0][8200] Beta: 0.000000, KL: 1528.80, Word: 98.63, Topo: 99.75, Assm: 99.10, PNorm: 223.76, GNorm: 16.15
+Wloss: 0.66, Tloss: 0.21, Aloss: 0.16
+[0][8250] Beta: 0.000000, KL: 1544.76, Word: 98.65, Topo: 99.72, Assm: 98.80, PNorm: 223.87, GNorm: 15.03
+Wloss: 0.63, Tloss: 0.22, Aloss: 0.17
+[0][8300] Beta: 0.000000, KL: 1574.76, Word: 98.80, Topo: 99.82, Assm: 98.47, PNorm: 223.98, GNorm: 15.41
+Wloss: 0.58, Tloss: 0.17, Aloss: 0.21
+[0][8350] Beta: 0.000000, KL: 1579.22, Word: 99.23, Topo: 99.88, Assm: 98.73, PNorm: 224.08, GNorm: 9.75
+Wloss: 0.40, Tloss: 0.12, Aloss: 0.20
+[0][8400] Beta: 0.000000, KL: 1606.61, Word: 99.24, Topo: 99.84, Assm: 98.70, PNorm: 224.15, GNorm: 13.98
+Wloss: 0.38, Tloss: 0.13, Aloss: 0.18
+[0][8450] Beta: 0.000000, KL: 1601.70, Word: 99.27, Topo: 99.90, Assm: 99.38, PNorm: 224.20, GNorm: 5.06
+Wloss: 0.38, Tloss: 0.11, Aloss: 0.13
+[0][8500] Beta: 0.000000, KL: 1610.13, Word: 99.29, Topo: 99.83, Assm: 99.29, PNorm: 224.25, GNorm: 15.29
+Wloss: 0.36, Tloss: 0.14, Aloss: 0.14
+[0][8550] Beta: 0.000000, KL: 1600.47, Word: 99.45, Topo: 99.86, Assm: 99.14, PNorm: 224.32, GNorm: 16.91
+Wloss: 0.30, Tloss: 0.11, Aloss: 0.13
+[0][8600] Beta: 0.000000, KL: 1624.78, Word: 99.57, Topo: 99.88, Assm: 98.98, PNorm: 224.39, GNorm: 8.02
+Wloss: 0.22, Tloss: 0.12, Aloss: 0.16
+Cosume Time per Epoch 9:13:40.629998
+EPOCH: 2 | TIME: 2020-04-04 17:03:09.180945 
+../data/l1000/max40/train_emb_max40.txt
+Finish gene exp loading
+Len(all_gen) is 137914
+[1][50] Beta: 0.000000, KL: 2127.51, Word: 131.42, Topo: 137.04, Assm: 132.74, PNorm: 224.74, GNorm: 31.39
+Wloss: 4.87, Tloss: 1.15, Aloss: 0.78
+[1][100] Beta: 0.000000, KL: 1391.65, Word: 95.62, Topo: 99.54, Assm: 97.20, PNorm: 225.08, GNorm: 26.14
+Wloss: 2.94, Tloss: 0.59, Aloss: 0.41
+[1][150] Beta: 0.000000, KL: 1420.67, Word: 96.83, Topo: 99.63, Assm: 97.45, PNorm: 225.40, GNorm: 30.63
+Wloss: 2.23, Tloss: 0.50, Aloss: 0.55
+[1][200] Beta: 0.000000, KL: 1423.56, Word: 97.71, Topo: 99.66, Assm: 98.17, PNorm: 225.57, GNorm: 28.23
+Wloss: 1.48, Tloss: 0.42, Aloss: 0.27
+[1][250] Beta: 0.000000, KL: 1455.43, Word: 98.41, Topo: 99.79, Assm: 98.75, PNorm: 225.75, GNorm: 17.14
+Wloss: 1.12, Tloss: 0.21, Aloss: 0.22
+[1][300] Beta: 0.000000, KL: 1442.52, Word: 98.69, Topo: 99.79, Assm: 98.83, PNorm: 225.86, GNorm: 20.62
+Wloss: 0.91, Tloss: 0.25, Aloss: 0.18
+[1][350] Beta: 0.000000, KL: 1477.56, Word: 98.54, Topo: 99.82, Assm: 98.48, PNorm: 226.02, GNorm: 12.22
+Wloss: 0.96, Tloss: 0.21, Aloss: 0.21
+[1][400] Beta: 0.000000, KL: 1501.94, Word: 99.02, Topo: 99.83, Assm: 98.91, PNorm: 226.12, GNorm: 26.36
+Wloss: 0.69, Tloss: 0.17, Aloss: 0.17
+[1][450] Beta: 0.000000, KL: 1512.70, Word: 99.07, Topo: 99.85, Assm: 99.03, PNorm: 226.40, GNorm: 14.90
+Wloss: 0.63, Tloss: 0.20, Aloss: 0.14
+[1][500] Beta: 0.000000, KL: 1520.42, Word: 99.19, Topo: 99.88, Assm: 99.30, PNorm: 226.51, GNorm: 14.17
+Wloss: 0.60, Tloss: 0.15, Aloss: 0.12
+[1][550] Beta: 0.000000, KL: 1533.35, Word: 99.04, Topo: 99.84, Assm: 98.88, PNorm: 226.65, GNorm: 7.29
+Wloss: 0.97, Tloss: 0.24, Aloss: 0.16
+[1][600] Beta: 0.000000, KL: 1557.62, Word: 99.04, Topo: 99.77, Assm: 99.05, PNorm: 226.76, GNorm: 16.65
+Wloss: 0.69, Tloss: 0.32, Aloss: 0.13
+[1][650] Beta: 0.000000, KL: 1505.19, Word: 99.33, Topo: 99.84, Assm: 99.33, PNorm: 226.89, GNorm: 6.41
+Wloss: 0.46, Tloss: 0.19, Aloss: 0.11
+[1][700] Beta: 0.000000, KL: 1496.18, Word: 99.31, Topo: 99.89, Assm: 99.25, PNorm: 226.98, GNorm: 8.07
+Wloss: 0.42, Tloss: 0.12, Aloss: 0.10
+[1][750] Beta: 0.000000, KL: 1541.86, Word: 99.48, Topo: 99.94, Assm: 99.41, PNorm: 227.06, GNorm: 6.41
+Wloss: 0.38, Tloss: 0.11, Aloss: 0.10
+[1][800] Beta: 0.000000, KL: 1542.57, Word: 99.48, Topo: 99.91, Assm: 99.37, PNorm: 227.15, GNorm: 13.10
+Wloss: 0.35, Tloss: 0.11, Aloss: 0.11
+[1][850] Beta: 0.000000, KL: 1555.59, Word: 99.49, Topo: 99.85, Assm: 98.92, PNorm: 227.24, GNorm: 20.08
+Wloss: 0.33, Tloss: 0.16, Aloss: 0.14
+[1][900] Beta: 0.000000, KL: 1538.25, Word: 90.75, Topo: 98.50, Assm: 91.80, PNorm: 227.67, GNorm: 50.00
+Wloss: 5.24, Tloss: 1.29, Aloss: 1.23
+[1][950] Beta: 0.000000, KL: 1483.37, Word: 90.65, Topo: 98.50, Assm: 94.23, PNorm: 228.23, GNorm: 28.37
+Wloss: 4.71, Tloss: 1.22, Aloss: 0.89
+[1][1000] Beta: 0.000000, KL: 1471.21, Word: 94.48, Topo: 99.02, Assm: 96.46, PNorm: 228.61, GNorm: 28.34
+Wloss: 2.71, Tloss: 0.77, Aloss: 0.53
+[1][1050] Beta: 0.000000, KL: 1493.93, Word: 96.32, Topo: 99.53, Assm: 97.94, PNorm: 228.85, GNorm: 30.71
+Wloss: 1.84, Tloss: 0.46, Aloss: 0.36
+[1][1100] Beta: 0.000000, KL: 1497.82, Word: 97.53, Topo: 99.64, Assm: 98.25, PNorm: 229.03, GNorm: 9.29
+Wloss: 1.33, Tloss: 0.33, Aloss: 0.27
+[1][1150] Beta: 0.000000, KL: 1509.61, Word: 98.54, Topo: 99.77, Assm: 98.29, PNorm: 229.18, GNorm: 19.68
+Wloss: 0.82, Tloss: 0.24, Aloss: 0.36
+[1][1200] Beta: 0.000000, KL: 1521.05, Word: 98.81, Topo: 99.84, Assm: 98.62, PNorm: 229.30, GNorm: 18.48
+Wloss: 0.69, Tloss: 0.19, Aloss: 0.25
+[1][1250] Beta: 0.000000, KL: 1560.78, Word: 99.22, Topo: 99.84, Assm: 98.34, PNorm: 229.41, GNorm: 28.81
+Wloss: 0.44, Tloss: 0.12, Aloss: 0.27
+[1][1300] Beta: 0.000000, KL: 1576.18, Word: 99.49, Topo: 99.93, Assm: 99.11, PNorm: 229.48, GNorm: 17.06
+Wloss: 0.35, Tloss: 0.08, Aloss: 0.20
+[1][1350] Beta: 0.000000, KL: 1601.25, Word: 99.47, Topo: 99.91, Assm: 98.79, PNorm: 229.56, GNorm: 15.21
+Wloss: 0.31, Tloss: 0.10, Aloss: 0.20
+[1][1400] Beta: 0.000000, KL: 1620.65, Word: 99.55, Topo: 99.88, Assm: 98.62, PNorm: 229.65, GNorm: 8.65
+Wloss: 0.28, Tloss: 0.13, Aloss: 0.24
+[1][1450] Beta: 0.000000, KL: 1624.36, Word: 99.66, Topo: 99.91, Assm: 99.00, PNorm: 229.72, GNorm: 5.06
+Wloss: 0.27, Tloss: 0.11, Aloss: 0.14
+[1][1500] Beta: 0.000000, KL: 1634.89, Word: 99.64, Topo: 99.92, Assm: 98.85, PNorm: 229.77, GNorm: 4.37
+Wloss: 0.24, Tloss: 0.11, Aloss: 0.17
+[1][1550] Beta: 0.000000, KL: 1639.36, Word: 99.65, Topo: 99.94, Assm: 99.30, PNorm: 229.84, GNorm: 12.71
+Wloss: 0.26, Tloss: 0.10, Aloss: 0.11
+[1][1600] Beta: 0.000000, KL: 1632.03, Word: 99.74, Topo: 99.90, Assm: 99.19, PNorm: 229.90, GNorm: 12.46
+Wloss: 0.20, Tloss: 0.13, Aloss: 0.11
+[1][1650] Beta: 0.000000, KL: 1620.80, Word: 99.80, Topo: 99.97, Assm: 99.29, PNorm: 229.95, GNorm: 4.29
+Wloss: 0.15, Tloss: 0.05, Aloss: 0.14
+[1][1700] Beta: 0.000000, KL: 1667.71, Word: 99.84, Topo: 99.99, Assm: 98.90, PNorm: 229.99, GNorm: 8.82
+Wloss: 0.15, Tloss: 0.02, Aloss: 0.16
+[1][1750] Beta: 0.000000, KL: 1626.21, Word: 96.99, Topo: 99.78, Assm: 98.43, PNorm: 230.09, GNorm: 42.84
+Wloss: 1.93, Tloss: 0.27, Aloss: 0.28
+[1][1800] Beta: 0.000000, KL: 1490.06, Word: 97.11, Topo: 99.58, Assm: 98.84, PNorm: 230.32, GNorm: 20.57
+Wloss: 1.69, Tloss: 0.43, Aloss: 0.18
+[1][1850] Beta: 0.000000, KL: 1525.29, Word: 98.49, Topo: 99.76, Assm: 99.12, PNorm: 230.43, GNorm: 17.35
+Wloss: 0.90, Tloss: 0.27, Aloss: 0.11
+[1][1900] Beta: 0.000000, KL: 1557.02, Word: 99.20, Topo: 99.89, Assm: 98.90, PNorm: 230.52, GNorm: 7.28
+Wloss: 0.46, Tloss: 0.12, Aloss: 0.16
+[1][1950] Beta: 0.000000, KL: 1567.91, Word: 99.44, Topo: 99.92, Assm: 99.38, PNorm: 230.56, GNorm: 15.29
+Wloss: 0.33, Tloss: 0.07, Aloss: 0.08
+[1][2000] Beta: 0.000000, KL: 1589.07, Word: 99.56, Topo: 99.94, Assm: 99.48, PNorm: 230.62, GNorm: 2.17
+Wloss: 0.27, Tloss: 0.06, Aloss: 0.08
+[1][2050] Beta: 0.000000, KL: 1614.97, Word: 99.51, Topo: 99.96, Assm: 99.24, PNorm: 230.65, GNorm: 13.73
+Wloss: 0.35, Tloss: 0.04, Aloss: 0.12
+[1][2100] Beta: 0.000000, KL: 1625.32, Word: 99.54, Topo: 99.94, Assm: 99.27, PNorm: 230.69, GNorm: 5.83
+Wloss: 0.25, Tloss: 0.06, Aloss: 0.07
+[1][2150] Beta: 0.000000, KL: 1623.50, Word: 99.73, Topo: 99.99, Assm: 99.48, PNorm: 230.71, GNorm: 3.99
+Wloss: 0.21, Tloss: 0.02, Aloss: 0.05
+[1][2200] Beta: 0.000000, KL: 1637.63, Word: 99.64, Topo: 99.95, Assm: 99.27, PNorm: 230.74, GNorm: 12.32
+Wloss: 0.26, Tloss: 0.04, Aloss: 0.09
+[1][2250] Beta: 0.000000, KL: 1621.37, Word: 99.57, Topo: 99.97, Assm: 99.46, PNorm: 230.76, GNorm: 17.10
+Wloss: 0.25, Tloss: 0.04, Aloss: 0.06
+[1][2300] Beta: 0.000000, KL: 1663.84, Word: 99.67, Topo: 99.99, Assm: 99.32, PNorm: 230.79, GNorm: 11.94
+Wloss: 0.19, Tloss: 0.02, Aloss: 0.07
+[1][2350] Beta: 0.000000, KL: 1673.65, Word: 99.63, Topo: 99.99, Assm: 99.38, PNorm: 230.83, GNorm: 14.51
+Wloss: 0.24, Tloss: 0.01, Aloss: 0.07
+[1][2400] Beta: 0.000000, KL: 1665.14, Word: 99.67, Topo: 99.99, Assm: 99.40, PNorm: 230.87, GNorm: 8.68
+Wloss: 0.19, Tloss: 0.01, Aloss: 0.06
+[1][2450] Beta: 0.000000, KL: 1671.52, Word: 99.73, Topo: 99.99, Assm: 99.53, PNorm: 230.90, GNorm: 6.13
+Wloss: 0.19, Tloss: 0.01, Aloss: 0.04
+[1][2500] Beta: 0.000000, KL: 1690.13, Word: 99.78, Topo: 99.98, Assm: 99.61, PNorm: 230.92, GNorm: 9.32
+Wloss: 0.15, Tloss: 0.05, Aloss: 0.04
+[1][2550] Beta: 0.000000, KL: 1650.24, Word: 99.68, Topo: 99.99, Assm: 99.57, PNorm: 230.94, GNorm: 11.96
+Wloss: 0.19, Tloss: 0.01, Aloss: 0.04
+[1][2600] Beta: 0.000000, KL: 1672.46, Word: 95.84, Topo: 99.42, Assm: 96.62, PNorm: 231.02, GNorm: 50.00
+Wloss: 2.44, Tloss: 0.53, Aloss: 0.49
+[1][2650] Beta: 0.000000, KL: 1533.56, Word: 89.77, Topo: 98.40, Assm: 93.25, PNorm: 231.76, GNorm: 37.73
+Wloss: 5.07, Tloss: 1.29, Aloss: 0.90
+[1][2700] Beta: 0.000000, KL: 1467.69, Word: 93.27, Topo: 98.92, Assm: 96.25, PNorm: 232.26, GNorm: 31.27
+Wloss: 3.15, Tloss: 0.81, Aloss: 0.59
+[1][2750] Beta: 0.000000, KL: 1484.95, Word: 95.86, Topo: 99.35, Assm: 97.04, PNorm: 232.53, GNorm: 19.02
+Wloss: 1.83, Tloss: 0.50, Aloss: 0.44
+[1][2800] Beta: 0.000000, KL: 1493.48, Word: 96.73, Topo: 99.52, Assm: 97.78, PNorm: 232.76, GNorm: 23.37
+Wloss: 1.58, Tloss: 0.40, Aloss: 0.33
+[1][2850] Beta: 0.000000, KL: 1507.35, Word: 97.67, Topo: 99.66, Assm: 98.36, PNorm: 232.92, GNorm: 23.45
+Wloss: 1.02, Tloss: 0.28, Aloss: 0.25
+[1][2900] Beta: 0.000000, KL: 1541.90, Word: 98.12, Topo: 99.60, Assm: 98.53, PNorm: 233.05, GNorm: 23.81
+Wloss: 0.92, Tloss: 0.31, Aloss: 0.21
+[1][2950] Beta: 0.000000, KL: 1532.86, Word: 98.57, Topo: 99.80, Assm: 98.68, PNorm: 233.16, GNorm: 15.26
+Wloss: 0.71, Tloss: 0.20, Aloss: 0.24
+[1][3000] Beta: 0.000000, KL: 1547.01, Word: 98.74, Topo: 99.82, Assm: 98.84, PNorm: 233.26, GNorm: 16.72
+Wloss: 0.56, Tloss: 0.14, Aloss: 0.17
+[1][3050] Beta: 0.000000, KL: 1579.43, Word: 99.17, Topo: 99.84, Assm: 98.95, PNorm: 233.34, GNorm: 11.57
+Wloss: 0.39, Tloss: 0.13, Aloss: 0.17
+[1][3100] Beta: 0.000000, KL: 1586.69, Word: 99.20, Topo: 99.90, Assm: 98.98, PNorm: 233.42, GNorm: 8.52
+Wloss: 0.33, Tloss: 0.08, Aloss: 0.13
+[1][3150] Beta: 0.000000, KL: 1594.05, Word: 99.37, Topo: 99.86, Assm: 99.17, PNorm: 233.47, GNorm: 5.13
+Wloss: 0.32, Tloss: 0.14, Aloss: 0.13
+[1][3200] Beta: 0.000000, KL: 1577.52, Word: 99.38, Topo: 99.90, Assm: 99.18, PNorm: 233.52, GNorm: 13.83
+Wloss: 0.30, Tloss: 0.09, Aloss: 0.11
+[1][3250] Beta: 0.000000, KL: 1597.97, Word: 99.66, Topo: 99.91, Assm: 99.22, PNorm: 233.57, GNorm: 5.89
+Wloss: 0.22, Tloss: 0.09, Aloss: 0.13
+[1][3300] Beta: 0.000000, KL: 1610.74, Word: 99.59, Topo: 99.93, Assm: 99.22, PNorm: 233.62, GNorm: 13.12
+Wloss: 0.21, Tloss: 0.06, Aloss: 0.11
+[1][3350] Beta: 0.000000, KL: 1615.66, Word: 99.60, Topo: 99.94, Assm: 99.24, PNorm: 233.67, GNorm: 8.13
+Wloss: 0.20, Tloss: 0.06, Aloss: 0.09
+[1][3400] Beta: 0.000000, KL: 1645.82, Word: 99.76, Topo: 99.96, Assm: 98.84, PNorm: 233.71, GNorm: 9.39
+Wloss: 0.14, Tloss: 0.05, Aloss: 0.15
+[1][3450] Beta: 0.000000, KL: 1674.93, Word: 99.30, Topo: 99.93, Assm: 99.20, PNorm: 233.75, GNorm: 50.00
+Wloss: 0.40, Tloss: 0.08, Aloss: 0.12
+[1][3500] Beta: 0.000000, KL: 1636.63, Word: 93.07, Topo: 98.82, Assm: 94.34, PNorm: 234.16, GNorm: 45.29
+Wloss: 3.52, Tloss: 1.01, Aloss: 0.87
+[1][3550] Beta: 0.000000, KL: 1584.11, Word: 96.07, Topo: 99.42, Assm: 98.26, PNorm: 234.57, GNorm: 27.95
+Wloss: 1.86, Tloss: 0.47, Aloss: 0.26
+[1][3600] Beta: 0.000000, KL: 1580.03, Word: 97.90, Topo: 99.80, Assm: 98.57, PNorm: 234.72, GNorm: 21.99
+Wloss: 0.98, Tloss: 0.18, Aloss: 0.28
+[1][3650] Beta: 0.000000, KL: 1657.13, Word: 99.30, Topo: 99.88, Assm: 98.72, PNorm: 234.85, GNorm: 5.10
+Wloss: 0.43, Tloss: 0.13, Aloss: 0.18
+[1][3700] Beta: 0.000000, KL: 1678.00, Word: 99.65, Topo: 99.95, Assm: 99.19, PNorm: 234.91, GNorm: 3.94
+Wloss: 0.19, Tloss: 0.05, Aloss: 0.16
+[1][3750] Beta: 0.000000, KL: 1668.65, Word: 99.81, Topo: 99.98, Assm: 99.41, PNorm: 234.94, GNorm: 1.49
+Wloss: 0.15, Tloss: 0.03, Aloss: 0.10
+[1][3800] Beta: 0.000000, KL: 1683.76, Word: 99.92, Topo: 99.99, Assm: 99.08, PNorm: 234.97, GNorm: 4.31
+Wloss: 0.08, Tloss: 0.02, Aloss: 0.15
+[1][3850] Beta: 0.000000, KL: 1677.52, Word: 99.94, Topo: 99.98, Assm: 98.80, PNorm: 235.00, GNorm: 27.68
+Wloss: 0.04, Tloss: 0.02, Aloss: 0.13
+[1][3900] Beta: 0.000000, KL: 1715.48, Word: 99.95, Topo: 99.93, Assm: 99.11, PNorm: 235.04, GNorm: 2.55
+Wloss: 0.05, Tloss: 0.08, Aloss: 0.12
+[1][3950] Beta: 0.000000, KL: 1753.97, Word: 99.93, Topo: 99.98, Assm: 99.13, PNorm: 235.06, GNorm: 0.70
+Wloss: 0.05, Tloss: 0.05, Aloss: 0.12
+[1][4000] Beta: 0.000000, KL: 1728.10, Word: 99.94, Topo: 99.99, Assm: 99.16, PNorm: 235.09, GNorm: 0.59
+Wloss: 0.04, Tloss: 0.02, Aloss: 0.11
+[1][4050] Beta: 0.000000, KL: 1760.60, Word: 99.97, Topo: 99.98, Assm: 98.88, PNorm: 235.11, GNorm: 16.74
+Wloss: 0.04, Tloss: 0.02, Aloss: 0.14
+[1][4100] Beta: 0.000000, KL: 1752.07, Word: 99.97, Topo: 99.99, Assm: 98.91, PNorm: 235.12, GNorm: 0.50
+Wloss: 0.03, Tloss: 0.01, Aloss: 0.13
+[1][4150] Beta: 0.000000, KL: 1733.31, Word: 99.99, Topo: 100.00, Assm: 99.13, PNorm: 235.14, GNorm: 0.34
+Wloss: 0.02, Tloss: 0.01, Aloss: 0.11
+[1][4200] Beta: 0.000000, KL: 1749.55, Word: 100.00, Topo: 99.98, Assm: 99.13, PNorm: 235.16, GNorm: 0.51
+Wloss: 0.01, Tloss: 0.02, Aloss: 0.11
+[1][4250] Beta: 0.000000, KL: 1774.95, Word: 99.97, Topo: 99.98, Assm: 99.13, PNorm: 235.18, GNorm: 0.60
+Wloss: 0.03, Tloss: 0.03, Aloss: 0.12
+[1][4300] Beta: 0.000000, KL: 1781.38, Word: 100.00, Topo: 99.99, Assm: 99.10, PNorm: 235.20, GNorm: 2.66
+Wloss: 0.01, Tloss: 0.01, Aloss: 0.11
+[1][4350] Beta: 0.000000, KL: 1650.93, Word: 90.98, Topo: 97.99, Assm: 92.07, PNorm: 235.68, GNorm: 45.74
+Wloss: 4.86, Tloss: 1.74, Aloss: 1.24
+[1][4400] Beta: 0.000000, KL: 1554.53, Word: 89.98, Topo: 98.49, Assm: 92.84, PNorm: 236.46, GNorm: 45.76
+Wloss: 5.03, Tloss: 1.17, Aloss: 0.94
+[1][4450] Beta: 0.000000, KL: 1534.16, Word: 92.05, Topo: 98.91, Assm: 95.23, PNorm: 237.01, GNorm: 36.81
+Wloss: 3.98, Tloss: 0.85, Aloss: 0.70
+[1][4500] Beta: 0.000000, KL: 1505.93, Word: 94.73, Topo: 99.19, Assm: 96.42, PNorm: 237.41, GNorm: 25.92
+Wloss: 2.56, Tloss: 0.70, Aloss: 0.53
+[1][4550] Beta: 0.000000, KL: 1513.22, Word: 95.83, Topo: 99.32, Assm: 96.51, PNorm: 237.67, GNorm: 12.58
+Wloss: 1.87, Tloss: 0.53, Aloss: 0.45
+[1][4600] Beta: 0.000000, KL: 1478.23, Word: 96.92, Topo: 99.58, Assm: 97.58, PNorm: 237.90, GNorm: 23.15
+Wloss: 1.43, Tloss: 0.35, Aloss: 0.35
+[1][4650] Beta: 0.000000, KL: 1535.02, Word: 97.13, Topo: 99.49, Assm: 98.52, PNorm: 238.08, GNorm: 23.80
+Wloss: 1.37, Tloss: 0.42, Aloss: 0.28
+[1][4700] Beta: 0.000000, KL: 1586.88, Word: 97.34, Topo: 99.36, Assm: 98.03, PNorm: 238.27, GNorm: 18.82
+Wloss: 1.26, Tloss: 0.58, Aloss: 0.29
+[1][4750] Beta: 0.000000, KL: 1562.50, Word: 98.10, Topo: 99.51, Assm: 98.74, PNorm: 238.48, GNorm: 22.65
+Wloss: 0.92, Tloss: 0.41, Aloss: 0.20
+[1][4800] Beta: 0.000000, KL: 1594.29, Word: 98.34, Topo: 99.76, Assm: 98.25, PNorm: 238.61, GNorm: 20.31
+Wloss: 0.82, Tloss: 0.25, Aloss: 0.27
+[1][4850] Beta: 0.000000, KL: 1606.37, Word: 98.54, Topo: 99.75, Assm: 98.42, PNorm: 238.74, GNorm: 14.58
+Wloss: 0.76, Tloss: 0.22, Aloss: 0.22
+[1][4900] Beta: 0.000000, KL: 1627.91, Word: 98.68, Topo: 99.78, Assm: 99.15, PNorm: 238.84, GNorm: 22.99
+Wloss: 0.65, Tloss: 0.23, Aloss: 0.13
+[1][4950] Beta: 0.000000, KL: 1633.65, Word: 98.59, Topo: 99.81, Assm: 98.67, PNorm: 238.94, GNorm: 10.05
+Wloss: 0.70, Tloss: 0.18, Aloss: 0.17
+[1][5000] Beta: 0.000000, KL: 1661.59, Word: 98.99, Topo: 99.80, Assm: 99.03, PNorm: 239.04, GNorm: 8.92
+Wloss: 0.52, Tloss: 0.19, Aloss: 0.17
+[1][5050] Beta: 0.000000, KL: 1596.93, Word: 98.95, Topo: 99.74, Assm: 99.37, PNorm: 239.12, GNorm: 9.93
+Wloss: 0.56, Tloss: 0.23, Aloss: 0.13
+[1][5100] Beta: 0.000000, KL: 1665.52, Word: 99.19, Topo: 99.80, Assm: 98.89, PNorm: 239.21, GNorm: 19.09
+Wloss: 0.48, Tloss: 0.17, Aloss: 0.16
+[1][5150] Beta: 0.000000, KL: 1685.09, Word: 99.29, Topo: 99.83, Assm: 99.26, PNorm: 239.30, GNorm: 11.42
+Wloss: 0.40, Tloss: 0.14, Aloss: 0.09
+[1][5200] Beta: 0.000000, KL: 1643.01, Word: 94.44, Topo: 99.44, Assm: 97.69, PNorm: 239.52, GNorm: 36.18
+Wloss: 3.29, Tloss: 0.63, Aloss: 0.50
+[1][5250] Beta: 0.000000, KL: 1474.26, Word: 96.13, Topo: 99.61, Assm: 98.60, PNorm: 239.76, GNorm: 22.74
+Wloss: 2.11, Tloss: 0.45, Aloss: 0.37
+[1][5300] Beta: 0.000000, KL: 1498.56, Word: 97.49, Topo: 99.83, Assm: 98.97, PNorm: 239.86, GNorm: 10.34
+Wloss: 1.24, Tloss: 0.20, Aloss: 0.18
+[1][5350] Beta: 0.000000, KL: 1546.63, Word: 98.55, Topo: 99.87, Assm: 99.44, PNorm: 239.94, GNorm: 13.13
+Wloss: 0.77, Tloss: 0.16, Aloss: 0.10
+[1][5400] Beta: 0.000000, KL: 1554.72, Word: 98.69, Topo: 99.86, Assm: 99.66, PNorm: 240.02, GNorm: 25.80
+Wloss: 0.69, Tloss: 0.13, Aloss: 0.12
+[1][5450] Beta: 0.000000, KL: 1576.48, Word: 99.04, Topo: 99.88, Assm: 99.60, PNorm: 240.08, GNorm: 3.93
+Wloss: 0.53, Tloss: 0.13, Aloss: 0.07
+[1][5500] Beta: 0.000000, KL: 1583.29, Word: 99.19, Topo: 99.95, Assm: 99.50, PNorm: 240.12, GNorm: 4.36
+Wloss: 0.43, Tloss: 0.07, Aloss: 0.08
+[1][5550] Beta: 0.000000, KL: 1586.82, Word: 99.41, Topo: 99.95, Assm: 99.65, PNorm: 240.15, GNorm: 12.22
+Wloss: 0.31, Tloss: 0.07, Aloss: 0.05
+[1][5600] Beta: 0.000000, KL: 1593.02, Word: 99.41, Topo: 99.95, Assm: 99.61, PNorm: 240.19, GNorm: 8.86
+Wloss: 0.31, Tloss: 0.05, Aloss: 0.06
+[1][5650] Beta: 0.000000, KL: 1594.88, Word: 99.53, Topo: 99.97, Assm: 99.68, PNorm: 240.24, GNorm: 13.17
+Wloss: 0.26, Tloss: 0.04, Aloss: 0.05
+[1][5700] Beta: 0.000000, KL: 1620.63, Word: 99.61, Topo: 99.96, Assm: 99.74, PNorm: 240.28, GNorm: 4.61
+Wloss: 0.23, Tloss: 0.04, Aloss: 0.04
+[1][5750] Beta: 0.000000, KL: 1658.07, Word: 99.61, Topo: 99.96, Assm: 99.74, PNorm: 240.30, GNorm: 3.35
+Wloss: 0.23, Tloss: 0.05, Aloss: 0.05
+[1][5800] Beta: 0.000000, KL: 1663.15, Word: 99.75, Topo: 99.96, Assm: 99.76, PNorm: 240.32, GNorm: 18.29
+Wloss: 0.16, Tloss: 0.04, Aloss: 0.05
+[1][5850] Beta: 0.000000, KL: 1656.11, Word: 99.69, Topo: 99.97, Assm: 99.56, PNorm: 240.36, GNorm: 16.64
+Wloss: 0.18, Tloss: 0.03, Aloss: 0.08
+[1][5900] Beta: 0.000000, KL: 1674.49, Word: 99.76, Topo: 99.96, Assm: 99.70, PNorm: 240.38, GNorm: 3.25
+Wloss: 0.15, Tloss: 0.03, Aloss: 0.04
+[1][5950] Beta: 0.000000, KL: 1667.87, Word: 99.66, Topo: 99.97, Assm: 99.50, PNorm: 240.41, GNorm: 3.81
+Wloss: 0.19, Tloss: 0.04, Aloss: 0.07
+[1][6000] Beta: 0.000000, KL: 1703.19, Word: 99.79, Topo: 99.98, Assm: 99.85, PNorm: 240.44, GNorm: 2.78
+Wloss: 0.15, Tloss: 0.02, Aloss: 0.02
+[1][6050] Beta: 0.000000, KL: 1768.28, Word: 96.22, Topo: 99.36, Assm: 96.82, PNorm: 240.53, GNorm: 50.00
+Wloss: 2.02, Tloss: 0.62, Aloss: 0.54
+[1][6100] Beta: 0.000000, KL: 1672.64, Word: 93.80, Topo: 98.99, Assm: 95.75, PNorm: 241.03, GNorm: 26.40
+Wloss: 3.17, Tloss: 0.86, Aloss: 0.68
+[1][6150] Beta: 0.000000, KL: 1651.88, Word: 96.81, Topo: 99.40, Assm: 97.61, PNorm: 241.39, GNorm: 10.01
+Wloss: 1.62, Tloss: 0.51, Aloss: 0.39
+[1][6200] Beta: 0.000000, KL: 1656.39, Word: 98.51, Topo: 99.68, Assm: 98.49, PNorm: 241.59, GNorm: 10.56
+Wloss: 0.78, Tloss: 0.28, Aloss: 0.23
+[1][6250] Beta: 0.000000, KL: 1695.84, Word: 98.96, Topo: 99.77, Assm: 99.07, PNorm: 241.71, GNorm: 13.85
+Wloss: 0.52, Tloss: 0.21, Aloss: 0.15
+[1][6300] Beta: 0.000000, KL: 1713.68, Word: 99.04, Topo: 99.86, Assm: 98.62, PNorm: 241.82, GNorm: 7.48
+Wloss: 0.50, Tloss: 0.12, Aloss: 0.24
+[1][6350] Beta: 0.000000, KL: 1735.01, Word: 99.42, Topo: 99.95, Assm: 98.75, PNorm: 241.92, GNorm: 11.05
+Wloss: 0.33, Tloss: 0.07, Aloss: 0.18
+[1][6400] Beta: 0.000000, KL: 1729.49, Word: 99.61, Topo: 99.94, Assm: 98.91, PNorm: 241.99, GNorm: 6.33
+Wloss: 0.23, Tloss: 0.06, Aloss: 0.20
+[1][6450] Beta: 0.000000, KL: 1732.15, Word: 99.78, Topo: 99.98, Assm: 99.07, PNorm: 242.02, GNorm: 0.52
+Wloss: 0.14, Tloss: 0.03, Aloss: 0.13
+[1][6500] Beta: 0.000000, KL: 1702.56, Word: 99.83, Topo: 100.00, Assm: 99.28, PNorm: 242.05, GNorm: 3.56
+Wloss: 0.11, Tloss: 0.02, Aloss: 0.10
+[1][6550] Beta: 0.000000, KL: 1767.23, Word: 99.87, Topo: 99.99, Assm: 99.44, PNorm: 242.08, GNorm: 0.60
+Wloss: 0.10, Tloss: 0.01, Aloss: 0.09
+[1][6600] Beta: 0.000000, KL: 1757.53, Word: 99.95, Topo: 100.00, Assm: 98.84, PNorm: 242.11, GNorm: 0.66
+Wloss: 0.05, Tloss: 0.01, Aloss: 0.12
+[1][6650] Beta: 0.000000, KL: 1756.32, Word: 99.97, Topo: 99.99, Assm: 99.18, PNorm: 242.13, GNorm: 0.27
+Wloss: 0.04, Tloss: 0.01, Aloss: 0.10
+[1][6700] Beta: 0.000000, KL: 1767.87, Word: 99.97, Topo: 99.99, Assm: 99.24, PNorm: 242.15, GNorm: 4.39
+Wloss: 0.03, Tloss: 0.02, Aloss: 0.11
+[1][6750] Beta: 0.000000, KL: 1776.95, Word: 99.97, Topo: 100.00, Assm: 99.07, PNorm: 242.17, GNorm: 4.28
+Wloss: 0.03, Tloss: 0.01, Aloss: 0.13
+[1][6800] Beta: 0.000000, KL: 1794.16, Word: 99.92, Topo: 99.99, Assm: 99.33, PNorm: 242.19, GNorm: 0.40
+Wloss: 0.04, Tloss: 0.01, Aloss: 0.08
+[1][6850] Beta: 0.000000, KL: 1842.47, Word: 99.96, Topo: 99.99, Assm: 99.29, PNorm: 242.21, GNorm: 7.45
+Wloss: 0.03, Tloss: 0.01, Aloss: 0.08
+[1][6900] Beta: 0.000000, KL: 1850.32, Word: 98.80, Topo: 99.77, Assm: 98.41, PNorm: 242.20, GNorm: 50.00
+Wloss: 0.81, Tloss: 0.23, Aloss: 0.40
+[1][6950] Beta: 0.000000, KL: 1601.90, Word: 89.07, Topo: 98.36, Assm: 90.67, PNorm: 242.92, GNorm: 45.72
+Wloss: 5.91, Tloss: 1.44, Aloss: 1.45
+[1][7000] Beta: 0.000000, KL: 1531.29, Word: 91.28, Topo: 98.72, Assm: 95.14, PNorm: 243.58, GNorm: 34.73
+Wloss: 4.27, Tloss: 1.01, Aloss: 0.81
+[1][7050] Beta: 0.000000, KL: 1580.59, Word: 94.07, Topo: 99.25, Assm: 96.27, PNorm: 244.04, GNorm: 40.93
+Wloss: 2.80, Tloss: 0.63, Aloss: 0.51
+[1][7100] Beta: 0.000000, KL: 1607.74, Word: 96.11, Topo: 99.46, Assm: 97.55, PNorm: 244.33, GNorm: 18.61
+Wloss: 1.82, Tloss: 0.45, Aloss: 0.50
+[1][7150] Beta: 0.000000, KL: 1619.91, Word: 97.47, Topo: 99.58, Assm: 98.12, PNorm: 244.54, GNorm: 27.02
+Wloss: 1.23, Tloss: 0.41, Aloss: 0.31
+[1][7200] Beta: 0.000000, KL: 1627.96, Word: 97.88, Topo: 99.76, Assm: 98.00, PNorm: 244.74, GNorm: 8.84
+Wloss: 1.00, Tloss: 0.22, Aloss: 0.32
+[1][7250] Beta: 0.000000, KL: 1640.56, Word: 98.55, Topo: 99.77, Assm: 98.92, PNorm: 244.86, GNorm: 16.50
+Wloss: 0.77, Tloss: 0.22, Aloss: 0.19
+[1][7300] Beta: 0.000000, KL: 1704.93, Word: 98.85, Topo: 99.69, Assm: 98.85, PNorm: 244.96, GNorm: 20.76
+Wloss: 0.67, Tloss: 0.27, Aloss: 0.18
+[1][7350] Beta: 0.000000, KL: 1636.94, Word: 98.61, Topo: 99.65, Assm: 98.56, PNorm: 245.11, GNorm: 7.76
+Wloss: 0.76, Tloss: 0.30, Aloss: 0.25
+[1][7400] Beta: 0.000000, KL: 1620.34, Word: 98.88, Topo: 99.81, Assm: 98.91, PNorm: 245.21, GNorm: 14.79
+Wloss: 0.60, Tloss: 0.20, Aloss: 0.18
+[1][7450] Beta: 0.000000, KL: 1655.87, Word: 99.14, Topo: 99.87, Assm: 98.83, PNorm: 245.31, GNorm: 11.15
+Wloss: 0.52, Tloss: 0.12, Aloss: 0.21
+[1][7500] Beta: 0.000000, KL: 1674.68, Word: 99.10, Topo: 99.91, Assm: 98.93, PNorm: 245.42, GNorm: 11.33
+Wloss: 0.49, Tloss: 0.08, Aloss: 0.19
+[1][7550] Beta: 0.000000, KL: 1694.77, Word: 99.11, Topo: 99.91, Assm: 98.78, PNorm: 245.51, GNorm: 14.12
+Wloss: 0.47, Tloss: 0.10, Aloss: 0.22
+[1][7600] Beta: 0.000000, KL: 1707.97, Word: 99.35, Topo: 99.86, Assm: 99.21, PNorm: 245.61, GNorm: 15.57
+Wloss: 0.35, Tloss: 0.13, Aloss: 0.16
+[1][7650] Beta: 0.000000, KL: 1721.99, Word: 99.24, Topo: 99.89, Assm: 98.51, PNorm: 245.70, GNorm: 13.09
+Wloss: 0.40, Tloss: 0.10, Aloss: 0.23
+[1][7700] Beta: 0.000000, KL: 1707.48, Word: 99.32, Topo: 99.97, Assm: 98.91, PNorm: 245.78, GNorm: 19.16
+Wloss: 0.34, Tloss: 0.06, Aloss: 0.19
+[1][7750] Beta: 0.000000, KL: 1728.80, Word: 99.36, Topo: 99.87, Assm: 99.12, PNorm: 245.84, GNorm: 8.14
+Wloss: 0.41, Tloss: 0.10, Aloss: 0.13
+[1][7800] Beta: 0.000000, KL: 1698.81, Word: 98.09, Topo: 99.57, Assm: 96.54, PNorm: 245.96, GNorm: 37.54
+Wloss: 0.98, Tloss: 0.36, Aloss: 0.51
+[1][7850] Beta: 0.000000, KL: 1683.16, Word: 97.78, Topo: 99.50, Assm: 97.05, PNorm: 246.17, GNorm: 16.53
+Wloss: 1.12, Tloss: 0.41, Aloss: 0.47
+[1][7900] Beta: 0.000000, KL: 1658.95, Word: 97.59, Topo: 99.49, Assm: 97.69, PNorm: 246.36, GNorm: 21.76
+Wloss: 1.09, Tloss: 0.42, Aloss: 0.29
+[1][7950] Beta: 0.000000, KL: 1659.38, Word: 97.56, Topo: 99.22, Assm: 97.93, PNorm: 246.62, GNorm: 24.53
+Wloss: 1.19, Tloss: 0.59, Aloss: 0.34
+[1][8000] Beta: 0.000000, KL: 1730.29, Word: 98.19, Topo: 99.74, Assm: 98.14, PNorm: 246.77, GNorm: 16.05
+Wloss: 0.91, Tloss: 0.23, Aloss: 0.26
+[1][8050] Beta: 0.000000, KL: 1695.96, Word: 98.50, Topo: 99.70, Assm: 98.62, PNorm: 246.89, GNorm: 16.95
+Wloss: 0.71, Tloss: 0.27, Aloss: 0.18
+[1][8100] Beta: 0.000000, KL: 1698.43, Word: 98.59, Topo: 99.73, Assm: 98.87, PNorm: 247.00, GNorm: 13.60
+Wloss: 0.61, Tloss: 0.21, Aloss: 0.19
+[1][8150] Beta: 0.000000, KL: 1761.80, Word: 98.88, Topo: 99.75, Assm: 98.73, PNorm: 247.07, GNorm: 17.96
+Wloss: 0.61, Tloss: 0.22, Aloss: 0.18
+[1][8200] Beta: 0.000000, KL: 1740.75, Word: 99.12, Topo: 99.79, Assm: 98.73, PNorm: 247.17, GNorm: 17.81
+Wloss: 0.48, Tloss: 0.18, Aloss: 0.19
+[1][8250] Beta: 0.000000, KL: 1724.84, Word: 99.19, Topo: 99.88, Assm: 98.63, PNorm: 247.24, GNorm: 18.43
+Wloss: 0.41, Tloss: 0.16, Aloss: 0.23
+[1][8300] Beta: 0.000000, KL: 1728.39, Word: 99.39, Topo: 99.88, Assm: 99.05, PNorm: 247.31, GNorm: 11.30
+Wloss: 0.30, Tloss: 0.11, Aloss: 0.18
+[1][8350] Beta: 0.000000, KL: 1730.98, Word: 99.30, Topo: 99.89, Assm: 98.88, PNorm: 247.38, GNorm: 16.76
+Wloss: 0.36, Tloss: 0.12, Aloss: 0.19
+[1][8400] Beta: 0.000000, KL: 1754.83, Word: 99.29, Topo: 99.84, Assm: 99.16, PNorm: 247.46, GNorm: 9.28
+Wloss: 0.38, Tloss: 0.17, Aloss: 0.16
+[1][8450] Beta: 0.000000, KL: 1717.49, Word: 99.18, Topo: 99.89, Assm: 99.15, PNorm: 247.52, GNorm: 8.19
+Wloss: 0.34, Tloss: 0.12, Aloss: 0.14
+[1][8500] Beta: 0.000000, KL: 1711.62, Word: 99.36, Topo: 99.91, Assm: 99.24, PNorm: 247.56, GNorm: 8.28
+Wloss: 0.33, Tloss: 0.10, Aloss: 0.12
+[1][8550] Beta: 0.000000, KL: 1778.47, Word: 99.31, Topo: 99.88, Assm: 99.07, PNorm: 247.65, GNorm: 17.52
+Wloss: 0.34, Tloss: 0.10, Aloss: 0.14
+[1][8600] Beta: 0.000000, KL: 1785.74, Word: 99.52, Topo: 99.93, Assm: 99.16, PNorm: 247.70, GNorm: 15.53
+Wloss: 0.27, Tloss: 0.07, Aloss: 0.13
+Cosume Time per Epoch 9:12:11.868784
+EPOCH: 3 | TIME: 2020-04-05 02:15:29.642793 
+../data/l1000/max40/train_emb_max40.txt
+Finish gene exp loading
+Len(all_gen) is 137914
+[2][50] Beta: 0.000000, KL: 2370.32, Word: 132.29, Topo: 137.12, Assm: 134.17, PNorm: 248.07, GNorm: 41.85
+Wloss: 4.04, Tloss: 1.06, Aloss: 0.57
+[2][100] Beta: 0.000000, KL: 1587.69, Word: 96.47, Topo: 99.48, Assm: 97.87, PNorm: 248.36, GNorm: 30.61
+Wloss: 2.41, Tloss: 0.63, Aloss: 0.33
+[2][150] Beta: 0.000000, KL: 1602.02, Word: 97.70, Topo: 99.74, Assm: 99.09, PNorm: 248.54, GNorm: 14.82
+Wloss: 1.52, Tloss: 0.31, Aloss: 0.17
+[2][200] Beta: 0.000000, KL: 1670.95, Word: 98.22, Topo: 99.73, Assm: 98.38, PNorm: 248.67, GNorm: 20.18
+Wloss: 1.22, Tloss: 0.32, Aloss: 0.24
+[2][250] Beta: 0.000000, KL: 1660.17, Word: 98.59, Topo: 99.79, Assm: 98.85, PNorm: 248.84, GNorm: 11.64
+Wloss: 0.95, Tloss: 0.23, Aloss: 0.16
+[2][300] Beta: 0.000000, KL: 1659.22, Word: 98.57, Topo: 99.81, Assm: 98.93, PNorm: 248.95, GNorm: 13.20
+Wloss: 0.99, Tloss: 0.23, Aloss: 0.14
+[2][350] Beta: 0.000000, KL: 1636.29, Word: 98.96, Topo: 99.85, Assm: 98.63, PNorm: 249.06, GNorm: 12.99
+Wloss: 0.73, Tloss: 0.18, Aloss: 0.14
+[2][400] Beta: 0.000000, KL: 1645.84, Word: 99.07, Topo: 99.92, Assm: 99.22, PNorm: 249.14, GNorm: 15.63
+Wloss: 0.67, Tloss: 0.09, Aloss: 0.13
+[2][450] Beta: 0.000000, KL: 1640.38, Word: 99.26, Topo: 99.94, Assm: 99.30, PNorm: 249.22, GNorm: 12.57
+Wloss: 0.43, Tloss: 0.08, Aloss: 0.10
+[2][500] Beta: 0.000000, KL: 1645.84, Word: 99.32, Topo: 99.88, Assm: 99.28, PNorm: 249.29, GNorm: 12.55
+Wloss: 0.40, Tloss: 0.14, Aloss: 0.13
+[2][550] Beta: 0.000000, KL: 1723.67, Word: 99.32, Topo: 99.89, Assm: 99.03, PNorm: 249.36, GNorm: 10.55
+Wloss: 0.48, Tloss: 0.16, Aloss: 0.13
+[2][600] Beta: 0.000000, KL: 1748.74, Word: 99.30, Topo: 99.90, Assm: 98.76, PNorm: 249.45, GNorm: 15.76
+Wloss: 0.60, Tloss: 0.17, Aloss: 0.14
+[2][650] Beta: 0.000000, KL: 1711.87, Word: 99.56, Topo: 99.94, Assm: 99.48, PNorm: 249.51, GNorm: 17.99
+Wloss: 0.33, Tloss: 0.09, Aloss: 0.06
+[2][700] Beta: 0.000000, KL: 1716.31, Word: 99.62, Topo: 99.95, Assm: 99.19, PNorm: 249.56, GNorm: 7.27
+Wloss: 0.28, Tloss: 0.07, Aloss: 0.14
+[2][750] Beta: 0.000000, KL: 1742.72, Word: 99.54, Topo: 99.93, Assm: 99.44, PNorm: 249.63, GNorm: 4.81
+Wloss: 0.35, Tloss: 0.09, Aloss: 0.07
+[2][800] Beta: 0.000000, KL: 1747.82, Word: 99.65, Topo: 99.96, Assm: 99.42, PNorm: 249.67, GNorm: 10.19
+Wloss: 0.33, Tloss: 0.07, Aloss: 0.09
+[2][850] Beta: 0.000000, KL: 1743.82, Word: 99.56, Topo: 99.99, Assm: 99.24, PNorm: 249.71, GNorm: 3.42
+Wloss: 0.29, Tloss: 0.03, Aloss: 0.08
+[2][900] Beta: 0.000000, KL: 1760.12, Word: 91.98, Topo: 99.00, Assm: 94.32, PNorm: 250.03, GNorm: 50.00
+Wloss: 4.37, Tloss: 0.93, Aloss: 0.81
+[2][950] Beta: 0.000000, KL: 1650.07, Word: 92.64, Topo: 98.87, Assm: 95.21, PNorm: 250.52, GNorm: 48.48
+Wloss: 3.97, Tloss: 1.00, Aloss: 0.69
+[2][1000] Beta: 0.000000, KL: 1660.90, Word: 95.59, Topo: 99.42, Assm: 97.63, PNorm: 250.84, GNorm: 17.82
+Wloss: 2.29, Tloss: 0.56, Aloss: 0.37
+[2][1050] Beta: 0.000000, KL: 1663.13, Word: 96.72, Topo: 99.62, Assm: 98.08, PNorm: 251.05, GNorm: 13.70
+Wloss: 1.68, Tloss: 0.34, Aloss: 0.32
+[2][1100] Beta: 0.000000, KL: 1690.91, Word: 98.15, Topo: 99.68, Assm: 98.30, PNorm: 251.24, GNorm: 22.32
+Wloss: 0.99, Tloss: 0.32, Aloss: 0.29
+[2][1150] Beta: 0.000000, KL: 1699.47, Word: 98.50, Topo: 99.74, Assm: 99.08, PNorm: 251.34, GNorm: 21.83
+Wloss: 0.87, Tloss: 0.23, Aloss: 0.19
+[2][1200] Beta: 0.000000, KL: 1730.28, Word: 98.95, Topo: 99.88, Assm: 98.64, PNorm: 251.47, GNorm: 23.06
+Wloss: 0.54, Tloss: 0.15, Aloss: 0.23
+[2][1250] Beta: 0.000000, KL: 1719.20, Word: 99.20, Topo: 99.79, Assm: 99.03, PNorm: 251.54, GNorm: 5.07
+Wloss: 0.45, Tloss: 0.20, Aloss: 0.15
+[2][1300] Beta: 0.000000, KL: 1728.40, Word: 99.46, Topo: 99.91, Assm: 98.97, PNorm: 251.61, GNorm: 9.62
+Wloss: 0.36, Tloss: 0.10, Aloss: 0.14
+[2][1350] Beta: 0.000000, KL: 1763.63, Word: 99.44, Topo: 99.92, Assm: 98.46, PNorm: 251.71, GNorm: 7.74
+Wloss: 0.35, Tloss: 0.10, Aloss: 0.27
+[2][1400] Beta: 0.000000, KL: 1774.98, Word: 99.67, Topo: 99.94, Assm: 98.83, PNorm: 251.77, GNorm: 13.18
+Wloss: 0.20, Tloss: 0.08, Aloss: 0.18
+[2][1450] Beta: 0.000000, KL: 1800.50, Word: 99.73, Topo: 99.95, Assm: 98.77, PNorm: 251.81, GNorm: 4.59
+Wloss: 0.19, Tloss: 0.06, Aloss: 0.18
+[2][1500] Beta: 0.000000, KL: 1800.33, Word: 99.84, Topo: 99.97, Assm: 98.85, PNorm: 251.85, GNorm: 5.55
+Wloss: 0.13, Tloss: 0.05, Aloss: 0.19
+[2][1550] Beta: 0.000000, KL: 1820.64, Word: 99.78, Topo: 99.97, Assm: 99.29, PNorm: 251.89, GNorm: 11.91
+Wloss: 0.14, Tloss: 0.04, Aloss: 0.11
+[2][1600] Beta: 0.000000, KL: 1833.59, Word: 99.87, Topo: 99.98, Assm: 99.20, PNorm: 251.92, GNorm: 2.42
+Wloss: 0.09, Tloss: 0.03, Aloss: 0.14
+[2][1650] Beta: 0.000000, KL: 1830.72, Word: 99.81, Topo: 99.95, Assm: 99.22, PNorm: 251.93, GNorm: 8.07
+Wloss: 0.13, Tloss: 0.07, Aloss: 0.11
+[2][1700] Beta: 0.000000, KL: 1846.62, Word: 99.85, Topo: 99.96, Assm: 98.85, PNorm: 251.97, GNorm: 2.87
+Wloss: 0.11, Tloss: 0.05, Aloss: 0.13
+[2][1750] Beta: 0.000000, KL: 1804.60, Word: 97.76, Topo: 99.71, Assm: 98.73, PNorm: 252.07, GNorm: 31.18
+Wloss: 1.56, Tloss: 0.39, Aloss: 0.24
+[2][1800] Beta: 0.000000, KL: 1644.49, Word: 97.65, Topo: 99.81, Assm: 98.95, PNorm: 252.25, GNorm: 21.79
+Wloss: 1.31, Tloss: 0.25, Aloss: 0.16
+[2][1850] Beta: 0.000000, KL: 1714.37, Word: 98.77, Topo: 99.85, Assm: 99.29, PNorm: 252.35, GNorm: 22.65
+Wloss: 0.63, Tloss: 0.16, Aloss: 0.10
+[2][1900] Beta: 0.000000, KL: 1669.86, Word: 99.07, Topo: 99.88, Assm: 99.50, PNorm: 252.42, GNorm: 11.61
+Wloss: 0.55, Tloss: 0.12, Aloss: 0.08
+[2][1950] Beta: 0.000000, KL: 1718.98, Word: 99.43, Topo: 99.93, Assm: 99.49, PNorm: 252.48, GNorm: 5.23
+Wloss: 0.31, Tloss: 0.07, Aloss: 0.06
+[2][2000] Beta: 0.000000, KL: 1735.37, Word: 99.54, Topo: 99.95, Assm: 99.42, PNorm: 252.51, GNorm: 14.77
+Wloss: 0.31, Tloss: 0.07, Aloss: 0.05
+[2][2050] Beta: 0.000000, KL: 1790.34, Word: 99.62, Topo: 99.96, Assm: 99.40, PNorm: 252.55, GNorm: 8.40
+Wloss: 0.24, Tloss: 0.05, Aloss: 0.07
+[2][2100] Beta: 0.000000, KL: 1783.48, Word: 99.72, Topo: 99.94, Assm: 99.32, PNorm: 252.58, GNorm: 7.58
+Wloss: 0.17, Tloss: 0.11, Aloss: 0.07
+[2][2150] Beta: 0.000000, KL: 1752.57, Word: 99.64, Topo: 99.94, Assm: 99.40, PNorm: 252.62, GNorm: 5.80
+Wloss: 0.22, Tloss: 0.10, Aloss: 0.06
+[2][2200] Beta: 0.000000, KL: 1752.28, Word: 99.78, Topo: 99.97, Assm: 99.19, PNorm: 252.64, GNorm: 3.57
+Wloss: 0.16, Tloss: 0.03, Aloss: 0.08
+[2][2250] Beta: 0.000000, KL: 1780.03, Word: 99.74, Topo: 99.97, Assm: 99.26, PNorm: 252.67, GNorm: 7.29
+Wloss: 0.16, Tloss: 0.03, Aloss: 0.06
+[2][2300] Beta: 0.000000, KL: 1794.24, Word: 99.80, Topo: 99.99, Assm: 99.63, PNorm: 252.69, GNorm: 7.16
+Wloss: 0.12, Tloss: 0.01, Aloss: 0.04
+[2][2350] Beta: 0.000000, KL: 1767.38, Word: 99.71, Topo: 99.98, Assm: 99.33, PNorm: 252.70, GNorm: 9.93
+Wloss: 0.17, Tloss: 0.01, Aloss: 0.06
+[2][2400] Beta: 0.000000, KL: 1809.50, Word: 99.68, Topo: 99.98, Assm: 99.61, PNorm: 252.74, GNorm: 9.22
+Wloss: 0.18, Tloss: 0.03, Aloss: 0.04
+[2][2450] Beta: 0.000000, KL: 1806.59, Word: 99.78, Topo: 100.00, Assm: 99.39, PNorm: 252.75, GNorm: 6.98
+Wloss: 0.13, Tloss: 0.01, Aloss: 0.06
+[2][2500] Beta: 0.000000, KL: 1794.76, Word: 99.76, Topo: 99.99, Assm: 99.54, PNorm: 252.78, GNorm: 1.89
+Wloss: 0.15, Tloss: 0.01, Aloss: 0.05
+[2][2550] Beta: 0.000000, KL: 1814.66, Word: 99.72, Topo: 99.99, Assm: 99.31, PNorm: 252.79, GNorm: 12.67
+Wloss: 0.18, Tloss: 0.01, Aloss: 0.07
+[2][2600] Beta: 0.000000, KL: 1824.42, Word: 96.93, Topo: 99.58, Assm: 97.04, PNorm: 252.86, GNorm: 50.00
+Wloss: 1.67, Tloss: 0.39, Aloss: 0.37
+[2][2650] Beta: 0.000000, KL: 1674.21, Word: 90.49, Topo: 98.67, Assm: 94.35, PNorm: 253.47, GNorm: 43.85
+Wloss: 4.86, Tloss: 1.16, Aloss: 0.76
+[2][2700] Beta: 0.000000, KL: 1622.92, Word: 93.74, Topo: 99.05, Assm: 97.37, PNorm: 253.91, GNorm: 24.51
+Wloss: 3.04, Tloss: 0.72, Aloss: 0.35
+[2][2750] Beta: 0.000000, KL: 1661.35, Word: 95.64, Topo: 99.45, Assm: 97.85, PNorm: 254.24, GNorm: 34.78
+Wloss: 2.19, Tloss: 0.48, Aloss: 0.32
+[2][2800] Beta: 0.000000, KL: 1647.01, Word: 97.31, Topo: 99.63, Assm: 98.23, PNorm: 254.42, GNorm: 19.00
+Wloss: 1.27, Tloss: 0.30, Aloss: 0.26
+[2][2850] Beta: 0.000000, KL: 1666.76, Word: 97.84, Topo: 99.67, Assm: 98.24, PNorm: 254.57, GNorm: 13.53
+Wloss: 1.07, Tloss: 0.28, Aloss: 0.24
+[2][2900] Beta: 0.000000, KL: 1666.69, Word: 98.79, Topo: 99.80, Assm: 99.08, PNorm: 254.67, GNorm: 12.55
+Wloss: 0.59, Tloss: 0.16, Aloss: 0.13
+[2][2950] Beta: 0.000000, KL: 1691.66, Word: 98.78, Topo: 99.89, Assm: 98.68, PNorm: 254.73, GNorm: 15.94
+Wloss: 0.61, Tloss: 0.10, Aloss: 0.18
+[2][3000] Beta: 0.000000, KL: 1681.85, Word: 98.96, Topo: 99.87, Assm: 99.35, PNorm: 254.81, GNorm: 10.51
+Wloss: 0.50, Tloss: 0.11, Aloss: 0.13
+[2][3050] Beta: 0.000000, KL: 1688.69, Word: 99.22, Topo: 99.90, Assm: 99.31, PNorm: 254.88, GNorm: 15.44
+Wloss: 0.39, Tloss: 0.09, Aloss: 0.10
+[2][3100] Beta: 0.000000, KL: 1760.28, Word: 99.55, Topo: 99.89, Assm: 99.16, PNorm: 254.93, GNorm: 14.91
+Wloss: 0.25, Tloss: 0.10, Aloss: 0.12
+[2][3150] Beta: 0.000000, KL: 1765.14, Word: 99.66, Topo: 99.94, Assm: 99.30, PNorm: 254.97, GNorm: 3.41
+Wloss: 0.19, Tloss: 0.06, Aloss: 0.12
+[2][3200] Beta: 0.000000, KL: 1745.47, Word: 99.74, Topo: 99.94, Assm: 99.15, PNorm: 255.01, GNorm: 3.13
+Wloss: 0.16, Tloss: 0.06, Aloss: 0.10
+[2][3250] Beta: 0.000000, KL: 1748.61, Word: 99.75, Topo: 99.95, Assm: 99.39, PNorm: 255.04, GNorm: 16.46
+Wloss: 0.15, Tloss: 0.06, Aloss: 0.14
+[2][3300] Beta: 0.000000, KL: 1761.24, Word: 99.69, Topo: 99.96, Assm: 99.11, PNorm: 255.08, GNorm: 6.37
+Wloss: 0.17, Tloss: 0.05, Aloss: 0.10
+[2][3350] Beta: 0.000000, KL: 1760.18, Word: 99.79, Topo: 99.97, Assm: 99.57, PNorm: 255.11, GNorm: 3.29
+Wloss: 0.16, Tloss: 0.05, Aloss: 0.08
+[2][3400] Beta: 0.000000, KL: 1757.77, Word: 99.79, Topo: 99.97, Assm: 99.50, PNorm: 255.13, GNorm: 6.02
+Wloss: 0.12, Tloss: 0.04, Aloss: 0.07
+[2][3450] Beta: 0.000000, KL: 1783.11, Word: 99.58, Topo: 99.89, Assm: 99.31, PNorm: 255.16, GNorm: 47.71
+Wloss: 0.23, Tloss: 0.11, Aloss: 0.10
+[2][3500] Beta: 0.000000, KL: 1840.61, Word: 95.48, Topo: 99.23, Assm: 96.66, PNorm: 255.58, GNorm: 25.41
+Wloss: 2.42, Tloss: 0.65, Aloss: 0.61
+[2][3550] Beta: 0.000000, KL: 1796.62, Word: 96.31, Topo: 99.60, Assm: 97.61, PNorm: 255.89, GNorm: 35.94
+Wloss: 1.86, Tloss: 0.41, Aloss: 0.37
+[2][3600] Beta: 0.000000, KL: 1755.04, Word: 97.67, Topo: 99.70, Assm: 98.32, PNorm: 256.08, GNorm: 18.63
+Wloss: 1.20, Tloss: 0.31, Aloss: 0.21
+[2][3650] Beta: 0.000000, KL: 1763.24, Word: 98.86, Topo: 99.88, Assm: 98.76, PNorm: 256.21, GNorm: 15.31
+Wloss: 0.52, Tloss: 0.13, Aloss: 0.17
+[2][3700] Beta: 0.000000, KL: 1789.26, Word: 99.72, Topo: 99.97, Assm: 99.28, PNorm: 256.26, GNorm: 4.17
+Wloss: 0.23, Tloss: 0.04, Aloss: 0.13
+[2][3750] Beta: 0.000000, KL: 1786.17, Word: 99.84, Topo: 99.98, Assm: 99.08, PNorm: 256.30, GNorm: 2.82
+Wloss: 0.12, Tloss: 0.03, Aloss: 0.13
+[2][3800] Beta: 0.000000, KL: 1839.03, Word: 99.90, Topo: 99.98, Assm: 98.93, PNorm: 256.33, GNorm: 2.76
+Wloss: 0.07, Tloss: 0.03, Aloss: 0.14
+[2][3850] Beta: 0.000000, KL: 1868.19, Word: 99.97, Topo: 100.00, Assm: 98.93, PNorm: 256.35, GNorm: 0.45
+Wloss: 0.03, Tloss: 0.01, Aloss: 0.15
+[2][3900] Beta: 0.000000, KL: 1830.09, Word: 99.96, Topo: 99.99, Assm: 99.19, PNorm: 256.37, GNorm: 0.52
+Wloss: 0.04, Tloss: 0.01, Aloss: 0.11
+[2][3950] Beta: 0.000000, KL: 1861.07, Word: 99.95, Topo: 99.99, Assm: 98.93, PNorm: 256.39, GNorm: 1.27
+Wloss: 0.03, Tloss: 0.01, Aloss: 0.14
+[2][4000] Beta: 0.000000, KL: 1857.01, Word: 99.97, Topo: 99.99, Assm: 99.03, PNorm: 256.41, GNorm: 6.53
+Wloss: 0.03, Tloss: 0.01, Aloss: 0.12
+[2][4050] Beta: 0.000000, KL: 1885.78, Word: 99.99, Topo: 99.99, Assm: 98.87, PNorm: 256.43, GNorm: 0.18
+Wloss: 0.02, Tloss: 0.01, Aloss: 0.13
+[2][4100] Beta: 0.000000, KL: 1898.47, Word: 100.00, Topo: 99.99, Assm: 99.41, PNorm: 256.44, GNorm: 0.43
+Wloss: 0.01, Tloss: 0.01, Aloss: 0.12
+[2][4150] Beta: 0.000000, KL: 1884.49, Word: 100.00, Topo: 99.98, Assm: 99.12, PNorm: 256.46, GNorm: 0.36
+Wloss: 0.01, Tloss: 0.01, Aloss: 0.11
+[2][4200] Beta: 0.000000, KL: 1896.75, Word: 100.00, Topo: 100.00, Assm: 98.95, PNorm: 256.49, GNorm: 8.57
+Wloss: 0.01, Tloss: 0.01, Aloss: 0.13
+[2][4250] Beta: 0.000000, KL: 1886.04, Word: 99.98, Topo: 100.00, Assm: 98.96, PNorm: 256.50, GNorm: 0.13
+Wloss: 0.02, Tloss: 0.00, Aloss: 0.13
+[2][4300] Beta: 0.000000, KL: 1893.18, Word: 100.00, Topo: 100.00, Assm: 99.32, PNorm: 256.52, GNorm: 0.39
+Wloss: 0.01, Tloss: 0.00, Aloss: 0.12
+[2][4350] Beta: 0.000000, KL: 1811.49, Word: 92.24, Topo: 98.54, Assm: 93.44, PNorm: 256.92, GNorm: 39.20
+Wloss: 4.13, Tloss: 1.36, Aloss: 0.96
+[2][4400] Beta: 0.000000, KL: 1723.73, Word: 91.08, Topo: 98.66, Assm: 95.00, PNorm: 257.57, GNorm: 42.09
+Wloss: 4.47, Tloss: 1.12, Aloss: 0.65
+[2][4450] Beta: 0.000000, KL: 1698.98, Word: 93.88, Topo: 98.99, Assm: 96.72, PNorm: 258.03, GNorm: 45.51
+Wloss: 2.79, Tloss: 0.77, Aloss: 0.45
+[2][4500] Beta: 0.000000, KL: 1763.29, Word: 95.26, Topo: 99.26, Assm: 97.17, PNorm: 258.35, GNorm: 14.81
+Wloss: 2.08, Tloss: 0.61, Aloss: 0.40
+[2][4550] Beta: 0.000000, KL: 1754.72, Word: 96.32, Topo: 99.48, Assm: 98.00, PNorm: 258.58, GNorm: 19.57
+Wloss: 1.82, Tloss: 0.45, Aloss: 0.34
+[2][4600] Beta: 0.000000, KL: 1738.49, Word: 97.03, Topo: 99.71, Assm: 98.32, PNorm: 258.77, GNorm: 26.24
+Wloss: 1.43, Tloss: 0.27, Aloss: 0.24
+[2][4650] Beta: 0.000000, KL: 1806.49, Word: 97.53, Topo: 99.75, Assm: 98.66, PNorm: 258.92, GNorm: 22.71
+Wloss: 1.25, Tloss: 0.22, Aloss: 0.24
+[2][4700] Beta: 0.000000, KL: 1763.35, Word: 97.71, Topo: 99.73, Assm: 98.65, PNorm: 259.07, GNorm: 14.76
+Wloss: 1.14, Tloss: 0.25, Aloss: 0.20
+[2][4750] Beta: 0.000000, KL: 1788.79, Word: 98.13, Topo: 99.76, Assm: 98.70, PNorm: 259.21, GNorm: 18.70
+Wloss: 0.82, Tloss: 0.22, Aloss: 0.17
+[2][4800] Beta: 0.000000, KL: 1752.36, Word: 98.26, Topo: 99.71, Assm: 98.78, PNorm: 259.33, GNorm: 18.89
+Wloss: 0.83, Tloss: 0.21, Aloss: 0.14
+[2][4850] Beta: 0.000000, KL: 1818.51, Word: 98.55, Topo: 99.80, Assm: 99.04, PNorm: 259.42, GNorm: 24.68
+Wloss: 0.75, Tloss: 0.21, Aloss: 0.14
+[2][4900] Beta: 0.000000, KL: 1823.02, Word: 98.98, Topo: 99.86, Assm: 98.54, PNorm: 259.51, GNorm: 8.82
+Wloss: 0.58, Tloss: 0.16, Aloss: 0.22
+[2][4950] Beta: 0.000000, KL: 1795.84, Word: 99.03, Topo: 99.82, Assm: 99.14, PNorm: 259.61, GNorm: 9.10
+Wloss: 0.53, Tloss: 0.18, Aloss: 0.12
+[2][5000] Beta: 0.000000, KL: 1815.82, Word: 99.02, Topo: 99.85, Assm: 99.25, PNorm: 259.68, GNorm: 15.26
+Wloss: 0.49, Tloss: 0.14, Aloss: 0.12
+[2][5050] Beta: 0.000000, KL: 1799.87, Word: 99.12, Topo: 99.82, Assm: 99.18, PNorm: 259.77, GNorm: 5.29
+Wloss: 0.41, Tloss: 0.18, Aloss: 0.13
+[2][5100] Beta: 0.000000, KL: 1806.45, Word: 99.16, Topo: 99.88, Assm: 99.19, PNorm: 259.81, GNorm: 11.66
+Wloss: 0.43, Tloss: 0.13, Aloss: 0.10
+[2][5150] Beta: 0.000000, KL: 1803.21, Word: 99.33, Topo: 99.90, Assm: 99.14, PNorm: 259.87, GNorm: 11.02
+Wloss: 0.41, Tloss: 0.11, Aloss: 0.12
+[2][5200] Beta: 0.000000, KL: 1815.48, Word: 95.42, Topo: 99.49, Assm: 97.77, PNorm: 260.01, GNorm: 26.29
+Wloss: 2.88, Tloss: 0.58, Aloss: 0.47
+[2][5250] Beta: 0.000000, KL: 1694.36, Word: 96.24, Topo: 99.67, Assm: 98.45, PNorm: 260.24, GNorm: 18.32
+Wloss: 1.93, Tloss: 0.29, Aloss: 0.28
+[2][5300] Beta: 0.000000, KL: 1688.40, Word: 97.93, Topo: 99.80, Assm: 99.45, PNorm: 260.36, GNorm: 20.82
+Wloss: 1.04, Tloss: 0.21, Aloss: 0.09
+[2][5350] Beta: 0.000000, KL: 1714.08, Word: 98.52, Topo: 99.88, Assm: 99.43, PNorm: 260.42, GNorm: 25.04
+Wloss: 0.77, Tloss: 0.12, Aloss: 0.12
+[2][5400] Beta: 0.000000, KL: 1754.44, Word: 98.81, Topo: 99.91, Assm: 99.61, PNorm: 260.47, GNorm: 6.54
+Wloss: 0.60, Tloss: 0.08, Aloss: 0.08
+[2][5450] Beta: 0.000000, KL: 1805.69, Word: 99.31, Topo: 99.93, Assm: 99.39, PNorm: 260.52, GNorm: 15.36
+Wloss: 0.39, Tloss: 0.07, Aloss: 0.11
+[2][5500] Beta: 0.000000, KL: 1792.34, Word: 99.23, Topo: 99.93, Assm: 99.65, PNorm: 260.57, GNorm: 9.59
+Wloss: 0.40, Tloss: 0.08, Aloss: 0.06
+[2][5550] Beta: 0.000000, KL: 1793.01, Word: 99.49, Topo: 99.94, Assm: 99.75, PNorm: 260.63, GNorm: 9.06
+Wloss: 0.31, Tloss: 0.05, Aloss: 0.03
+[2][5600] Beta: 0.000000, KL: 1813.03, Word: 99.49, Topo: 99.97, Assm: 99.66, PNorm: 260.67, GNorm: 4.77
+Wloss: 0.27, Tloss: 0.04, Aloss: 0.05
+[2][5650] Beta: 0.000000, KL: 1830.69, Word: 99.59, Topo: 99.97, Assm: 99.66, PNorm: 260.71, GNorm: 5.77
+Wloss: 0.21, Tloss: 0.04, Aloss: 0.05
+[2][5700] Beta: 0.000000, KL: 1858.56, Word: 99.71, Topo: 99.98, Assm: 99.73, PNorm: 260.75, GNorm: 6.69
+Wloss: 0.20, Tloss: 0.03, Aloss: 0.05
+[2][5750] Beta: 0.000000, KL: 1848.75, Word: 99.64, Topo: 99.97, Assm: 99.70, PNorm: 260.80, GNorm: 4.57
+Wloss: 0.20, Tloss: 0.03, Aloss: 0.07
+[2][5800] Beta: 0.000000, KL: 1863.50, Word: 99.66, Topo: 99.98, Assm: 99.55, PNorm: 260.82, GNorm: 11.59
+Wloss: 0.19, Tloss: 0.03, Aloss: 0.06
+[2][5850] Beta: 0.000000, KL: 1852.22, Word: 99.69, Topo: 99.96, Assm: 99.81, PNorm: 260.85, GNorm: 2.16
+Wloss: 0.18, Tloss: 0.04, Aloss: 0.04
+[2][5900] Beta: 0.000000, KL: 1837.49, Word: 99.79, Topo: 99.98, Assm: 99.72, PNorm: 260.87, GNorm: 2.97
+Wloss: 0.13, Tloss: 0.03, Aloss: 0.04
+[2][5950] Beta: 0.000000, KL: 1829.62, Word: 99.69, Topo: 99.97, Assm: 99.83, PNorm: 260.91, GNorm: 10.67
+Wloss: 0.19, Tloss: 0.02, Aloss: 0.02
+[2][6000] Beta: 0.000000, KL: 1839.39, Word: 99.77, Topo: 99.95, Assm: 99.92, PNorm: 260.94, GNorm: 3.25
+Wloss: 0.14, Tloss: 0.07, Aloss: 0.02
+[2][6050] Beta: 0.000000, KL: 1886.90, Word: 96.92, Topo: 99.54, Assm: 97.63, PNorm: 261.07, GNorm: 43.64
+Wloss: 1.62, Tloss: 0.42, Aloss: 0.36
+[2][6100] Beta: 0.000000, KL: 1898.00, Word: 94.77, Topo: 99.14, Assm: 96.49, PNorm: 261.57, GNorm: 47.38
+Wloss: 2.72, Tloss: 0.79, Aloss: 0.53
+[2][6150] Beta: 0.000000, KL: 1776.43, Word: 96.52, Topo: 99.52, Assm: 97.37, PNorm: 261.88, GNorm: 44.23
+Wloss: 1.75, Tloss: 0.43, Aloss: 0.42
+[2][6200] Beta: 0.000000, KL: 1796.23, Word: 98.02, Topo: 99.73, Assm: 98.75, PNorm: 262.06, GNorm: 19.77
+Wloss: 1.02, Tloss: 0.23, Aloss: 0.23
+[2][6250] Beta: 0.000000, KL: 1833.45, Word: 98.80, Topo: 99.82, Assm: 98.69, PNorm: 262.20, GNorm: 14.11
+Wloss: 0.68, Tloss: 0.18, Aloss: 0.20
+[2][6300] Beta: 0.000000, KL: 1815.89, Word: 99.32, Topo: 99.92, Assm: 98.79, PNorm: 262.28, GNorm: 7.63
+Wloss: 0.36, Tloss: 0.09, Aloss: 0.16
+[2][6350] Beta: 0.000000, KL: 1851.78, Word: 99.44, Topo: 99.93, Assm: 99.65, PNorm: 262.34, GNorm: 24.00
+Wloss: 0.29, Tloss: 0.06, Aloss: 0.09
+[2][6400] Beta: 0.000000, KL: 1858.15, Word: 99.77, Topo: 99.95, Assm: 99.01, PNorm: 262.39, GNorm: 8.80
+Wloss: 0.16, Tloss: 0.05, Aloss: 0.12
+[2][6450] Beta: 0.000000, KL: 1848.94, Word: 99.84, Topo: 99.97, Assm: 99.32, PNorm: 262.42, GNorm: 1.66
+Wloss: 0.10, Tloss: 0.03, Aloss: 0.11
+[2][6500] Beta: 0.000000, KL: 1877.99, Word: 99.86, Topo: 99.97, Assm: 99.09, PNorm: 262.45, GNorm: 9.82
+Wloss: 0.09, Tloss: 0.04, Aloss: 0.11
+[2][6550] Beta: 0.000000, KL: 1892.59, Word: 99.90, Topo: 99.98, Assm: 99.37, PNorm: 262.48, GNorm: 0.63
+Wloss: 0.07, Tloss: 0.02, Aloss: 0.08
+[2][6600] Beta: 0.000000, KL: 1893.83, Word: 99.95, Topo: 99.99, Assm: 99.34, PNorm: 262.50, GNorm: 0.36
+Wloss: 0.04, Tloss: 0.03, Aloss: 0.09
+[2][6650] Beta: 0.000000, KL: 1936.19, Word: 99.96, Topo: 99.92, Assm: 99.09, PNorm: 262.52, GNorm: 2.57
+Wloss: 0.03, Tloss: 0.13, Aloss: 0.12
+[2][6700] Beta: 0.000000, KL: 1914.70, Word: 99.98, Topo: 99.96, Assm: 99.21, PNorm: 262.54, GNorm: 0.40
+Wloss: 0.02, Tloss: 0.08, Aloss: 0.08
+[2][6750] Beta: 0.000000, KL: 1950.07, Word: 99.97, Topo: 100.00, Assm: 99.15, PNorm: 262.56, GNorm: 0.34
+Wloss: 0.03, Tloss: 0.02, Aloss: 0.09
+[2][6800] Beta: 0.000000, KL: 1933.73, Word: 99.98, Topo: 99.98, Assm: 99.24, PNorm: 262.58, GNorm: 1.95
+Wloss: 0.02, Tloss: 0.03, Aloss: 0.10
+[2][6850] Beta: 0.000000, KL: 1945.05, Word: 99.96, Topo: 99.98, Assm: 99.12, PNorm: 262.58, GNorm: 0.55
+Wloss: 0.03, Tloss: 0.04, Aloss: 0.08
+[2][6900] Beta: 0.000000, KL: 1956.18, Word: 98.90, Topo: 99.81, Assm: 98.56, PNorm: 262.59, GNorm: 50.00
+Wloss: 0.64, Tloss: 0.16, Aloss: 0.25
+[2][6950] Beta: 0.000000, KL: 1791.17, Word: 89.62, Topo: 98.31, Assm: 92.97, PNorm: 263.19, GNorm: 41.36
+Wloss: 5.36, Tloss: 1.40, Aloss: 0.99
+[2][7000] Beta: 0.000000, KL: 1719.87, Word: 92.89, Topo: 99.03, Assm: 96.19, PNorm: 263.75, GNorm: 25.69
+Wloss: 3.44, Tloss: 0.83, Aloss: 0.70
+[2][7050] Beta: 0.000000, KL: 1721.40, Word: 94.81, Topo: 99.29, Assm: 96.89, PNorm: 264.10, GNorm: 30.36
+Wloss: 2.46, Tloss: 0.62, Aloss: 0.51
+[2][7100] Beta: 0.000000, KL: 1754.84, Word: 96.47, Topo: 99.54, Assm: 97.88, PNorm: 264.36, GNorm: 38.11
+Wloss: 1.74, Tloss: 0.42, Aloss: 0.35
+[2][7150] Beta: 0.000000, KL: 1785.06, Word: 97.20, Topo: 99.61, Assm: 98.28, PNorm: 264.57, GNorm: 21.98
+Wloss: 1.32, Tloss: 0.35, Aloss: 0.22
+[2][7200] Beta: 0.000000, KL: 1771.27, Word: 97.91, Topo: 99.60, Assm: 98.31, PNorm: 264.74, GNorm: 13.89
+Wloss: 1.06, Tloss: 0.35, Aloss: 0.34
+[2][7250] Beta: 0.000000, KL: 1795.47, Word: 98.60, Topo: 99.74, Assm: 98.48, PNorm: 264.88, GNorm: 33.88
+Wloss: 0.77, Tloss: 0.27, Aloss: 0.29
+[2][7300] Beta: 0.000000, KL: 1779.69, Word: 98.64, Topo: 99.80, Assm: 98.67, PNorm: 265.03, GNorm: 13.79
+Wloss: 0.70, Tloss: 0.19, Aloss: 0.21
+[2][7350] Beta: 0.000000, KL: 1817.26, Word: 99.10, Topo: 99.87, Assm: 99.22, PNorm: 265.13, GNorm: 11.34
+Wloss: 0.51, Tloss: 0.14, Aloss: 0.14
+[2][7400] Beta: 0.000000, KL: 1823.85, Word: 99.19, Topo: 99.95, Assm: 98.99, PNorm: 265.20, GNorm: 13.46
+Wloss: 0.42, Tloss: 0.07, Aloss: 0.15
+[2][7450] Beta: 0.000000, KL: 1865.54, Word: 99.35, Topo: 99.95, Assm: 99.32, PNorm: 265.27, GNorm: 4.10
+Wloss: 0.35, Tloss: 0.06, Aloss: 0.10
+[2][7500] Beta: 0.000000, KL: 1846.54, Word: 99.35, Topo: 99.92, Assm: 98.85, PNorm: 265.34, GNorm: 20.85
+Wloss: 0.39, Tloss: 0.08, Aloss: 0.17
+[2][7550] Beta: 0.000000, KL: 1872.22, Word: 99.47, Topo: 99.95, Assm: 99.39, PNorm: 265.41, GNorm: 10.88
+Wloss: 0.29, Tloss: 0.05, Aloss: 0.11
+[2][7600] Beta: 0.000000, KL: 1888.31, Word: 99.37, Topo: 99.92, Assm: 99.18, PNorm: 265.47, GNorm: 9.73
+Wloss: 0.36, Tloss: 0.08, Aloss: 0.13
+[2][7650] Beta: 0.000000, KL: 1881.59, Word: 99.24, Topo: 99.93, Assm: 99.05, PNorm: 265.54, GNorm: 5.40
+Wloss: 0.42, Tloss: 0.06, Aloss: 0.13
+[2][7700] Beta: 0.000000, KL: 1909.95, Word: 99.47, Topo: 99.95, Assm: 98.69, PNorm: 265.62, GNorm: 12.98
+Wloss: 0.30, Tloss: 0.06, Aloss: 0.19
+[2][7750] Beta: 0.000000, KL: 1867.92, Word: 99.30, Topo: 99.90, Assm: 99.03, PNorm: 265.72, GNorm: 20.21
+Wloss: 0.42, Tloss: 0.10, Aloss: 0.15
+[2][7800] Beta: 0.000000, KL: 1888.08, Word: 98.05, Topo: 99.76, Assm: 97.36, PNorm: 265.83, GNorm: 32.73
+Wloss: 0.94, Tloss: 0.22, Aloss: 0.43
+[2][7850] Beta: 0.000000, KL: 1860.91, Word: 97.79, Topo: 99.70, Assm: 97.81, PNorm: 266.00, GNorm: 24.79
+Wloss: 0.97, Tloss: 0.28, Aloss: 0.33
+[2][7900] Beta: 0.000000, KL: 1848.51, Word: 98.08, Topo: 99.73, Assm: 98.06, PNorm: 266.15, GNorm: 13.44
+Wloss: 0.90, Tloss: 0.23, Aloss: 0.27
+[2][7950] Beta: 0.000000, KL: 1865.97, Word: 98.48, Topo: 99.73, Assm: 98.54, PNorm: 266.29, GNorm: 19.90
+Wloss: 0.77, Tloss: 0.20, Aloss: 0.22
+[2][8000] Beta: 0.000000, KL: 1906.74, Word: 98.66, Topo: 99.80, Assm: 98.76, PNorm: 266.42, GNorm: 20.51
+Wloss: 0.65, Tloss: 0.17, Aloss: 0.19
+[2][8050] Beta: 0.000000, KL: 1903.87, Word: 98.95, Topo: 99.83, Assm: 98.82, PNorm: 266.52, GNorm: 23.17
+Wloss: 0.47, Tloss: 0.15, Aloss: 0.20
+[2][8100] Beta: 0.000000, KL: 1941.32, Word: 99.03, Topo: 99.92, Assm: 98.48, PNorm: 266.60, GNorm: 22.79
+Wloss: 0.52, Tloss: 0.09, Aloss: 0.22
+[2][8150] Beta: 0.000000, KL: 1941.54, Word: 99.15, Topo: 99.92, Assm: 99.06, PNorm: 266.67, GNorm: 6.17
+Wloss: 0.42, Tloss: 0.07, Aloss: 0.15
+[2][8200] Beta: 0.000000, KL: 1948.24, Word: 99.24, Topo: 99.87, Assm: 99.04, PNorm: 266.73, GNorm: 14.24
+Wloss: 0.43, Tloss: 0.09, Aloss: 0.14
+[2][8250] Beta: 0.000000, KL: 1968.27, Word: 99.27, Topo: 99.91, Assm: 99.12, PNorm: 266.79, GNorm: 23.03
+Wloss: 0.44, Tloss: 0.10, Aloss: 0.13
+[2][8300] Beta: 0.000000, KL: 1943.34, Word: 99.30, Topo: 99.91, Assm: 99.08, PNorm: 266.85, GNorm: 7.89
+Wloss: 0.37, Tloss: 0.08, Aloss: 0.13
+[2][8350] Beta: 0.000000, KL: 1941.47, Word: 99.56, Topo: 99.91, Assm: 99.14, PNorm: 266.91, GNorm: 4.55
+Wloss: 0.23, Tloss: 0.09, Aloss: 0.14
+[2][8400] Beta: 0.000000, KL: 1952.01, Word: 99.52, Topo: 99.91, Assm: 99.16, PNorm: 266.96, GNorm: 6.46
+Wloss: 0.27, Tloss: 0.06, Aloss: 0.14
+[2][8450] Beta: 0.000000, KL: 1983.60, Word: 99.53, Topo: 99.93, Assm: 98.92, PNorm: 267.00, GNorm: 13.96
+Wloss: 0.25, Tloss: 0.06, Aloss: 0.15
+[2][8500] Beta: 0.000000, KL: 1987.97, Word: 99.55, Topo: 99.90, Assm: 98.94, PNorm: 267.03, GNorm: 6.44
+Wloss: 0.22, Tloss: 0.14, Aloss: 0.16
+[2][8550] Beta: 0.000000, KL: 1914.51, Word: 99.55, Topo: 99.90, Assm: 99.36, PNorm: 267.10, GNorm: 8.85
+Wloss: 0.26, Tloss: 0.11, Aloss: 0.09
+[2][8600] Beta: 0.000000, KL: 1962.13, Word: 99.56, Topo: 99.93, Assm: 99.06, PNorm: 267.15, GNorm: 13.44
+Wloss: 0.21, Tloss: 0.08, Aloss: 0.13
+Cosume Time per Epoch 9:24:37.189096
+EPOCH: 4 | TIME: 2020-04-05 11:40:07.271112 
+../data/l1000/max40/train_emb_max40.txt
+Finish gene exp loading
+Len(all_gen) is 137914
+[3][50] Beta: 0.000000, KL: 2611.68, Word: 133.60, Topo: 137.42, Assm: 134.82, PNorm: 267.54, GNorm: 41.20
+Wloss: 3.29, Tloss: 0.82, Aloss: 0.55
+[3][100] Beta: 0.000000, KL: 1796.04, Word: 96.99, Topo: 99.61, Assm: 98.50, PNorm: 267.81, GNorm: 32.53
+Wloss: 2.09, Tloss: 0.47, Aloss: 0.21
+[3][150] Beta: 0.000000, KL: 1801.06, Word: 97.85, Topo: 99.69, Assm: 98.56, PNorm: 267.98, GNorm: 24.70
+Wloss: 1.48, Tloss: 0.35, Aloss: 0.39
+[3][200] Beta: 0.000000, KL: 1860.91, Word: 98.20, Topo: 99.78, Assm: 98.42, PNorm: 268.14, GNorm: 21.02
+Wloss: 1.23, Tloss: 0.26, Aloss: 0.25
+[3][250] Beta: 0.000000, KL: 1829.47, Word: 98.78, Topo: 99.84, Assm: 99.18, PNorm: 268.28, GNorm: 12.79
+Wloss: 0.80, Tloss: 0.19, Aloss: 0.10
+[3][300] Beta: 0.000000, KL: 1840.38, Word: 98.87, Topo: 99.84, Assm: 98.77, PNorm: 268.38, GNorm: 6.59
+Wloss: 0.76, Tloss: 0.20, Aloss: 0.18
+[3][350] Beta: 0.000000, KL: 1857.33, Word: 99.02, Topo: 99.86, Assm: 99.28, PNorm: 268.47, GNorm: 3.44
+Wloss: 0.71, Tloss: 0.20, Aloss: 0.10
+[3][400] Beta: 0.000000, KL: 1902.51, Word: 99.00, Topo: 99.86, Assm: 99.17, PNorm: 268.57, GNorm: 17.65
+Wloss: 0.64, Tloss: 0.17, Aloss: 0.11
+[3][450] Beta: 0.000000, KL: 1934.11, Word: 99.13, Topo: 99.82, Assm: 98.93, PNorm: 268.66, GNorm: 21.11
+Wloss: 0.59, Tloss: 0.17, Aloss: 0.15
+[3][500] Beta: 0.000000, KL: 1944.04, Word: 99.36, Topo: 99.91, Assm: 99.19, PNorm: 268.73, GNorm: 16.14
+Wloss: 0.42, Tloss: 0.10, Aloss: 0.11
+[3][550] Beta: 0.000000, KL: 1932.41, Word: 99.37, Topo: 99.92, Assm: 99.30, PNorm: 268.80, GNorm: 3.12
+Wloss: 0.45, Tloss: 0.12, Aloss: 0.08
+[3][600] Beta: 0.000000, KL: 1913.53, Word: 99.42, Topo: 99.93, Assm: 99.28, PNorm: 268.86, GNorm: 10.90
+Wloss: 0.40, Tloss: 0.09, Aloss: 0.10
+[3][650] Beta: 0.000000, KL: 1898.67, Word: 99.43, Topo: 99.92, Assm: 99.33, PNorm: 268.90, GNorm: 10.16
+Wloss: 0.39, Tloss: 0.10, Aloss: 0.08
+[3][700] Beta: 0.000000, KL: 1932.90, Word: 99.56, Topo: 99.93, Assm: 99.32, PNorm: 268.97, GNorm: 3.16
+Wloss: 0.28, Tloss: 0.09, Aloss: 0.09
+[3][750] Beta: 0.000000, KL: 1914.59, Word: 99.69, Topo: 99.95, Assm: 99.40, PNorm: 269.02, GNorm: 12.14
+Wloss: 0.23, Tloss: 0.05, Aloss: 0.10
+[3][800] Beta: 0.000000, KL: 1909.72, Word: 99.71, Topo: 99.96, Assm: 99.28, PNorm: 269.05, GNorm: 9.14
+Wloss: 0.22, Tloss: 0.04, Aloss: 0.08
+[3][850] Beta: 0.000000, KL: 1930.23, Word: 99.66, Topo: 99.97, Assm: 99.35, PNorm: 269.10, GNorm: 2.12
+Wloss: 0.20, Tloss: 0.06, Aloss: 0.09
+[3][900] Beta: 0.000000, KL: 1883.40, Word: 92.42, Topo: 98.89, Assm: 94.47, PNorm: 269.46, GNorm: 34.55
+Wloss: 4.12, Tloss: 1.01, Aloss: 0.84
+[3][950] Beta: 0.000000, KL: 1842.57, Word: 92.57, Topo: 98.84, Assm: 95.82, PNorm: 269.97, GNorm: 49.12
+Wloss: 3.88, Tloss: 0.97, Aloss: 0.61
+[3][1000] Beta: 0.000000, KL: 1813.22, Word: 95.36, Topo: 99.33, Assm: 97.24, PNorm: 270.29, GNorm: 14.23
+Wloss: 2.41, Tloss: 0.64, Aloss: 0.40
+[3][1050] Beta: 0.000000, KL: 1860.11, Word: 96.92, Topo: 99.71, Assm: 98.27, PNorm: 270.49, GNorm: 19.91
+Wloss: 1.52, Tloss: 0.29, Aloss: 0.30
+[3][1100] Beta: 0.000000, KL: 1879.93, Word: 98.33, Topo: 99.79, Assm: 98.68, PNorm: 270.62, GNorm: 9.52
+Wloss: 0.77, Tloss: 0.19, Aloss: 0.23
+[3][1150] Beta: 0.000000, KL: 1893.73, Word: 98.84, Topo: 99.85, Assm: 98.86, PNorm: 270.72, GNorm: 14.85
+Wloss: 0.57, Tloss: 0.15, Aloss: 0.15
+[3][1200] Beta: 0.000000, KL: 1892.61, Word: 99.20, Topo: 99.91, Assm: 98.91, PNorm: 270.81, GNorm: 6.99
+Wloss: 0.44, Tloss: 0.09, Aloss: 0.16
+[3][1250] Beta: 0.000000, KL: 1904.68, Word: 99.30, Topo: 99.96, Assm: 98.85, PNorm: 270.88, GNorm: 17.81
+Wloss: 0.39, Tloss: 0.06, Aloss: 0.22
+[3][1300] Beta: 0.000000, KL: 1963.52, Word: 99.58, Topo: 99.93, Assm: 98.93, PNorm: 270.93, GNorm: 2.62
+Wloss: 0.27, Tloss: 0.07, Aloss: 0.15
+[3][1350] Beta: 0.000000, KL: 1948.38, Word: 99.58, Topo: 99.92, Assm: 98.95, PNorm: 270.97, GNorm: 4.09
+Wloss: 0.24, Tloss: 0.07, Aloss: 0.15
+[3][1400] Beta: 0.000000, KL: 1978.90, Word: 99.70, Topo: 99.97, Assm: 98.98, PNorm: 271.03, GNorm: 14.13
+Wloss: 0.19, Tloss: 0.04, Aloss: 0.15
+[3][1450] Beta: 0.000000, KL: 1924.59, Word: 99.75, Topo: 99.97, Assm: 98.72, PNorm: 271.07, GNorm: 3.20
+Wloss: 0.15, Tloss: 0.05, Aloss: 0.18
+[3][1500] Beta: 0.000000, KL: 1944.60, Word: 99.80, Topo: 99.98, Assm: 99.18, PNorm: 271.10, GNorm: 10.21
+Wloss: 0.15, Tloss: 0.03, Aloss: 0.10
+[3][1550] Beta: 0.000000, KL: 1973.52, Word: 99.79, Topo: 99.95, Assm: 99.00, PNorm: 271.12, GNorm: 17.29
+Wloss: 0.14, Tloss: 0.05, Aloss: 0.13
+[3][1600] Beta: 0.000000, KL: 1976.25, Word: 99.72, Topo: 99.97, Assm: 99.24, PNorm: 271.16, GNorm: 2.80
+Wloss: 0.18, Tloss: 0.05, Aloss: 0.13
+[3][1650] Beta: 0.000000, KL: 1949.99, Word: 99.80, Topo: 99.98, Assm: 99.16, PNorm: 271.19, GNorm: 2.72
+Wloss: 0.17, Tloss: 0.03, Aloss: 0.14
+[3][1700] Beta: 0.000000, KL: 1997.92, Word: 99.85, Topo: 100.00, Assm: 99.41, PNorm: 271.22, GNorm: 1.16
+Wloss: 0.11, Tloss: 0.01, Aloss: 0.08
+[3][1750] Beta: 0.000000, KL: 1971.71, Word: 98.41, Topo: 99.83, Assm: 98.93, PNorm: 271.29, GNorm: 26.67
+Wloss: 1.07, Tloss: 0.19, Aloss: 0.16
+[3][1800] Beta: 0.000000, KL: 1848.80, Word: 98.15, Topo: 99.84, Assm: 98.82, PNorm: 271.42, GNorm: 25.74
+Wloss: 1.12, Tloss: 0.17, Aloss: 0.13
+[3][1850] Beta: 0.000000, KL: 1873.73, Word: 99.01, Topo: 99.90, Assm: 99.19, PNorm: 271.52, GNorm: 13.82
+Wloss: 0.53, Tloss: 0.11, Aloss: 0.11
+[3][1900] Beta: 0.000000, KL: 1891.74, Word: 99.31, Topo: 99.93, Assm: 99.21, PNorm: 271.58, GNorm: 8.21
+Wloss: 0.45, Tloss: 0.08, Aloss: 0.09
+[3][1950] Beta: 0.000000, KL: 1873.87, Word: 99.41, Topo: 99.97, Assm: 99.47, PNorm: 271.61, GNorm: 0.66
+Wloss: 0.31, Tloss: 0.05, Aloss: 0.07
+[3][2000] Beta: 0.000000, KL: 1928.26, Word: 99.46, Topo: 99.95, Assm: 99.39, PNorm: 271.66, GNorm: 9.53
+Wloss: 0.33, Tloss: 0.07, Aloss: 0.08
+[3][2050] Beta: 0.000000, KL: 1887.14, Word: 99.61, Topo: 99.95, Assm: 99.51, PNorm: 271.69, GNorm: 1.26
+Wloss: 0.25, Tloss: 0.05, Aloss: 0.05
+[3][2100] Beta: 0.000000, KL: 1952.73, Word: 99.66, Topo: 99.97, Assm: 99.52, PNorm: 271.72, GNorm: 5.20
+Wloss: 0.19, Tloss: 0.06, Aloss: 0.06
+[3][2150] Beta: 0.000000, KL: 1957.39, Word: 99.74, Topo: 99.97, Assm: 99.50, PNorm: 271.74, GNorm: 7.44
+Wloss: 0.17, Tloss: 0.07, Aloss: 0.05
+[3][2200] Beta: 0.000000, KL: 1951.68, Word: 99.81, Topo: 99.99, Assm: 99.62, PNorm: 271.76, GNorm: 4.42
+Wloss: 0.11, Tloss: 0.02, Aloss: 0.04
+[3][2250] Beta: 0.000000, KL: 1981.23, Word: 99.81, Topo: 99.98, Assm: 99.42, PNorm: 271.78, GNorm: 1.54
+Wloss: 0.11, Tloss: 0.02, Aloss: 0.05
+[3][2300] Beta: 0.000000, KL: 1992.21, Word: 99.80, Topo: 99.98, Assm: 99.44, PNorm: 271.80, GNorm: 0.73
+Wloss: 0.12, Tloss: 0.03, Aloss: 0.06
+[3][2350] Beta: 0.000000, KL: 2004.95, Word: 99.82, Topo: 100.00, Assm: 99.28, PNorm: 271.81, GNorm: 7.02
+Wloss: 0.10, Tloss: 0.01, Aloss: 0.06
+[3][2400] Beta: 0.000000, KL: 1987.04, Word: 99.82, Topo: 99.99, Assm: 99.42, PNorm: 271.82, GNorm: 2.63
+Wloss: 0.10, Tloss: 0.01, Aloss: 0.06
+[3][2450] Beta: 0.000000, KL: 2005.50, Word: 99.90, Topo: 100.00, Assm: 99.46, PNorm: 271.83, GNorm: 0.47
+Wloss: 0.08, Tloss: 0.01, Aloss: 0.05
+[3][2500] Beta: 0.000000, KL: 2038.44, Word: 99.86, Topo: 100.00, Assm: 99.56, PNorm: 271.85, GNorm: 4.94
+Wloss: 0.08, Tloss: 0.00, Aloss: 0.04
+[3][2550] Beta: 0.000000, KL: 2016.80, Word: 99.88, Topo: 99.99, Assm: 99.33, PNorm: 271.86, GNorm: 3.28
+Wloss: 0.07, Tloss: 0.01, Aloss: 0.07
+[3][2600] Beta: 0.000000, KL: 2006.08, Word: 97.25, Topo: 99.51, Assm: 97.75, PNorm: 271.94, GNorm: 50.00
+Wloss: 1.67, Tloss: 0.51, Aloss: 0.31
+[3][2650] Beta: 0.000000, KL: 1861.85, Word: 91.66, Topo: 98.67, Assm: 95.41, PNorm: 272.57, GNorm: 37.78
+Wloss: 4.22, Tloss: 1.19, Aloss: 0.57
+[3][2700] Beta: 0.000000, KL: 1823.55, Word: 94.42, Topo: 99.23, Assm: 97.49, PNorm: 273.00, GNorm: 20.66
+Wloss: 2.70, Tloss: 0.56, Aloss: 0.36
+[3][2750] Beta: 0.000000, KL: 1800.63, Word: 95.78, Topo: 99.56, Assm: 98.22, PNorm: 273.23, GNorm: 15.36
+Wloss: 2.09, Tloss: 0.39, Aloss: 0.23
+[3][2800] Beta: 0.000000, KL: 1799.74, Word: 97.01, Topo: 99.69, Assm: 98.58, PNorm: 273.42, GNorm: 20.00
+Wloss: 1.37, Tloss: 0.26, Aloss: 0.20
+[3][2850] Beta: 0.000000, KL: 1822.38, Word: 97.83, Topo: 99.71, Assm: 98.86, PNorm: 273.56, GNorm: 11.46
+Wloss: 0.99, Tloss: 0.23, Aloss: 0.15
+[3][2900] Beta: 0.000000, KL: 1876.35, Word: 98.71, Topo: 99.77, Assm: 99.17, PNorm: 273.66, GNorm: 21.76
+Wloss: 0.59, Tloss: 0.22, Aloss: 0.14
+[3][2950] Beta: 0.000000, KL: 1883.74, Word: 98.43, Topo: 99.77, Assm: 98.91, PNorm: 273.76, GNorm: 28.41
+Wloss: 0.77, Tloss: 0.21, Aloss: 0.18
+[3][3000] Beta: 0.000000, KL: 1892.66, Word: 99.00, Topo: 99.85, Assm: 99.24, PNorm: 273.83, GNorm: 13.80
+Wloss: 0.52, Tloss: 0.14, Aloss: 0.11
+[3][3050] Beta: 0.000000, KL: 1920.36, Word: 99.37, Topo: 99.87, Assm: 99.49, PNorm: 273.89, GNorm: 3.60
+Wloss: 0.31, Tloss: 0.11, Aloss: 0.08
+[3][3100] Beta: 0.000000, KL: 1915.08, Word: 99.54, Topo: 99.95, Assm: 99.38, PNorm: 273.94, GNorm: 5.87
+Wloss: 0.28, Tloss: 0.05, Aloss: 0.10
+[3][3150] Beta: 0.000000, KL: 1920.40, Word: 99.51, Topo: 99.94, Assm: 99.44, PNorm: 273.98, GNorm: 2.36
+Wloss: 0.25, Tloss: 0.06, Aloss: 0.08
+[3][3200] Beta: 0.000000, KL: 1947.83, Word: 99.67, Topo: 99.95, Assm: 99.33, PNorm: 274.02, GNorm: 4.88
+Wloss: 0.21, Tloss: 0.05, Aloss: 0.10
+[3][3250] Beta: 0.000000, KL: 1944.34, Word: 99.77, Topo: 99.92, Assm: 99.20, PNorm: 274.05, GNorm: 4.07
+Wloss: 0.17, Tloss: 0.07, Aloss: 0.09
+[3][3300] Beta: 0.000000, KL: 1974.22, Word: 99.66, Topo: 99.96, Assm: 99.04, PNorm: 274.09, GNorm: 5.76
+Wloss: 0.19, Tloss: 0.05, Aloss: 0.12
+[3][3350] Beta: 0.000000, KL: 1935.48, Word: 99.83, Topo: 99.98, Assm: 99.51, PNorm: 274.12, GNorm: 5.40
+Wloss: 0.11, Tloss: 0.02, Aloss: 0.06
+[3][3400] Beta: 0.000000, KL: 1953.07, Word: 99.82, Topo: 99.98, Assm: 99.40, PNorm: 274.15, GNorm: 7.61
+Wloss: 0.10, Tloss: 0.02, Aloss: 0.07
+[3][3450] Beta: 0.000000, KL: 1998.09, Word: 99.60, Topo: 99.93, Assm: 99.34, PNorm: 274.16, GNorm: 44.03
+Wloss: 0.22, Tloss: 0.09, Aloss: 0.10
+[3][3500] Beta: 0.000000, KL: 2024.00, Word: 95.70, Topo: 99.32, Assm: 97.55, PNorm: 274.48, GNorm: 30.09
+Wloss: 2.20, Tloss: 0.66, Aloss: 0.39
+[3][3550] Beta: 0.000000, KL: 1946.76, Word: 97.17, Topo: 99.67, Assm: 97.90, PNorm: 274.75, GNorm: 17.65
+Wloss: 1.37, Tloss: 0.32, Aloss: 0.32
+[3][3600] Beta: 0.000000, KL: 1978.99, Word: 98.83, Topo: 99.87, Assm: 98.81, PNorm: 274.86, GNorm: 16.13
+Wloss: 0.63, Tloss: 0.12, Aloss: 0.19
+[3][3650] Beta: 0.000000, KL: 1990.38, Word: 99.51, Topo: 99.97, Assm: 99.06, PNorm: 274.95, GNorm: 10.11
+Wloss: 0.23, Tloss: 0.06, Aloss: 0.15
+[3][3700] Beta: 0.000000, KL: 2022.26, Word: 99.73, Topo: 99.98, Assm: 99.23, PNorm: 274.98, GNorm: 10.12
+Wloss: 0.14, Tloss: 0.03, Aloss: 0.09
+[3][3750] Beta: 0.000000, KL: 2004.83, Word: 99.81, Topo: 100.00, Assm: 99.46, PNorm: 275.01, GNorm: 2.39
+Wloss: 0.13, Tloss: 0.01, Aloss: 0.09
+[3][3800] Beta: 0.000000, KL: 1981.23, Word: 99.95, Topo: 99.98, Assm: 99.22, PNorm: 275.04, GNorm: 2.21
+Wloss: 0.04, Tloss: 0.02, Aloss: 0.10
+[3][3850] Beta: 0.000000, KL: 2030.40, Word: 99.95, Topo: 99.99, Assm: 99.13, PNorm: 275.06, GNorm: 0.54
+Wloss: 0.05, Tloss: 0.01, Aloss: 0.12
+[3][3900] Beta: 0.000000, KL: 2054.78, Word: 99.94, Topo: 99.99, Assm: 99.19, PNorm: 275.07, GNorm: 3.32
+Wloss: 0.05, Tloss: 0.01, Aloss: 0.12
+[3][3950] Beta: 0.000000, KL: 2048.80, Word: 99.98, Topo: 99.98, Assm: 98.75, PNorm: 275.08, GNorm: 1.18
+Wloss: 0.03, Tloss: 0.01, Aloss: 0.14
+[3][4000] Beta: 0.000000, KL: 2022.59, Word: 99.98, Topo: 99.99, Assm: 99.43, PNorm: 275.10, GNorm: 2.89
+Wloss: 0.03, Tloss: 0.01, Aloss: 0.08
+[3][4050] Beta: 0.000000, KL: 2035.99, Word: 99.97, Topo: 99.99, Assm: 99.51, PNorm: 275.11, GNorm: 0.83
+Wloss: 0.02, Tloss: 0.01, Aloss: 0.10
+[3][4100] Beta: 0.000000, KL: 2051.37, Word: 99.98, Topo: 99.98, Assm: 99.03, PNorm: 275.12, GNorm: 0.28
+Wloss: 0.02, Tloss: 0.01, Aloss: 0.12
+[3][4150] Beta: 0.000000, KL: 2051.12, Word: 100.00, Topo: 100.00, Assm: 99.02, PNorm: 275.13, GNorm: 0.75
+Wloss: 0.01, Tloss: 0.00, Aloss: 0.14
+[3][4200] Beta: 0.000000, KL: 2078.62, Word: 100.00, Topo: 99.98, Assm: 98.77, PNorm: 275.16, GNorm: 0.69
+Wloss: 0.01, Tloss: 0.04, Aloss: 0.19
+[3][4250] Beta: 0.000000, KL: 2053.96, Word: 100.00, Topo: 99.99, Assm: 99.02, PNorm: 275.17, GNorm: 0.16
+Wloss: 0.01, Tloss: 0.03, Aloss: 0.17
+[3][4300] Beta: 0.000000, KL: 2078.90, Word: 100.00, Topo: 100.00, Assm: 99.15, PNorm: 275.18, GNorm: 0.40
+Wloss: 0.01, Tloss: 0.00, Aloss: 0.12
+[3][4350] Beta: 0.000000, KL: 2025.33, Word: 93.35, Topo: 98.86, Assm: 94.84, PNorm: 275.61, GNorm: 50.00
+Wloss: 3.58, Tloss: 0.90, Aloss: 0.71
+[3][4400] Beta: 0.000000, KL: 1862.55, Word: 91.80, Topo: 98.80, Assm: 95.65, PNorm: 276.22, GNorm: 28.98
+Wloss: 4.30, Tloss: 1.03, Aloss: 0.61
+[3][4450] Beta: 0.000000, KL: 1825.89, Word: 93.31, Topo: 98.85, Assm: 96.83, PNorm: 276.71, GNorm: 34.40
+Wloss: 3.31, Tloss: 1.00, Aloss: 0.47
+[3][4500] Beta: 0.000000, KL: 1881.24, Word: 95.88, Topo: 99.39, Assm: 97.36, PNorm: 277.04, GNorm: 17.44
+Wloss: 1.83, Tloss: 0.47, Aloss: 0.38
+[3][4550] Beta: 0.000000, KL: 1916.02, Word: 96.65, Topo: 99.60, Assm: 98.00, PNorm: 277.27, GNorm: 16.76
+Wloss: 1.63, Tloss: 0.35, Aloss: 0.27
+[3][4600] Beta: 0.000000, KL: 1886.12, Word: 96.95, Topo: 99.56, Assm: 98.61, PNorm: 277.46, GNorm: 19.88
+Wloss: 1.46, Tloss: 0.36, Aloss: 0.25
+[3][4650] Beta: 0.000000, KL: 1945.66, Word: 97.66, Topo: 99.68, Assm: 98.10, PNorm: 277.63, GNorm: 21.28
+Wloss: 1.13, Tloss: 0.28, Aloss: 0.25
+[3][4700] Beta: 0.000000, KL: 1911.85, Word: 97.70, Topo: 99.65, Assm: 98.73, PNorm: 277.76, GNorm: 28.83
+Wloss: 1.11, Tloss: 0.28, Aloss: 0.20
+[3][4750] Beta: 0.000000, KL: 1934.66, Word: 97.90, Topo: 99.76, Assm: 98.97, PNorm: 277.87, GNorm: 16.15
+Wloss: 0.94, Tloss: 0.23, Aloss: 0.16
+[3][4800] Beta: 0.000000, KL: 1928.04, Word: 98.35, Topo: 99.71, Assm: 98.95, PNorm: 277.99, GNorm: 14.76
+Wloss: 0.75, Tloss: 0.28, Aloss: 0.17
+[3][4850] Beta: 0.000000, KL: 1931.85, Word: 98.90, Topo: 99.85, Assm: 98.87, PNorm: 278.08, GNorm: 24.25
+Wloss: 0.52, Tloss: 0.12, Aloss: 0.15
+[3][4900] Beta: 0.000000, KL: 1931.34, Word: 98.86, Topo: 99.92, Assm: 98.89, PNorm: 278.17, GNorm: 18.89
+Wloss: 0.55, Tloss: 0.08, Aloss: 0.15
+[3][4950] Beta: 0.000000, KL: 1945.79, Word: 99.06, Topo: 99.89, Assm: 99.12, PNorm: 278.24, GNorm: 11.95
+Wloss: 0.44, Tloss: 0.09, Aloss: 0.15
+[3][5000] Beta: 0.000000, KL: 1990.36, Word: 99.23, Topo: 99.86, Assm: 99.29, PNorm: 278.30, GNorm: 6.15
+Wloss: 0.40, Tloss: 0.12, Aloss: 0.11
+[3][5050] Beta: 0.000000, KL: 1996.42, Word: 99.30, Topo: 99.68, Assm: 99.02, PNorm: 278.39, GNorm: 12.90
+Wloss: 0.35, Tloss: 0.35, Aloss: 0.10
+[3][5100] Beta: 0.000000, KL: 1949.58, Word: 99.46, Topo: 99.92, Assm: 99.22, PNorm: 278.43, GNorm: 8.41
+Wloss: 0.31, Tloss: 0.09, Aloss: 0.10
+[3][5150] Beta: 0.000000, KL: 2030.43, Word: 99.54, Topo: 99.84, Assm: 99.05, PNorm: 278.47, GNorm: 12.16
+Wloss: 0.29, Tloss: 0.14, Aloss: 0.14
+[3][5200] Beta: 0.000000, KL: 1931.47, Word: 95.93, Topo: 99.49, Assm: 98.24, PNorm: 278.59, GNorm: 42.70
+Wloss: 2.64, Tloss: 0.47, Aloss: 0.36
+[3][5250] Beta: 0.000000, KL: 1917.57, Word: 96.91, Topo: 99.69, Assm: 99.05, PNorm: 278.77, GNorm: 21.83
+Wloss: 1.62, Tloss: 0.29, Aloss: 0.19
+[3][5300] Beta: 0.000000, KL: 1944.51, Word: 98.10, Topo: 99.86, Assm: 99.38, PNorm: 278.84, GNorm: 22.83
+Wloss: 1.02, Tloss: 0.15, Aloss: 0.12
+[3][5350] Beta: 0.000000, KL: 1921.65, Word: 98.59, Topo: 99.95, Assm: 99.40, PNorm: 278.90, GNorm: 16.12
+Wloss: 0.76, Tloss: 0.07, Aloss: 0.11
+[3][5400] Beta: 0.000000, KL: 1916.47, Word: 98.88, Topo: 99.92, Assm: 99.64, PNorm: 278.95, GNorm: 6.66
+Wloss: 0.57, Tloss: 0.07, Aloss: 0.06
+[3][5450] Beta: 0.000000, KL: 1988.17, Word: 99.24, Topo: 99.94, Assm: 99.68, PNorm: 279.00, GNorm: 13.31
+Wloss: 0.37, Tloss: 0.06, Aloss: 0.06
+[3][5500] Beta: 0.000000, KL: 1992.88, Word: 99.50, Topo: 99.95, Assm: 99.61, PNorm: 279.04, GNorm: 10.22
+Wloss: 0.29, Tloss: 0.05, Aloss: 0.07
+[3][5550] Beta: 0.000000, KL: 1970.77, Word: 99.40, Topo: 99.94, Assm: 99.68, PNorm: 279.09, GNorm: 5.45
+Wloss: 0.32, Tloss: 0.05, Aloss: 0.06
+[3][5600] Beta: 0.000000, KL: 1953.16, Word: 99.57, Topo: 99.98, Assm: 99.80, PNorm: 279.12, GNorm: 15.55
+Wloss: 0.22, Tloss: 0.03, Aloss: 0.03
+[3][5650] Beta: 0.000000, KL: 1934.72, Word: 99.65, Topo: 99.95, Assm: 99.54, PNorm: 279.16, GNorm: 4.39
+Wloss: 0.22, Tloss: 0.04, Aloss: 0.07
+[3][5700] Beta: 0.000000, KL: 1971.76, Word: 99.67, Topo: 99.98, Assm: 99.65, PNorm: 279.21, GNorm: 12.65
+Wloss: 0.19, Tloss: 0.03, Aloss: 0.05
+[3][5750] Beta: 0.000000, KL: 2009.51, Word: 99.76, Topo: 99.98, Assm: 99.55, PNorm: 279.25, GNorm: 15.03
+Wloss: 0.17, Tloss: 0.02, Aloss: 0.05
+[3][5800] Beta: 0.000000, KL: 2013.61, Word: 99.73, Topo: 99.99, Assm: 99.77, PNorm: 279.28, GNorm: 0.73
+Wloss: 0.13, Tloss: 0.02, Aloss: 0.04
+[3][5850] Beta: 0.000000, KL: 2022.14, Word: 99.79, Topo: 99.99, Assm: 99.81, PNorm: 279.30, GNorm: 7.12
+Wloss: 0.12, Tloss: 0.02, Aloss: 0.05
+[3][5900] Beta: 0.000000, KL: 2024.99, Word: 99.83, Topo: 99.99, Assm: 99.82, PNorm: 279.32, GNorm: 5.10
+Wloss: 0.11, Tloss: 0.01, Aloss: 0.03
+[3][5950] Beta: 0.000000, KL: 2062.82, Word: 99.82, Topo: 99.97, Assm: 99.74, PNorm: 279.34, GNorm: 2.56
+Wloss: 0.11, Tloss: 0.02, Aloss: 0.04
+[3][6000] Beta: 0.000000, KL: 2042.07, Word: 99.88, Topo: 99.98, Assm: 99.78, PNorm: 279.36, GNorm: 9.20
+Wloss: 0.08, Tloss: 0.02, Aloss: 0.04
+[3][6050] Beta: 0.000000, KL: 2109.24, Word: 97.50, Topo: 99.65, Assm: 98.20, PNorm: 279.45, GNorm: 46.16
+Wloss: 1.29, Tloss: 0.33, Aloss: 0.24
+[3][6100] Beta: 0.000000, KL: 2082.75, Word: 95.49, Topo: 99.29, Assm: 97.17, PNorm: 279.83, GNorm: 41.10
+Wloss: 2.25, Tloss: 0.67, Aloss: 0.37
+[3][6150] Beta: 0.000000, KL: 2037.05, Word: 96.55, Topo: 99.61, Assm: 98.35, PNorm: 280.11, GNorm: 40.15
+Wloss: 1.70, Tloss: 0.34, Aloss: 0.30
+[3][6200] Beta: 0.000000, KL: 2062.96, Word: 98.24, Topo: 99.79, Assm: 99.05, PNorm: 280.31, GNorm: 15.24
+Wloss: 0.80, Tloss: 0.25, Aloss: 0.21
+[3][6250] Beta: 0.000000, KL: 2081.87, Word: 98.98, Topo: 99.86, Assm: 99.08, PNorm: 280.41, GNorm: 12.50
+Wloss: 0.55, Tloss: 0.13, Aloss: 0.16
+[3][6300] Beta: 0.000000, KL: 2070.73, Word: 99.30, Topo: 99.92, Assm: 99.18, PNorm: 280.49, GNorm: 11.59
+Wloss: 0.37, Tloss: 0.09, Aloss: 0.13
+[3][6350] Beta: 0.000000, KL: 2087.45, Word: 99.37, Topo: 99.96, Assm: 98.78, PNorm: 280.56, GNorm: 6.19
+Wloss: 0.52, Tloss: 0.06, Aloss: 0.17
+[3][6400] Beta: 0.000000, KL: 2065.21, Word: 99.64, Topo: 99.97, Assm: 98.89, PNorm: 280.62, GNorm: 1.62
+Wloss: 0.19, Tloss: 0.04, Aloss: 0.18
+[3][6450] Beta: 0.000000, KL: 2084.96, Word: 99.68, Topo: 99.96, Assm: 99.61, PNorm: 280.66, GNorm: 1.42
+Wloss: 0.17, Tloss: 0.03, Aloss: 0.08
+[3][6500] Beta: 0.000000, KL: 2137.65, Word: 99.81, Topo: 99.96, Assm: 99.02, PNorm: 280.69, GNorm: 1.76
+Wloss: 0.13, Tloss: 0.05, Aloss: 0.11
+[3][6550] Beta: 0.000000, KL: 2131.71, Word: 99.90, Topo: 99.97, Assm: 98.89, PNorm: 280.73, GNorm: 6.95
+Wloss: 0.06, Tloss: 0.05, Aloss: 0.13
+[3][6600] Beta: 0.000000, KL: 2125.48, Word: 99.93, Topo: 99.96, Assm: 99.35, PNorm: 280.75, GNorm: 1.30
+Wloss: 0.07, Tloss: 0.07, Aloss: 0.09
+[3][6650] Beta: 0.000000, KL: 2142.98, Word: 99.93, Topo: 100.00, Assm: 99.56, PNorm: 280.77, GNorm: 1.01
+Wloss: 0.06, Tloss: 0.01, Aloss: 0.06
+[3][6700] Beta: 0.000000, KL: 2141.89, Word: 99.85, Topo: 99.99, Assm: 99.03, PNorm: 280.79, GNorm: 0.33
+Wloss: 0.10, Tloss: 0.02, Aloss: 0.12
+[3][6750] Beta: 0.000000, KL: 2139.68, Word: 99.95, Topo: 99.96, Assm: 98.94, PNorm: 280.80, GNorm: 1.06
+Wloss: 0.03, Tloss: 0.05, Aloss: 0.12
+[3][6800] Beta: 0.000000, KL: 2173.50, Word: 99.97, Topo: 100.00, Assm: 99.42, PNorm: 280.82, GNorm: 0.56
+Wloss: 0.03, Tloss: 0.01, Aloss: 0.08
+[3][6850] Beta: 0.000000, KL: 2146.13, Word: 99.96, Topo: 100.00, Assm: 99.19, PNorm: 280.83, GNorm: 19.25
+Wloss: 0.02, Tloss: 0.00, Aloss: 0.09
+[3][6900] Beta: 0.000000, KL: 2153.33, Word: 99.25, Topo: 99.86, Assm: 98.24, PNorm: 280.84, GNorm: 34.61
+Wloss: 0.43, Tloss: 0.16, Aloss: 0.23
+[3][6950] Beta: 0.000000, KL: 2028.49, Word: 90.84, Topo: 98.75, Assm: 92.31, PNorm: 281.41, GNorm: 50.00
+Wloss: 4.53, Tloss: 1.03, Aloss: 1.07
+[3][7000] Beta: 0.000000, KL: 2020.66, Word: 92.76, Topo: 98.98, Assm: 96.55, PNorm: 281.91, GNorm: 28.65
+Wloss: 3.54, Tloss: 0.92, Aloss: 0.52
+[3][7050] Beta: 0.000000, KL: 2007.76, Word: 95.02, Topo: 99.35, Assm: 97.29, PNorm: 282.30, GNorm: 27.12
+Wloss: 2.53, Tloss: 0.56, Aloss: 0.44
+[3][7100] Beta: 0.000000, KL: 1979.05, Word: 96.63, Topo: 99.62, Assm: 97.92, PNorm: 282.61, GNorm: 20.12
+Wloss: 1.56, Tloss: 0.34, Aloss: 0.34
+[3][7150] Beta: 0.000000, KL: 2026.76, Word: 97.62, Topo: 99.72, Assm: 98.66, PNorm: 282.79, GNorm: 18.85
+Wloss: 1.15, Tloss: 0.28, Aloss: 0.21
+[3][7200] Beta: 0.000000, KL: 2009.42, Word: 98.38, Topo: 99.76, Assm: 98.69, PNorm: 282.92, GNorm: 21.64
+Wloss: 0.81, Tloss: 0.24, Aloss: 0.22
+[3][7250] Beta: 0.000000, KL: 2008.73, Word: 98.86, Topo: 99.79, Assm: 98.78, PNorm: 283.03, GNorm: 6.78
+Wloss: 0.58, Tloss: 0.18, Aloss: 0.21
+[3][7300] Beta: 0.000000, KL: 2022.70, Word: 99.09, Topo: 99.89, Assm: 98.97, PNorm: 283.10, GNorm: 11.09
+Wloss: 0.48, Tloss: 0.11, Aloss: 0.16
+[3][7350] Beta: 0.000000, KL: 2063.06, Word: 99.28, Topo: 99.90, Assm: 99.13, PNorm: 283.20, GNorm: 12.09
+Wloss: 0.39, Tloss: 0.12, Aloss: 0.16
+[3][7400] Beta: 0.000000, KL: 2066.61, Word: 99.27, Topo: 99.95, Assm: 99.03, PNorm: 283.27, GNorm: 16.38
+Wloss: 0.40, Tloss: 0.05, Aloss: 0.14
+[3][7450] Beta: 0.000000, KL: 2070.42, Word: 99.28, Topo: 99.92, Assm: 98.86, PNorm: 283.32, GNorm: 16.08
+Wloss: 0.40, Tloss: 0.07, Aloss: 0.21
+[3][7500] Beta: 0.000000, KL: 2058.72, Word: 99.39, Topo: 99.91, Assm: 98.88, PNorm: 283.39, GNorm: 14.21
+Wloss: 0.34, Tloss: 0.09, Aloss: 0.14
+[3][7550] Beta: 0.000000, KL: 2048.40, Word: 99.18, Topo: 99.95, Assm: 98.90, PNorm: 283.44, GNorm: 5.12
+Wloss: 0.57, Tloss: 0.08, Aloss: 0.13
+[3][7600] Beta: 0.000000, KL: 2078.65, Word: 99.48, Topo: 99.95, Assm: 99.47, PNorm: 283.51, GNorm: 4.69
+Wloss: 0.29, Tloss: 0.05, Aloss: 0.10
+[3][7650] Beta: 0.000000, KL: 2091.35, Word: 99.39, Topo: 99.91, Assm: 99.09, PNorm: 283.58, GNorm: 12.58
+Wloss: 0.34, Tloss: 0.10, Aloss: 0.14
+[3][7700] Beta: 0.000000, KL: 2078.11, Word: 99.44, Topo: 99.91, Assm: 99.35, PNorm: 283.63, GNorm: 9.49
+Wloss: 0.31, Tloss: 0.08, Aloss: 0.11
+[3][7750] Beta: 0.000000, KL: 2083.04, Word: 99.33, Topo: 99.92, Assm: 99.27, PNorm: 283.69, GNorm: 9.99
+Wloss: 0.38, Tloss: 0.07, Aloss: 0.14
+Traceback (most recent call last):
+  File "f_train.py", line 219, in <module>
+    for it, (batch, gene_batch) in enumerate(loader):
+  File "/home/shinhwan/icml18_l1000/icml18_l1000/fast_jtnn/datautils.py", line 145, in __iter__
+    for i,b in enumerate(dataloader):
+  File "/home/shinhwan/anaconda2/envs/icml18_l1000/lib/python2.7/site-packages/torch/utils/data/dataloader.py", line 279, in __iter__
+    return _MultiProcessingDataLoaderIter(self)
+  File "/home/shinhwan/anaconda2/envs/icml18_l1000/lib/python2.7/site-packages/torch/utils/data/dataloader.py", line 719, in __init__
+    w.start()
+  File "/home/shinhwan/anaconda2/envs/icml18_l1000/lib/python2.7/multiprocessing/process.py", line 130, in start
+    self._popen = Popen(self)
+  File "/home/shinhwan/anaconda2/envs/icml18_l1000/lib/python2.7/multiprocessing/forking.py", line 121, in __init__
+    self.pid = os.fork()
+OSError: [Errno 12] Cannot allocate memory

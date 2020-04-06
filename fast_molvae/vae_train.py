@@ -120,7 +120,7 @@ print "Model #Params: %dK" % (sum([x.nelement() for x in model.parameters()]) / 
 
 optimizer = optim.Adam(model.parameters(), lr=args.lr)
 scheduler = lr_scheduler.ExponentialLR(optimizer, args.anneal_rate)
-scheduler.step()
+#scheduler.step()
 
 param_norm = lambda m: math.sqrt(sum([p.norm().item() ** 2 for p in m.parameters()]))
 grad_norm = lambda m: math.sqrt(sum([p.grad.norm().item() ** 2 for p in m.parameters() if p.grad is not None]))
@@ -133,9 +133,9 @@ d=datetime.now()
 now = str(d.year)+'_'+str(d.month)+'_'+str(d.day)+'_'+str(d.hour)+'_'+str(d.minute)
 
 if args.load_epoch != 0:
-    folder_name = args.train.split('-')[0] + '_' + now + "_from_" +str(args.load_epoch)#moses-processed --> moses
+    folder_name = "pre" + "h" + str(args.hidden_size) + '_bs' + str(args.batch_size) + now + "_from_" +str(args.load_epoch)#moses-processed --> moses
 else:
-    folder_name = args.train.split('-')[0] + '_' + now#moses-processed --> moses
+    folder_name = "pre" + "h" + str(args.hidden_size) + '_bs' + str(args.batch_size) + now
 
 os.makedirs('./plot/'+folder_name+'/KL')        #KL
 os.makedirs('./plot/'+folder_name+'/Acc')       #Word, Topo, Assm
@@ -182,7 +182,7 @@ for epoch in xrange(args.epoch):
             Assm: 조립할 때, 정답과 똑같이 했는가? acc
         '''
         
-        if total_step % args.print_iter == 0:
+        if (it+1) % args.print_iter == 0:
             meters /= args.print_iter
             
             pnorm= param_norm(model)

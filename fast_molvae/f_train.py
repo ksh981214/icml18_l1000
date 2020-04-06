@@ -175,7 +175,7 @@ print "Model #Params: %dK" % (sum([x.nelement() for x in model.parameters()]) / 
 
 optimizer = optim.Adam(model.parameters(), lr=args.lr)
 scheduler = lr_scheduler.ExponentialLR(optimizer, args.anneal_rate)
-scheduler.step()
+#scheduler.step()
 
 param_norm = lambda m: math.sqrt(sum([p.norm().item() ** 2 for p in m.parameters()]))
 grad_norm = lambda m: math.sqrt(sum([p.grad.norm().item() ** 2 for p in m.parameters() if p.grad is not None]))
@@ -224,6 +224,9 @@ for epoch in xrange(args.epoch):
             loss.backward()
             nn.utils.clip_grad_norm_(model.parameters(), args.clip_norm)
             optimizer.step()
+            #loss.backward()
+            #nn.utils.clip_grad_norm_(model.parameters(), args.clip_norm)
+
         except Exception as e:
             print e
             continue
@@ -236,7 +239,7 @@ for epoch in xrange(args.epoch):
             Assm: 조립할 때, 정답과 똑같이 했는가? acc
         '''
 
-        if total_step % args.print_iter == 0:
+        if (it+1) % args.print_iter == 0:
             meters /= args.print_iter
 
             pnorm= param_norm(model)

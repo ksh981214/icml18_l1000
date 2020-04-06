@@ -91,7 +91,7 @@ class MolTreeFolderMLP(object):
         self.shuffle = shuffle
         self.assm = assm
 
-        path = os.path.join(gene_exp,'train_embedding_121.txt')
+        path = os.path.join(gene_exp)
         print(path)
         with open(path) as f:
             all_gene=f.readlines()
