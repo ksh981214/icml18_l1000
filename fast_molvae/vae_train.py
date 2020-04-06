@@ -162,6 +162,7 @@ for epoch in xrange(args.epoch):
     print("EPOCH: %d | TIME: %s " % (epoch+1, str(start)))
     
     loader = MolTreeFolder(args.train, vocab, args.batch_size, num_workers=4)
+    meters *= 0	
     for it, batch in enumerate(loader):
         total_step += 1
         try:
