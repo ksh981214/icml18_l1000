@@ -50,6 +50,13 @@ python f_train.py --train gene-processed --gene ../data/121 --vocab ../data/121/
 python f_train.py --train {pkl파일} --gene {embedding.txt의 위치} --vocab {} --save_dir {} --pre_vocab_dir {} --pre_model_dir {} --batch_size 16 --hidden_size 200
 ```
 
+## MJ_training
+```
+Need to change folder name with "processed" to "pos"
+
+python mj_train.py --train ../data/l1000/max30/ --num_neg_folder 5 --gene ../data/l1000/max30/embedding_train_max30.txt --vocab ../data/l1000/max30/train_max30_vocab.txt --save_dir ./mj_model/ --pre_vocab_dir ../data/l1000/max30/train_max30_vocab.txt --pre_model_dir ./pre_model/minbyul/premodel_300_32_max30.iter-30000 --batch_size 32 --hidden_size 300
+```
+
 ## Testing
 To sample new molecules with trained models, simply run
 ```

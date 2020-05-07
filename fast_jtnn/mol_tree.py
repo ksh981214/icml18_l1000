@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 
 import rdkit
 import rdkit.Chem as Chem
@@ -16,7 +16,7 @@ class MolTreeNode(object):
 
         self.clique = [x for x in clique] #copy
         self.neighbors = []
-        
+
     def add_neighbor(self, nei_node):
         self.neighbors.append(nei_node)
 
@@ -29,7 +29,7 @@ class MolTreeNode(object):
 
         for nei_node in self.neighbors:
             clique.extend(nei_node.clique)
-            if nei_node.is_leaf: #Leaf node, no need to mark 
+            if nei_node.is_leaf: #Leaf node, no need to mark
                 continue
             for cidx in nei_node.clique:
                 #allow singleton node override the atom mapping
@@ -45,7 +45,7 @@ class MolTreeNode(object):
             original_mol.GetAtomWithIdx(cidx).SetAtomMapNum(0)
 
         return self.label
-    
+
     def assemble(self):
         neighbors = [nei for nei in self.neighbors if nei.mol.GetNumAtoms() > 1]
         neighbors = sorted(neighbors, key=lambda x:x.mol.GetNumAtoms(), reverse=True)
@@ -86,7 +86,7 @@ class MolTree(object):
         for x,y in edges:
             self.nodes[x].add_neighbor(self.nodes[y])
             self.nodes[y].add_neighbor(self.nodes[x])
-        
+
         if root > 0:
             self.nodes[0],self.nodes[root] = self.nodes[root],self.nodes[0]
 
@@ -117,11 +117,11 @@ def dfs(node, fa_idx):
 
 if __name__ == "__main__":
     import sys
-    
-    start = datetime.now()
-    print("Start:{}".format(start))
-    
-    lg = rdkit.RDLogger.logger() 
+
+    # start = datetime.now()
+    # print("Start:{}".format(start))
+
+    lg = rdkit.RDLogger.logger()
     lg.setLevel(rdkit.RDLogger.CRITICAL)
 
     cset = set()
@@ -132,7 +132,6 @@ if __name__ == "__main__":
             cset.add(c.smiles)
     for x in cset:
         print x
-        
-    print("Finish:{}".format(datetime.now()))
-    print("Consume Time:{}".format(datetime.now()-start))
 
+    # print("Finish:{}".format(datetime.now()))
+    # print("Consume Time:{}".format(datetime.now()-start))

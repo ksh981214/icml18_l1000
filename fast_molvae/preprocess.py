@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*- 
-
+# -*- coding: utf-8 -*-
 import torch
 import torch.nn as nn
 from multiprocessing import Pool
@@ -30,17 +29,18 @@ def tensorize(smiles, assm=True):
     return mol_tree
 
 if __name__ == "__main__":
-    
+
     start = datetime.now()
     print("Start:{}".format(start))
-    
-    lg = rdkit.RDLogger.logger() 
+
+    lg = rdkit.RDLogger.logger()
     lg.setLevel(rdkit.RDLogger.CRITICAL)
 
     parser = OptionParser()
     parser.add_option("-t", "--train", dest="train_path")
     parser.add_option("-n", "--split", dest="nsplits", default=10)
     parser.add_option("-j", "--jobs", dest="njobs", default=8)
+
     opts,args = parser.parse_args()
     opts.njobs = int(opts.njobs)
 
@@ -51,21 +51,23 @@ if __name__ == "__main__":
         #data = [line.strip("\r\n ").split()[0] for line in f]
         data = []
         for i, line in enumerate(f):
-            if i % 10000 == 0:
-                print(i)
             data.append(line.strip("\r\n ").split()[0])
 
     all_data = pool.map(tensorize, data)
 
     le = (len(all_data) + num_splits - 1) / num_splits
 
+    save_path =''
+    for w in opts.train_path.split('/')[:-1]:
+        save_path += w +'/'
+
     for split_id in xrange(num_splits):
         st = split_id * le
         sub_data = all_data[st : st + le]
 
-        with open('tensors-%d.pkl' % split_id, 'wb') as f:
+        with open(save_path+'tensors-%d.pkl' % split_id, 'wb') as f:
             pickle.dump(sub_data, f, pickle.HIGHEST_PROTOCOL)
 
-            
+
     print("Finish:{}".format(datetime.now()))
     print("Consume Time:{}".format(datetime.now()-start))

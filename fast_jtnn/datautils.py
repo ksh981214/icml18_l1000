@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 import torch
 from torch.utils.data import Dataset, DataLoader
@@ -12,8 +12,15 @@ import os, random
 
 import numpy as np
 
-class PairTreeFolder(object):
+import sys
+import gc
 
+import pdb
+from ctypes import *
+import ctypes
+
+
+class PairTreeFolder(object):
     def __init__(self, data_folder, vocab, batch_size, num_workers=4, shuffle=True, y_assm=True, replicate=None):
         self.data_folder = data_folder
         self.data_files = [fn for fn in os.listdir(data_folder)]
@@ -47,10 +54,11 @@ class PairTreeFolder(object):
 
             del data, batches, dataset, dataloader
 
+
 class MolTreeFolder(object):
     def __init__(self, data_folder, vocab, batch_size, num_workers=4, shuffle=True, assm=True, replicate=None):
-        self.data_folder = data_folder
-        self.data_files = [fn for fn in os.listdir(data_folder)]
+        self.data_folder = data_folder+"pos"
+        self.data_files = [fn for fn in os.listdir(data_folder+"pos")]
         self.batch_size = batch_size
         self.vocab = vocab
         self.num_workers = num_workers
@@ -59,7 +67,7 @@ class MolTreeFolder(object):
 
         if replicate is not None: #expand is int
             self.data_files = self.data_files * replicate
-
+        #pdb.set_trace()
     def __iter__(self):
         for fn in self.data_files:
             fn = os.path.join(self.data_folder, fn)
@@ -78,8 +86,80 @@ class MolTreeFolder(object):
 
             for b in dataloader:
                 yield b
+            #pdb.set_trace()
+            # print("data ref cnt: {}".format(sys.getrefcount(data)))
+            # #print(gc.get_referents(data))
+            #
+            # print("batches ref cnt: {}".format(sys.getrefcount(batches)))
+            # #print(gc.get_referents(batches))
+            #
+            # print("dataset ref cnt: {}".format(sys.getrefcount(dataset)))
+            # #print(gc.get_referents(dataset))
+            #
+            # print("dataloader ref cnt: {}".format(sys.getrefcount(dataloader)))
+            #print(gc.get_referents(dataloader))
 
-            del data, batches, dataset, dataloader
+            #del data, batches, dataset, dataloader
+
+            del data, dataloader
+            #gc.collect()
+
+            # print("dataset ref cnt: {}".format(sys.getrefcount(dataset)))
+            del dataset
+            #gc.collect()
+
+            # print("batches ref cnt: {}".format(sys.getrefcount(batches)))
+            del batches
+
+            # try:
+            #     print("data ref cnt: {}".format(sys.getrefcount(data)))
+            # except Exception as e:
+            #     print(e)
+            #     pass
+            #
+            # try:
+            #     print("dataloader ref cnt: {}".format(sys.getrefcount(dataloader)))
+            # except Exception as e:
+            #     print(e)
+            #     pass
+            #
+            # try:
+            #     print("dataset ref cnt: {}".format(sys.getrefcount(dataset)))
+            # except Exception as e:
+            #     print(e)
+            #     pass
+            #
+            # try:
+            #     print("batches ref cnt: {}".format(sys.getrefcount(batches)))
+            # except Exception as e:
+            #     print(e)
+            #     pass
+
+            # print("af data ref cnt: {}".format(sys.getrefcount(data)))
+            # print(gc.get_referents(data))
+
+            # print("af batches ref cnt: {}".format(sys.getrefcount(batches)))
+            # print(gc.get_referents(batches)[:10])
+            #
+            # print("af dataset ref cnt: {}".format(sys.getrefcount(dataset)))
+            # print(gc.get_referents(dataset):[:10])
+
+            # print("af dataloader ref cnt: {}".format(sys.getrefcount(dataloader)))
+            # print(gc.get_referents(dataloader))
+
+            # gc.collect()
+
+            # print("gc af data ref cnt: {}".format(sys.getrefcount(data)))
+            # print(gc.get_referents(data))
+
+            # print("gc af batches ref cnt: {}".format(sys.getrefcount(batches)))
+            # print(gc.get_referents(batches)[:10])
+            #
+            # print("gc af dataset ref cnt: {}".format(sys.getrefcount(dataset)))
+            # print(gc.get_referents(dataset)[:10])
+
+            # print("gc af dataloader ref cnt: {}".format(sys.getrefcount(dataloader)))
+            # print(gc.get_referents(dataloader))
 
 class MolTreeFolderMLP(object):
     def __init__(self, data_folder, gene_exp, vocab, batch_size, num_workers=4, shuffle=True, assm=True, replicate=None):
@@ -91,7 +171,7 @@ class MolTreeFolderMLP(object):
         self.shuffle = shuffle
         self.assm = assm
 
-        path = os.path.join(gene_exp)
+        path = os.path.join(gene_exp,'train_embedding_121.txt')
         print(path)
         with open(path) as f:
             all_gene=f.readlines()
@@ -99,9 +179,6 @@ class MolTreeFolderMLP(object):
         print("Finish gene exp loading")
 
         self.all_gene = [list(map(float, emb.split())) for emb in all_gene] #LIST[LIST]
-
-
-
         print("Len(all_gen) is {}".format(len(self.all_gene)))
 
 
@@ -146,7 +223,137 @@ class MolTreeFolderMLP(object):
                 #print("len(gene_batches[i]) is {}".format(len(gene_batches[i])))
                 yield b, gene_batches[i]
 
-            del data, batches, dataset, dataloader
+            del data, batches, dataset, dataloader, gene, gene_batches
+
+class MolTreeFolderMJ(object):
+    def __init__(self, data_folder, num_neg_folder, gene_exp, vocab, batch_size, num_workers=4, shuffle=True, assm=True, replicate=None):
+        self.data_folder = data_folder+"pos"
+        self.data_files = [fn for fn in os.listdir(data_folder+"pos")]
+
+        self.num_of_neg_folder = num_neg_folder
+        self.neg_data_folders = [data_folder + str(i)+"_neg" for i in range(num_neg_folder)]
+        self.neg_data_files={}
+        for folder_name in self.neg_data_folders:
+            neg_data_files = [fn for fn in os.listdir(folder_name)]
+            # {0_neg: [], 1_neg:[]
+            self.neg_data_files[folder_name] = neg_data_files
+
+        self.batch_size = batch_size
+        self.vocab = vocab
+        self.num_workers = num_workers
+        self.shuffle = shuffle
+        self.assm = assm
+
+        #GeneExpression Load
+        with open(gene_exp) as f:
+            all_gene=f.readlines()
+        print("Finish gene exp loading")
+        #For Debugging
+
+        #pdb.set_trace()
+        self.all_gene = [list(map(float, emb.split())) for emb in all_gene] #LIST[LIST]
+        print("Len(all_gen) is {}".format(len(self.all_gene)))
+        #pdb.set_trace()
+
+        if replicate is not None: #expand is int
+            self.data_files = self.data_files * replicate
+
+    def __iter__(self):
+        idx =0
+        for data_files_i, fn in enumerate(self.data_files):
+            fn = os.path.join(self.data_folder, fn)
+            with open(fn) as f:
+                data = pickle.load(f)
+
+            #negative mols load
+            neg_data=[]
+            for neg_folder_name in self.neg_data_folders:
+                fn = os.path.join(neg_folder_name, self.neg_data_files[neg_folder_name][data_files_i])
+                with open(fn) as f:
+                    neg_data.append(pickle.load(f))
+
+            gene = self.all_gene[idx:idx+len(data)]
+            idx = idx + len(data)
+
+
+            #For Debugging
+            if len(data) != len(gene):
+                print("len(data) != len(gene)")
+
+            for lst in neg_data:
+                if len(lst) != len(gene):
+                    print("len(neg_data) != len(gene)")
+
+            #all_data = [Pos Neg Neg Neg ...]
+            all_data = data
+            for lst in neg_data:
+                all_data = all_data + lst
+
+            gene = gene * (self.num_of_neg_folder+1)
+
+            #del data, neg_data
+
+            #For Debugging
+            if len(all_data) != len(gene):
+                print("len(all_data) != len(gene)")
+
+            if self.shuffle:
+                num_pos = int(len(all_data)/(self.num_of_neg_folder+1))
+                num_neg = len(all_data)-num_pos
+
+                #make label
+                pos_label = np.ones(num_pos, dtype=np.float)
+                neg_label = np.ones(num_neg, dtype=np.float) * (-1)
+                label = np.append(pos_label, neg_label)
+
+                indices = np.arange(len(all_data))
+                np.random.shuffle(indices)
+
+                all_data = list(np.array(all_data)[indices])
+                gene = list(np.array(gene)[indices])
+                label= list(label[indices])
+
+
+                #del indices
+
+            batches = [all_data[i : i + self.batch_size] for i in xrange(0, len(all_data), self.batch_size)]
+            if len(batches[-1]) < self.batch_size:
+                batches.pop()
+
+            gene_batches = [gene[i : i + self.batch_size] for i in xrange(0, len(gene), self.batch_size)]
+            if len(gene_batches[-1]) < self.batch_size:
+                gene_batches.pop()
+
+            label_batches = [label[i : i + self.batch_size] for i in xrange(0, len(label), self.batch_size)]
+            if len(label_batches[-1]) < self.batch_size:
+                label_batches.pop()
+
+            dataset = MolTreeDataset(batches, self.vocab, self.assm)
+            dataloader = DataLoader(dataset, batch_size=1, shuffle=False, num_workers=self.num_workers, collate_fn=lambda x:x[0])
+
+            #if data_files_i%10 ==0:
+            #    pdb.set_trace()
+            for i,b in enumerate(dataloader):
+                yield b, gene_batches[i], label_batches[i]
+
+            #pdb.set_trace()
+
+            del data, neg_data
+            del indices
+
+            del gene, label
+            del gene_batches, label_batches
+
+            del all_data, dataloader
+            #gc.collect()
+
+            # print("dataset ref cnt: {}".format(sys.getrefcount(dataset)))
+            del dataset
+            #gc.collect()
+
+            # print("batches ref cnt: {}".format(sys.getrefcount(batches)))
+            del batches
+            #pdb.set_trace()
 
 class PairTreeDataset(Dataset):
 
