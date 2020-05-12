@@ -15,6 +15,8 @@ import rdkit
 import rdkit.Chem as Chem
 import copy, math
 
+import numpy as np
+
 class JTNNMJ(nn.Module):
     def __init__(self, vocab, hidden_size, latent_size, depthT, depthG, loss_type='L1'):
         super(JTNNMJ, self).__init__()
@@ -118,6 +120,7 @@ class JTNNMJ(nn.Module):
             1. cosine sim with z_hat and gene_batch
             2. along the label, calculate the loss
         '''
+
         g_batch = self.gene_mlp(torch.tensor(g_batch, dtype=torch.float32).cuda()) # b.s * 978 --> b.s * (2 * hidden_size)
 
         z_hat_tree_vecs = self.tree_mlp(z_tree_vecs) #b.s * latent_size --> b.s * hidden_size
@@ -126,14 +129,13 @@ class JTNNMJ(nn.Module):
 
         cos_result = self.cos(g_batch, z_hat) #b.s
 
-        cos_loss = self.cos_loss(torch.tensor(l_batch).unsqueeze(1).cuda(), cos_result.unsqueeze(1)) / len(l_batch) # scalar
-
+        cos_loss = self.cos_loss(torch.tensor(l_batch,dtype=torch.float32).unsqueeze(1).cuda(), cos_result.unsqueeze(1)) / len(l_batch) # scalar
         #Normalization among the losses
         '''
             Some Code
         '''
 
-        return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss, topo_loss, assm_loss, cos_loss
+        return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), cos_loss.item()
 
     def assm(self, mol_batch, jtmpn_holder, x_mol_vecs, x_tree_mess):
         jtmpn_holder,batch_idx = jtmpn_holder
