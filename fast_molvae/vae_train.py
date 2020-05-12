@@ -56,6 +56,7 @@ vocab = [x.strip("\r\n ") for x in open(args.vocab)]
 vocab = Vocab(vocab)
 
 model = JTNNVAE(vocab, args.hidden_size, args.latent_size, args.depthT, args.depthG).cuda()
+
 print model
 
 for param in model.parameters():
@@ -65,6 +66,7 @@ for param in model.parameters():
         nn.init.xavier_normal_(param)
 
 if args.load_epoch > 0:
+
     model.load_state_dict(torch.load(args.save_dir + "/model.iter-" + str(args.load_epoch)))
 
 print "Model #Params: %dK" % (sum([x.nelement() for x in model.parameters()]) / 1000,)
@@ -91,7 +93,7 @@ for epoch in xrange(args.epoch):
     print("EPOCH: %d | TIME: %s " % (epoch+1, str(start)))
 
     loader = MolTreeFolder(args.train, vocab, args.batch_size, num_workers=4)
-    for (batch, g) in loader:
+    for (batch, g, l) in loader:
         total_step += 1
         try:
             model.zero_grad()

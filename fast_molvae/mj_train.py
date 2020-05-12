@@ -122,7 +122,7 @@ else:
             model.state_dict()['jtnn.embedding.weight'][vocab_dict[w]] = pre_model.state_dict()['jtnn.embedding.weight'][pre_vocab_dict[w]]
     print("Finish Embedding Loading")
 
-    del(pre_vocab, pre_model, pre_model_dict, clear_pre_model_dict, pre_vocab_dict)
+    del pre_vocab, pre_model, pre_model_dict, clear_pre_model_dict, pre_vocab_dict
 print "Model #Params: %dK" % (sum([x.nelement() for x in model.parameters()]) / 1000,)
 
 ###############################################
@@ -135,22 +135,25 @@ grad_norm = lambda m: math.sqrt(sum([p.grad.norm().item() ** 2 for p in m.parame
 
 total_step = 0
 beta = args.beta
-meters = np.zeros(8)
+
+accs=np.zeros(4)
+losses = np.zeros(4)
 
 from datetime import datetime
 
 for epoch in xrange(args.epoch):
-    meters *= 0
+    accs *= 0
+    losses *= 0
 
     start = datetime.now()
     print("EPOCH: %d | TIME: %s " % (epoch+1, str(start)))
     loader = MolTreeFolderMJ(args.train, args.num_neg_folder, vocab, args.batch_size, num_workers=4)
 
-    for it, (batch, gene_batch, label_batch) in enumerate(loader):
+    for (batch, g, l) in loader:
         total_step += 1
         try:
             model.zero_grad()
-            loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, cos_loss = model(batch, gene_batch, label_batch, beta)
+            loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, cos_loss = model(batch, g, l, beta)
             loss.backward()
             nn.utils.clip_grad_norm_(model.parameters(), args.clip_norm)
             optimizer.step()
@@ -158,19 +161,19 @@ for epoch in xrange(args.epoch):
             print e
             continue
 
-        meters = meters + np.array([kl_div, wacc * 100, tacc * 100, sacc * 100, word_loss, topo_loss, assm_loss, cos_loss])
+        accs = accs + np.array([kl_div, wacc * 100, tacc * 100, sacc * 100])
+        losses = losses + np.array([word_loss, topo_loss, assm_loss, cos_loss])
 
         if total_step % args.print_iter == 0:
-            meters /= args.print_iter
+            accs /= args.print_iter
+            losses /= args.print_iter
 
-            pnorm= param_norm(model)
-            gnorm = grad_norm(model)
-
-            print "[%d][%d] Beta: %.6f, KL: %.2f, Word: %.2f, Topo: %.2f, Assm: %.2f, PNorm: %.2f, GNorm: %.2f" % (epoch, it+1, beta, meters[0], meters[1], meters[2], meters[3], pnorm, gnorm)
-            print "Wloss: %.2f, Tloss: %.2f, Aloss: %.2f, Closs: %.2f" %(meters[4], meters[5], meters[6], meters[7])
-
+            print "[%d][%d] Beta: %.6f, KL: %.2f, Word: %.2f, Topo: %.2f, Assm: %.2f, PNorm: %.2f, GNorm: %.2f" % (epoch, total_step, beta, accs[0], accs[1], accs[2], accs[3], param_norm(model), grad_norm(model))
+            print "Wloss: %.2f, Tloss: %.2f, Aloss: %.2f, Closs: %.2f" %(losses[0], losses[1], losses[2], losses[3])
             sys.stdout.flush()
-            meters *= 0
+
+            accs *=0
+            losses *=0
 
         if total_step % args.save_iter == 0:
             torch.save(model.state_dict(), args.save_dir + "/model.iter-" + str(total_step))
@@ -201,12 +204,3 @@ for epoch in xrange(args.epoch):
 
     #Plot per 1 epoch
     print "Cosume Time per Epoch %s" % (str(datetime.now()-start))
-
-    #Delete Loader
-    referrers = gc.get_referrers(loader)
-    for referrer in referrers:
-        if type(referrer) == dict:
-            for key, value in referrer.items():
-                if value is loader:
-                    referrer[key] = None
-    del loader
