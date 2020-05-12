@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -16,9 +15,9 @@ import rdkit
 import rdkit.Chem as Chem
 import copy, math
 
-class JTNNVAEMJ(nn.Module):
+class JTNNMJ(nn.Module):
     def __init__(self, vocab, hidden_size, latent_size, depthT, depthG, loss_type='L1'):
-        super(JTNNVAEMJ, self).__init__()
+        super(JTNNMJ, self).__init__()
         self.vocab = vocab
         self.hidden_size = hidden_size
         self.latent_size = latent_size = latent_size / 2 #Tree and Mol has two vectors
@@ -98,7 +97,7 @@ class JTNNVAEMJ(nn.Module):
         z_mol = torch.randn(1, self.latent_size).cuda()
         return self.decode(z_tree, z_mol, prob_decode)
 
-    def forward(self, x_batch, gene_batch, label_batch, beta):
+    def forward(self, x_batch, g_batch, l_batch, beta):
         x_batch, x_jtenc_holder, x_mpn_holder, x_jtmpn_holder = x_batch
         x_tree_vecs, x_tree_mess, x_mol_vecs = self.encode(x_jtenc_holder, x_mpn_holder)
 
@@ -119,20 +118,16 @@ class JTNNVAEMJ(nn.Module):
             1. cosine sim with z_hat and gene_batch
             2. along the label, calculate the loss
         '''
-        gene_batch = torch.tensor(gene_batch, dtype=torch.float32).cuda() # b.s * 978
-        gene_batch = self.gene_mlp(gene_batch) # b.s * 978 --> b.s * (2 * hidden_size)
+        g_batch = self.gene_mlp(torch.tensor(g_batch, dtype=torch.float32).cuda()) # b.s * 978 --> b.s * (2 * hidden_size)
 
         z_hat_tree_vecs = self.tree_mlp(z_tree_vecs) #b.s * latent_size --> b.s * hidden_size
         z_hat_mol_vecs = self.mol_mlp(z_mol_vecs) #b.s * latent_size --> b.s * hidden_size
         z_hat = torch.cat([z_hat_tree_vecs, z_hat_mol_vecs], dim=-1) # b.s * (2* hidden_size)
 
-        cos_result = self.cos(gene_batch, z_hat) #b.s
+        cos_result = self.cos(g_batch, z_hat) #b.s
 
-        #print(cos_result.unsqueeze(1).shape)
-        #print(torch.tensor(label_batch).unsqueeze(1).shape)
-        cos_loss = self.cos_loss(torch.tensor(label_batch).unsqueeze(1).cuda(), cos_result.unsqueeze(1)) / len(label_batch) # scalar
-        #print(cos_loss)
-        #print()
+        cos_loss = self.cos_loss(torch.tensor(l_batch).unsqueeze(1).cuda(), cos_result.unsqueeze(1)) / len(l_batch) # scalar
+
         #Normalization among the losses
         '''
             Some Code
