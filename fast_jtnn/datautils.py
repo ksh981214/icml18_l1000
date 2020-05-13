@@ -88,20 +88,15 @@ class MolTreeFolderMJ(object):
 
         self.num_of_neg_folder = num_neg_folder
         self.neg_data_folders = [data_folder + str(i)+"_neg" for i in range(num_neg_folder)]
-        self.neg_data_files={}
-        for folder_name in self.neg_data_folders:
-            neg_data_files = [fn for fn in os.listdir(folder_name)]
-            # {0_neg: [], 1_neg:[]
-            self.neg_data_files[folder_name] = neg_data_files
 
         self.gene_folder = data_folder+"gene"
-        self.gene_files = [fn for fn in os.listdir(data_folder+"gene")]
 
         self.batch_size = batch_size
         self.vocab = vocab
         self.num_workers = num_workers
         self.shuffle = shuffle
         self.assm = assm
+
 
         if replicate is not None: #expand is int
             self.data_files = self.data_files * replicate
@@ -110,20 +105,19 @@ class MolTreeFolderMJ(object):
         idx =0
         for data_files_i, fn in enumerate(self.data_files):
             data = []
-            fn = os.path.join(self.data_folder, fn)
-
-            with open(fn) as f:
-                data = pickle.load(f)
+            pos_fn = os.path.join(self.data_folder, fn)
+            with open(pos_fn) as pos_f:
+                data = pickle.load(pos_f)
             num_pos = len(data)
 
             for neg_folder_name in self.neg_data_folders:
-                fn = os.path.join(neg_folder_name, self.neg_data_files[neg_folder_name][data_files_i])
-                with open(fn) as f:
-                    data = data + pickle.load(f)
+                neg_fn = os.path.join(neg_folder_name, fn)
+                with open(neg_fn) as neg_f:
+                    data = data + pickle.load(neg_f)
 
-            fn = os.path.join(self.gene_folder, self.gene_files[data_files_i])
-            with open(fn, 'rb') as f:
-                gene = pickle.load(f)
+            gene_fn = os.path.join(self.gene_folder, "gene-"+fn.split("-")[1])
+            with open(gene_fn, 'rb') as gene_f:
+                gene = pickle.load(gene_f)
             gene = gene * (self.num_of_neg_folder+1)
 
             #For Debugging
