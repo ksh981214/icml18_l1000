@@ -12,25 +12,26 @@ import numpy as np
 import argparse
 from collections import deque
 import cPickle as pickle
+import pdb
 
 from fast_jtnn import *
 import rdkit
 
+from datetime import datetime
+from plot import save_KL_plt, save_Acc_plt, save_Norm_plt, save_Loss_plt, save_Beta_plt
 
 lg = rdkit.RDLogger.logger()
 lg.setLevel(rdkit.RDLogger.CRITICAL)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--train', required=True)
-### NEW
-parser.add_argument('--num_neg_folder', type=int, required=True)
-### NEW
+parser.add_argument('--num_neg_folder', type=int, required=True) ##
 parser.add_argument('--vocab', required=True)
 parser.add_argument('--save_dir', required=True)
-#### NEW
+####
 parser.add_argument('--pre_vocab_dir', required=True)
 parser.add_argument('--pre_model_dir', required=True)
-#### NEW
+####
 parser.add_argument('--load_epoch', type=int, default=0)
 
 parser.add_argument('--hidden_size', type=int, default=450)
@@ -57,8 +58,10 @@ parser.add_argument('--save_iter', type=int, default=5000)
 parser.add_argument('--debug', type=int, default=1)
 import gc
 ## !! Need for GPU
+## For plot
+parser.add_argument('--plot', type=int, default=0)
+## For plot
 
-###############################################
 args = parser.parse_args()
 print args
 
@@ -114,6 +117,7 @@ else:
     '''
         Embedding Loading
     '''
+    #print(len(list(set(vocab.vocab) & set(pre_vocab.vocab)))) #270
     pre_vocab_dict = {v:k for k,v in enumerate(pre_vocab.vocab)}
     vocab_dict = {v:k for k,v in enumerate(vocab.vocab)}
     for w in vocab.vocab:
@@ -122,10 +126,8 @@ else:
             model.state_dict()['jtnn.embedding.weight'][vocab_dict[w]] = pre_model.state_dict()['jtnn.embedding.weight'][pre_vocab_dict[w]]
     print("Finish Embedding Loading")
 
-    del pre_vocab, pre_model, pre_model_dict, clear_pre_model_dict, pre_vocab_dict
+    del(pre_vocab, pre_model, pre_model_dict, clear_pre_model_dict, pre_vocab_dict)
 print "Model #Params: %dK" % (sum([x.nelement() for x in model.parameters()]) / 1000,)
-
-###############################################
 
 optimizer = optim.Adam(model.parameters(), lr=args.lr)
 scheduler = lr_scheduler.ExponentialLR(optimizer, args.anneal_rate)
@@ -139,7 +141,22 @@ beta = args.beta
 accs=np.zeros(4)
 losses = np.zeros(4)
 
-from datetime import datetime
+if args.plot:
+    import os # for save plot
+    x_plot,kl_plot,word_plot, topo_plot, assm_plot, pnorm_plot, gnorm_plot, beta_plot, wloss_plot, tloss_plot, aloss_plot, closs_plot =[],[],[],[],[],[],[],[],[],[],[],[]
+    d=datetime.now()
+    now = str(d.year)+'_'+str(d.month)+'_'+str(d.day)+'_'+str(d.hour)+'_'+str(d.minute)
+    if args.load_epoch != 0:
+        folder_name = "f_" + "h" + str(args.hidden_size) + '_' + "bs" + str(args.batch_size) + '_' + now + "_from_" +str(args.load_epoch)
+    else:
+        folder_name = "f_" + "h" + str(args.hidden_size) + '_' + "bs" + str(args.batch_size) + '_' + now
+
+    os.makedirs('./plot/'+folder_name+'/KL')        #KL
+    os.makedirs('./plot/'+folder_name+'/Acc')       #Word, Topo, Assm
+    os.makedirs('./plot/'+folder_name+'/Norm')      #PNorm, GNorm
+    os.makedirs('./plot/'+folder_name+'/Loss')      #Word, Topo, Assm LOSS
+    os.makedirs('./plot/'+folder_name+'/Beta')      #Word, Topo, Assm LOSS
+    print("...Finish Making Plot Folder...")
 
 for epoch in xrange(args.epoch):
     accs *= 0
@@ -168,8 +185,25 @@ for epoch in xrange(args.epoch):
             accs /= args.print_iter
             losses /= args.print_iter
 
-            print "[%d][%d] Beta: %.6f, KL: %.2f, Word: %.2f, Topo: %.2f, Assm: %.2f, PNorm: %.2f, GNorm: %.2f" % (epoch, total_step, beta, accs[0], accs[1], accs[2], accs[3], param_norm(model), grad_norm(model))
+            pnorm = param_norm(model)
+            gnorm = grad_norm(model)
+
+            print "[%d][%d] Beta: %.6f, KL: %.2f, Word: %.2f, Topo: %.2f, Assm: %.2f, PNorm: %.2f, GNorm: %.2f" % (epoch, total_step, beta, accs[0], accs[1], accs[2], accs[3], pnorm, gnorm)
             print "Wloss: %.2f, Tloss: %.2f, Aloss: %.2f, Closs: %.2f" %(losses[0], losses[1], losses[2], losses[3])
+
+            if args.plot:
+                x_plot.append(total_step)
+                kl_plot.append(accs[0])
+                word_plot.append(accs[1])
+                topo_plot.append(accs[2])
+                assm_plot.append(accs[3])
+                pnorm_plot.append(pnorm)
+                gnorm_plot.append(gnorm)
+                beta_plot.append(beta)
+                wloss_plot.append(losses[0])
+                tloss_plot.append(losses[1])
+                aloss_plot.append(losses[2])
+                closs_plot.append(losses[3])
             sys.stdout.flush()
 
             accs *=0
@@ -196,7 +230,6 @@ for epoch in xrange(args.epoch):
             torch.cuda.empty_cache()
         ## !! Need for GPU
 
-
     if args.load_epoch != 0:
         torch.save(model.state_dict(), args.save_dir + "/model.epoch-" + str(epoch+args.load_epoch))
     else:
@@ -204,3 +237,11 @@ for epoch in xrange(args.epoch):
 
     #Plot per 1 epoch
     print "Cosume Time per Epoch %s" % (str(datetime.now()-start))
+
+    if args.plot:
+        save_KL_plt(folder_name, epoch, x_plot, kl_plot)
+        save_Acc_plt(folder_name, epoch, x_plot, word_plot, topo_plot, assm_plot)
+        save_Norm_plt(folder_name, epoch, x_plot, pnorm_plot, gnorm_plot)
+        save_Loss_plt(folder_name, epoch, x_plot, wloss_plot, tloss_plot, aloss_plot)
+        save_Beta_plt(folder_name, epoch, x_plot, beta_plot)
+        del x_plot,kl_plot,word_plot, topo_plot, assm_plot, pnorm_plot, gnorm_plot, beta_plot, wloss_plot, tloss_plot, aloss_plot, closs_plot

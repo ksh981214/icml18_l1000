@@ -46,7 +46,6 @@ class PairTreeFolder(object):
             del data, batches, dataset, dataloader
 
 class MolTreeFolder(object):
-
     def __init__(self, data_folder, vocab, batch_size, num_workers=4, shuffle=True, assm=True, replicate=None):
         self.data_folder = data_folder+"pos"
         self.data_files = [fn for fn in os.listdir(data_folder+"pos")]
@@ -96,7 +95,6 @@ class MolTreeFolderMJ(object):
         self.num_workers = num_workers
         self.shuffle = shuffle
         self.assm = assm
-
 
         if replicate is not None: #expand is int
             self.data_files = self.data_files * replicate

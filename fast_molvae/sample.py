@@ -13,6 +13,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--nsample', type=int, required=True)
 parser.add_argument('--vocab', required=True)
 parser.add_argument('--model', required=True)
+parser.add_argument('--kind', default="mj")
 
 parser.add_argument('--hidden_size', type=int, default=450)
 parser.add_argument('--latent_size', type=int, default=56)
@@ -24,7 +25,11 @@ args = parser.parse_args()
 vocab = [x.strip("\r\n ") for x in open(args.vocab)]
 vocab = Vocab(vocab)
 
-model = JTNNVAE(vocab, args.hidden_size, args.latent_size, args.depthT, args.depthG)
+if args.kind == "vae":
+    model = JTNNVAE(vocab, args.hidden_size, args.latent_size, args.depthT, args.depthG)
+elif args.kind =="mj":
+    model = JTNNMJ(vocab, args.hidden_size, args.latent_size, args.depthT, args.depthG)
+
 model.load_state_dict(torch.load(args.model))
 model = model.cuda()
 

@@ -120,13 +120,11 @@ class JTNNMJ(nn.Module):
             1. cosine sim with z_hat and gene_batch
             2. along the label, calculate the loss
         '''
-
-        g_batch = self.gene_mlp(torch.tensor(g_batch, dtype=torch.float32).cuda()) # b.s * 978 --> b.s * (2 * hidden_size)
-
         z_hat_tree_vecs = self.tree_mlp(z_tree_vecs) #b.s * latent_size --> b.s * hidden_size
         z_hat_mol_vecs = self.mol_mlp(z_mol_vecs) #b.s * latent_size --> b.s * hidden_size
         z_hat = torch.cat([z_hat_tree_vecs, z_hat_mol_vecs], dim=-1) # b.s * (2* hidden_size)
 
+        g_batch = self.gene_mlp(torch.tensor(g_batch, dtype=torch.float32).cuda()) # b.s * 978 --> b.s * (2 * hidden_size)
         cos_result = self.cos(g_batch, z_hat) #b.s
 
         cos_loss = self.cos_loss(torch.tensor(l_batch,dtype=torch.float32).unsqueeze(1).cuda(), cos_result.unsqueeze(1)) / len(l_batch) # scalar

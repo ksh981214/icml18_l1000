@@ -1,0 +1,47 @@
+import matplotlib
+matplotlib.use('Agg')
+from matplotlib import pyplot as plt
+
+def save_KL_plt(save_dir, epoch, x, kl):
+    plt.plot(x, kl)
+    plt.xlabel('Iteration')
+    plt.ylabel('KL divergence')
+    plt.grid()
+    plt.savefig('./plot/{}/KL/epoch_{}.png'.format(str(save_dir),str(epoch)))
+    plt.close()
+def save_Acc_plt(save_dir, epoch, x, word, topo, assm):
+    plt.plot(x, word)
+    plt.plot(x, topo)
+    plt.plot(x, assm)
+    plt.xlabel('Iteration')
+    plt.ylabel('Acc')
+    plt.legend(['Word acc','Topo acc','Assm acc'])
+    plt.grid()
+    plt.savefig('./plot/{}/Acc/epoch_{}.png'.format(str(save_dir),str(epoch)))
+    plt.close()
+def save_Norm_plt(save_dir, epoch, x, pnorm, gnorm):
+    plt.plot(x, pnorm)
+    plt.plot(x, gnorm)
+    plt.xlabel('Iteration')
+    plt.ylabel('Norm')
+    plt.legend(['Pnorm', 'Gnorm'])
+    plt.grid()
+    plt.savefig('./plot/{}/Norm/epoch_{}.png'.format(str(save_dir),str(epoch)))
+    plt.close()
+def save_Loss_plt(save_dir, epoch, x, wloss, tloss, aloss):
+    plt.plot(x, wloss)
+    plt.plot(x, tloss)
+    plt.plot(x, aloss)
+    plt.xlabel('Iteration')
+    plt.ylabel('Loss')
+    plt.legend(['Word Loss', 'Topo Loss','Assm Loss'])
+    plt.grid()
+    plt.savefig('./plot/{}/Loss/epoch_{}.png'.format(str(save_dir),str(epoch)))
+    plt.close()
+def save_Beta_plt(save_dir, epoch, x, beta):
+    plt.plot(x, beta)
+    plt.xlabel('Iteration')
+    plt.ylabel('Beta')
+    plt.grid()
+    plt.savefig('./plot/{}/Beta/epoch_{}.png'.format(str(save_dir),str(epoch)))
+    plt.close()
