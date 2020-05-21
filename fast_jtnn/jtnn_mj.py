@@ -46,8 +46,8 @@ class JTNNMJ(nn.Module):
 
         self.gene_mlp = nn.Linear(self.gene_exp_size, 2 * hidden_size)
 
-        self.tree_mlp = nn.Linear(latent_size, hidden_size)
-        self.mol_mlp = nn.Linear(latent_size, hidden_size)
+        #self.tree_mlp = nn.Linear(latent_size, hidden_size)
+        #self.mol_mlp = nn.Linear(latent_size, hidden_size)
 
         self.cos = nn.CosineSimilarity()
         if loss_type=='L1':
@@ -120,9 +120,11 @@ class JTNNMJ(nn.Module):
             1. cosine sim with z_hat and gene_batch
             2. along the label, calculate the loss
         '''
-        z_hat_tree_vecs = self.tree_mlp(z_tree_vecs) #b.s * latent_size --> b.s * hidden_size
-        z_hat_mol_vecs = self.mol_mlp(z_mol_vecs) #b.s * latent_size --> b.s * hidden_size
-        z_hat = torch.cat([z_hat_tree_vecs, z_hat_mol_vecs], dim=-1) # b.s * (2* hidden_size)
+        #z_hat_tree_vecs = self.tree_mlp(z_tree_vecs) #b.s * latent_size --> b.s * hidden_size
+        #z_hat_mol_vecs = self.mol_mlp(z_mol_vecs) #b.s * latent_size --> b.s * hidden_size
+
+        #z_hat = torch.cat([z_hat_tree_vecs, z_hat_mol_vecs], dim=-1) # b.s * (2* hidden_size)
+        z_hat = torch.cat([x_tree_vecs, x_mol_vecs], dim=-1) # b.s * (2* hidden_size)
 
         g_batch = self.gene_mlp(torch.tensor(g_batch, dtype=torch.float32).cuda()) # b.s * 978 --> b.s * (2 * hidden_size)
         cos_result = self.cos(g_batch, z_hat) #b.s
