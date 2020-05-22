@@ -69,14 +69,18 @@ class MolTreeFolder(object):
                 random.shuffle(data) #shuffle data before batch
 
             batches = [data[i : i + self.batch_size] for i in xrange(0, len(data), self.batch_size)]
-            if len(batches[-1]) < self.batch_size:
-                batches.pop()
 
-            dataset = MolTreeDataset(batches, self.vocab, self.assm)
-            dataloader = DataLoader(dataset, batch_size=1, shuffle=False, num_workers=self.num_workers, collate_fn=lambda x:x[0])
+            if len(batches) != 0:
+                if len(batches[-1]) < self.batch_size:
+                    batches.pop()
 
-            for b in dataloader:
-                yield b
+                dataset = MolTreeDataset(batches, self.vocab, self.assm)
+                dataloader = DataLoader(dataset, batch_size=1, shuffle=False, num_workers=self.num_workers, collate_fn=lambda x:x[0])
+
+                for b in dataloader:
+                    yield b
+            else:
+                continue
 
             del data, batches, dataset, dataloader
 
@@ -137,22 +141,25 @@ class MolTreeFolderMJ(object):
                 del indices
 
             batches = [data[i : i + self.batch_size] for i in xrange(0, len(data), self.batch_size)]
-            if len(batches[-1]) < self.batch_size:
-                batches.pop()
-
             gene_batches = [gene[i : i + self.batch_size] for i in xrange(0, len(gene), self.batch_size)]
-            if len(gene_batches[-1]) < self.batch_size:
-                gene_batches.pop()
-
             label_batches = [label[i : i + self.batch_size] for i in xrange(0, len(label), self.batch_size)]
-            if len(label_batches[-1]) < self.batch_size:
-                label_batches.pop()
 
-            dataset = MolTreeDataset(batches, self.vocab, self.assm)
-            dataloader = DataLoader(dataset, batch_size=1, shuffle=False, num_workers=self.num_workers, collate_fn=lambda x:x[0])
+            if len(batches) != 0 and len(gene_batches) != 0 and len(label_batches) != 0:
+                if len(batches[-1]) < self.batch_size:
+                    batches.pop()
+                if len(gene_batches[-1]) < self.batch_size:
+                    gene_batches.pop()
+                if len(label_batches[-1]) < self.batch_size:
+                    label_batches.pop()
 
-            for i,b in enumerate(dataloader):
-                yield b, gene_batches[i], label_batches[i]
+                dataset = MolTreeDataset(batches, self.vocab, self.assm)
+                dataloader = DataLoader(dataset, batch_size=1, shuffle=False, num_workers=self.num_workers, collate_fn=lambda x:x[0])
+
+                for i,b in enumerate(dataloader):
+                    yield b, gene_batches[i], label_batches[i]
+
+            else:
+                continue #pass the file
 
             del data, gene, label, batches, gene_batches, label_batches, dataset, dataloader
 
