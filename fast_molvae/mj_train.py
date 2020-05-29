@@ -62,6 +62,10 @@ import gc
 parser.add_argument('--plot', type=int, default=0)
 ## For plot
 
+#For freeze
+parser.add_argument('--freeze', type=int, default=0)
+#
+
 args = parser.parse_args()
 print args
 
@@ -107,12 +111,6 @@ else:
 
     model_dict.update(clear_pre_model_dict)
     model.load_state_dict(model_dict)
-    '''
-        the size of decoder.W_o.weight is different!
-        the size of decoder.W_o.bias is different!
-        the size of jtnn.embedding.weight is different!
-        the size of decoder.embedding.weight is different!
-    '''
 
     '''
         Embedding Loading
@@ -126,7 +124,26 @@ else:
             model.state_dict()['jtnn.embedding.weight'][vocab_dict[w]] = pre_model.state_dict()['jtnn.embedding.weight'][pre_vocab_dict[w]]
     print("Finish Embedding Loading")
 
-    del(pre_vocab, pre_model, pre_model_dict, clear_pre_model_dict, pre_vocab_dict)
+    if args.freeze == 1:
+        model_lst, common_lst = [],[]
+        for k,v in model_dict.items():
+            model_lst.append(k)
+        for k,v in clear_pre_model_dict.items():
+            common_lst.append(k)
+
+        no_freeze_lst = list(set(model_lst) - set(common_lst))
+
+        for f in common_lst:
+            #print(f)
+            model.state_dict()[f].requires_grad = False
+
+        #print()
+
+        for f in no_freeze_lst:
+            #print(f)
+            model.state_dict()[f].requires_grad = True
+
+    del pre_vocab, pre_model, pre_model_dict, clear_pre_model_dict, pre_vocab_dict
 print "Model #Params: %dK" % (sum([x.nelement() for x in model.parameters()]) / 1000,)
 
 optimizer = optim.Adam(model.parameters(), lr=args.lr)

@@ -38,8 +38,8 @@ class JTNNMJ(nn.Module):
         self.G_mean = nn.Linear(hidden_size, latent_size)
         self.G_var = nn.Linear(hidden_size, latent_size)
 
-        self.T_hat_mean = nn.Linear(latent_size, latent_size)
-        self.T_hat_var = nn.Linear(latent_size, latent_size)
+        # self.T_hat_mean = nn.Linear(latent_size, latent_size)
+        # self.T_hat_var = nn.Linear(latent_size, latent_size)
 
         #For MJ
         self.gene_exp_size = 978
