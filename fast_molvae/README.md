@@ -41,13 +41,16 @@ Default Options:
 
 Please note that this is not necessarily the best annealing strategy. You are welcomed to adjust these parameters.
 
-## F_training
+## vae_test.py
 
 ```
-python f_train.py --train gene-processed --gene ../data/121 --vocab ../data/121/train_vocab_121.txt --save_dir ./f_train_model/ --pre_vocab_dir ../data/121 train_vocab_121.txt --pre_model_dir ./new_model/l100_h200/model.iter-25000 --batch_size 16 --hidden_size 200
+python vae_test.py --test ../data/l1000/mw500_pre_test/ --vocab ../data/l1000/mw500/vocab.txt --hidden_size 200 --trained_model ./pre_model/zinc1000_h200/model.iter-170000
 ```
 ```
-python f_train.py --train {pkl파일} --gene {embedding.txt의 위치} --vocab {} --save_dir {} --pre_vocab_dir {} --pre_model_dir {} --batch_size 16 --hidden_size 200
+if want Plot
+
+python vae_test.py --test ../data/l1000/mw500_pre_test/ --vocab ../data/l1000/mw500/vocab.txt --hidden_size 200 --trained_model ./pre_model/zinc1000_h200/model.iter-170000 --plot 1
+
 ```
 
 ## MJ_training
