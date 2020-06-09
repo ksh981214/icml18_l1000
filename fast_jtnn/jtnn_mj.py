@@ -103,6 +103,16 @@ class JTNNMJ(nn.Module):
         x_batch, x_jtenc_holder, x_mpn_holder, x_jtmpn_holder = x_batch
         x_tree_vecs, x_tree_mess, x_mol_vecs = self.encode(x_jtenc_holder, x_mpn_holder)
 
+        '''
+            1. cosine sim with x_hat and gene_batch
+            2. along the label, calculate the loss
+        '''
+        x_hat = torch.cat([x_tree_vecs, x_mol_vecs], dim=-1) # b.s * (2* hidden_size)
+
+        g_batch = self.gene_mlp(torch.tensor(g_batch, dtype=torch.float32).cuda()) # b.s * 978 --> b.s * (2 * hidden_size)
+        cos_result = self.cos(g_batch, x_hat)                                      # b.s
+        cos_loss = self.cos_loss(torch.tensor(l_batch,dtype=torch.float32).unsqueeze(1).cuda(), cos_result.unsqueeze(1)) / len(l_batch) # scalar
+
         z_tree_vecs,tree_kl = self.rsample(x_tree_vecs, self.T_mean, self.T_var)
         z_mol_vecs,mol_kl = self.rsample(x_mol_vecs, self.G_mean, self.G_var)
 
@@ -113,27 +123,6 @@ class JTNNMJ(nn.Module):
         assm_loss, assm_acc = self.assm(x_batch, x_jtmpn_holder, z_mol_vecs, x_tree_mess)
 
         kl_div = tree_kl + mol_kl
-
-        #add for MJ net
-        #Cosine Similarity
-        '''
-            1. cosine sim with z_hat and gene_batch
-            2. along the label, calculate the loss
-        '''
-        #z_hat_tree_vecs = self.tree_mlp(z_tree_vecs) #b.s * latent_size --> b.s * hidden_size
-        #z_hat_mol_vecs = self.mol_mlp(z_mol_vecs) #b.s * latent_size --> b.s * hidden_size
-
-        #z_hat = torch.cat([z_hat_tree_vecs, z_hat_mol_vecs], dim=-1) # b.s * (2* hidden_size)
-        z_hat = torch.cat([x_tree_vecs, x_mol_vecs], dim=-1) # b.s * (2* hidden_size)
-
-        g_batch = self.gene_mlp(torch.tensor(g_batch, dtype=torch.float32).cuda()) # b.s * 978 --> b.s * (2 * hidden_size)
-        cos_result = self.cos(g_batch, z_hat) #b.s
-
-        cos_loss = self.cos_loss(torch.tensor(l_batch,dtype=torch.float32).unsqueeze(1).cuda(), cos_result.unsqueeze(1)) / len(l_batch) # scalar
-        #Normalization among the losses
-        '''
-            Some Code
-        '''
 
         return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), cos_loss.item()
 

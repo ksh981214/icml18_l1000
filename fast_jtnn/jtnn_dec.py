@@ -6,7 +6,7 @@ from nnutils import create_var, GRU
 from chemutils import enum_assemble, set_atommap
 import copy
 
-MAX_NB = 15
+MAX_NB = 30
 MAX_DECODE_LEN = 100
 
 class JTNNDecoder(nn.Module):
@@ -46,13 +46,13 @@ class JTNNDecoder(nn.Module):
             V, V_o = self.U, self.U_o
         else:
             raise ValueError('aggregate mode is wrong')
-
         tree_contexts = x_tree_vecs.index_select(0, contexts)
         input_vec = torch.cat([hiddens, tree_contexts], dim=-1)
         output_vec = F.relu( V(input_vec) )
         return V_o(output_vec)
 
     def forward(self, mol_batch, x_tree_vecs):
+        #print("dec_forward")
         pred_hiddens,pred_contexts,pred_targets = [],[],[]
         stop_hiddens,stop_contexts,stop_targets = [],[],[]
         traces = []
@@ -62,7 +62,7 @@ class JTNNDecoder(nn.Module):
             traces.append(s)
             for node in mol_tree.nodes:
                 node.neighbors = []
-
+        #print("Predict Root")
         #Predict Root
         batch_size = len(mol_batch)
         pred_hiddens.append(create_var(torch.zeros(len(mol_batch),self.hidden_size)))
@@ -72,7 +72,7 @@ class JTNNDecoder(nn.Module):
         max_iter = max([len(tr) for tr in traces])
         padding = create_var(torch.zeros(self.hidden_size), False)
         h = {}
-
+        #print("first loop")
         for t in xrange(max_iter):
             prop_list = []
             batch_list = []
@@ -83,11 +83,14 @@ class JTNNDecoder(nn.Module):
 
             cur_x = []
             cur_h_nei,cur_o_nei = [],[]
-
+            #print("inner loop")
             for node_x, real_y, _ in prop_list:
                 #Neighbors for message passing (target not included)
                 cur_nei = [h[(node_y.idx,node_x.idx)] for node_y in node_x.neighbors if node_y.idx != real_y.idx]
                 pad_len = MAX_NB - len(cur_nei)
+                if(pad_len<0):
+                    print("Pad_len:{}".format(pad_len))
+                    print("len(cur_nei):{}".format(len(cur_nei)))
                 cur_h_nei.extend(cur_nei)
                 cur_h_nei.extend([padding] * pad_len)
 
@@ -103,15 +106,18 @@ class JTNNDecoder(nn.Module):
             #Clique embedding
             cur_x = create_var(torch.LongTensor(cur_x))
             cur_x = self.embedding(cur_x)
-
+            #print("Message passing")
             #Message passing
+            #print("{}".format(len(cur_h_nei)))
             cur_h_nei = torch.stack(cur_h_nei, dim=0).view(-1,MAX_NB,self.hidden_size)
-            new_h = GRU(cur_x, cur_h_nei, self.W_z, self.W_r, self.U_r, self.W_h)
 
+            #print("Befoer GRU")
+            new_h = GRU(cur_x, cur_h_nei, self.W_z, self.W_r, self.U_r, self.W_h)
+            #print("Node Aggregate")
             #Node Aggregate
             cur_o_nei = torch.stack(cur_o_nei, dim=0).view(-1,MAX_NB,self.hidden_size)
             cur_o = cur_o_nei.sum(dim=1)
-
+            #print("Gather targets")
             #Gather targets
             pred_target,pred_list = [],[]
             stop_target = []
@@ -142,6 +148,7 @@ class JTNNDecoder(nn.Module):
                 pred_hiddens.append( new_h.index_select(0, cur_pred) )
                 pred_targets.extend( pred_target )
 
+        #print("2nd loop")
         #Last stop at root
         cur_x,cur_o_nei = [],[]
         for mol_tree in mol_batch:
@@ -165,7 +172,9 @@ class JTNNDecoder(nn.Module):
         #Predict next clique
         pred_contexts = torch.cat(pred_contexts, dim=0)
         pred_hiddens = torch.cat(pred_hiddens, dim=0)
+        #print("1aggre s")
         pred_scores = self.aggregate(pred_hiddens, pred_contexts, x_tree_vecs, 'word')
+        #print("1aggre f")
         pred_targets = create_var(torch.LongTensor(pred_targets))
 
         pred_loss = self.pred_loss(pred_scores, pred_targets) / len(mol_batch)
@@ -177,7 +186,9 @@ class JTNNDecoder(nn.Module):
         stop_contexts = torch.cat(stop_contexts, dim=0)
         stop_hiddens = torch.cat(stop_hiddens, dim=0)
         stop_hiddens = F.relu( self.U_i(stop_hiddens) )
+        #print("2aggre s")
         stop_scores = self.aggregate(stop_hiddens, stop_contexts, x_tree_vecs, 'stop')
+        #print("2aggre f")
         stop_scores = stop_scores.squeeze(-1)
         stop_targets = create_var(torch.Tensor(stop_targets))
 
@@ -217,7 +228,10 @@ class JTNNDecoder(nn.Module):
                 cur_h_nei = zero_pad
 
             cur_x = create_var(torch.LongTensor([node_x.wid]))
-            cur_x = self.embedding(cur_x)
+            try:
+                cur_x = self.embedding(cur_x)
+            except:
+                cur_x
 
             #Predict stop
             cur_h = cur_h_nei.sum(dim=1)

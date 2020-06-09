@@ -88,11 +88,11 @@ total_step = args.load_epoch
 beta = args.beta
 
 accs=np.zeros(4)
-losses = np.zeros(4)
+losses = np.zeros(3)
 
 if args.plot:
     import os # for save plot
-    x_plot,kl_plot,word_plot, topo_plot, assm_plot, pnorm_plot, gnorm_plot, beta_plot, wloss_plot, tloss_plot, aloss_plot, closs_plot =[],[],[],[],[],[],[],[],[],[],[],[]
+    x_plot,kl_plot,word_plot, topo_plot, assm_plot, pnorm_plot, gnorm_plot, beta_plot, wloss_plot, tloss_plot, aloss_plot =[],[],[],[],[],[],[],[],[],[],[]
     d=datetime.now()
     now = str(d.year)+'_'+str(d.month)+'_'+str(d.day)+'_'+str(d.hour)+'_'+str(d.minute)
     if args.load_epoch != 0:
@@ -116,10 +116,11 @@ for epoch in xrange(args.epoch):
 
     loader = MolTreeFolder(args.train, vocab, args.batch_size, num_workers=4)
     for batch in loader:
+        print("batch_finish")
         total_step += 1
         try:
             model.zero_grad()
-            loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, cos_loss = model(batch, beta)
+            loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss = model(batch, beta)
             loss.backward()
             nn.utils.clip_grad_norm_(model.parameters(), args.clip_norm)
             optimizer.step()
@@ -128,7 +129,7 @@ for epoch in xrange(args.epoch):
             continue
 
         accs = accs + np.array([kl_div, wacc * 100, tacc * 100, sacc * 100])
-        losses = losses + np.array([word_loss, topo_loss, assm_loss, cos_loss])
+        losses = losses + np.array([word_loss, topo_loss, assm_loss])
 
         if total_step % args.print_iter == 0:
             accs /= args.print_iter
@@ -138,7 +139,7 @@ for epoch in xrange(args.epoch):
             gnorm = grad_norm(model)
 
             print "[%d][%d] Beta: %.6f, KL: %.2f, Word: %.2f, Topo: %.2f, Assm: %.2f, PNorm: %.2f, GNorm: %.2f" % (epoch, total_step, beta, accs[0], accs[1], accs[2], accs[3], pnorm, gnorm)
-            print "Wloss: %.2f, Tloss: %.2f, Aloss: %.2f, Closs: %.2f" %(losses[0], losses[1], losses[2], losses[3])
+            print "Wloss: %.2f, Tloss: %.2f, Aloss: %.2f" %(losses[0], losses[1], losses[2])
 
             if args.plot:
                 x_plot.append(total_step)
@@ -152,7 +153,6 @@ for epoch in xrange(args.epoch):
                 wloss_plot.append(losses[0])
                 tloss_plot.append(losses[1])
                 aloss_plot.append(losses[2])
-                closs_plot.append(losses[3])
             sys.stdout.flush()
 
             accs *=0
@@ -192,4 +192,4 @@ for epoch in xrange(args.epoch):
         save_Norm_plt(folder_name, epoch, x_plot, pnorm_plot, gnorm_plot)
         save_Loss_plt(folder_name, epoch, x_plot, wloss_plot, tloss_plot, aloss_plot)
         save_Beta_plt(folder_name, epoch, x_plot, beta_plot)
-        del x_plot,kl_plot,word_plot, topo_plot, assm_plot, pnorm_plot, gnorm_plot, beta_plot, wloss_plot, tloss_plot, aloss_plot, closs_plot
+        del x_plot,kl_plot,word_plot, topo_plot, assm_plot, pnorm_plot, gnorm_plot, beta_plot, wloss_plot, tloss_plot, aloss_plot

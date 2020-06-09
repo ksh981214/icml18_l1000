@@ -118,14 +118,17 @@ def dfs(node, fa_idx):
 if __name__ == "__main__":
     import sys
 
-    # start = datetime.now()
-    # print("Start:{}".format(start))
+    start = datetime.now()
+    print("Start:{}".format(start))
 
     lg = rdkit.RDLogger.logger()
     lg.setLevel(rdkit.RDLogger.CRITICAL)
 
     cset = set()
-    for line in tqdm(sys.stdin, desc="Making Vocab"):
+    #for line in tqdm(sys.stdin, desc="Making Vocab"):
+    for i,line in enumerate(sys.stdin):
+        if i % 10000==0:
+            print(i)
         smiles = line.split()[0]
         mol = MolTree(smiles)
         for c in mol.nodes:
@@ -133,5 +136,5 @@ if __name__ == "__main__":
     for x in cset:
         print x
 
-    # print("Finish:{}".format(datetime.now()))
-    # print("Consume Time:{}".format(datetime.now()-start))
+    print("Finish:{}".format(datetime.now()))
+    print("Consume Time:{}".format(datetime.now()-start))

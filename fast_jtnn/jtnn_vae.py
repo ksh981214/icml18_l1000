@@ -80,18 +80,24 @@ class JTNNVAE(nn.Module):
         z_mol = torch.randn(1, self.latent_size).cuda()
         return self.decode(z_tree, z_mol, prob_decode)
 
-    def forward(self, x_batch, beta):
+    def forward(self, x_batch, beta, test=False):
         x_batch, x_jtenc_holder, x_mpn_holder, x_jtmpn_holder = x_batch
         x_tree_vecs, x_tree_mess, x_mol_vecs = self.encode(x_jtenc_holder, x_mpn_holder)
         z_tree_vecs,tree_kl = self.rsample(x_tree_vecs, self.T_mean, self.T_var)
         z_mol_vecs,mol_kl = self.rsample(x_mol_vecs, self.G_mean, self.G_var)
 
+        if test:
+            reproduce_SMILE =self.decode(z_tree_vecs, z_mol_vecs, prob_decode=False)
+
         kl_div = tree_kl + mol_kl
         word_loss, topo_loss, word_acc, topo_acc = self.decoder(x_batch, z_tree_vecs)
         assm_loss, assm_acc = self.assm(x_batch, x_jtmpn_holder, z_mol_vecs, x_tree_mess)
 
+        if test:
+            return word_loss + topo_loss + assm_loss + beta * kl_div, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), (x_batch[0].smiles,reproduce_SMILE)
+        else:
+            return word_loss + topo_loss + assm_loss + beta * kl_div, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item()
 
-        return word_loss + topo_loss + assm_loss + beta * kl_div, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item()
 
     def assm(self, mol_batch, jtmpn_holder, x_mol_vecs, x_tree_mess):
         jtmpn_holder,batch_idx = jtmpn_holder

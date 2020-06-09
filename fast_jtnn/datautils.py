@@ -73,7 +73,6 @@ class MolTreeFolder(object):
             if len(batches) != 0:
                 if len(batches[-1]) < self.batch_size:
                     batches.pop()
-
                 dataset = MolTreeDataset(batches, self.vocab, self.assm)
                 dataloader = DataLoader(dataset, batch_size=1, shuffle=False, num_workers=self.num_workers, collate_fn=lambda x:x[0])
 
@@ -85,20 +84,22 @@ class MolTreeFolder(object):
             del data, batches, dataset, dataloader
 
 class MolTreeFolderMJ(object):
-    def __init__(self, data_folder, num_neg_folder, vocab, batch_size, num_workers=4, shuffle=True, assm=True, replicate=None):
-        self.data_folder = data_folder+"pos"
-        self.data_files = [fn for fn in os.listdir(data_folder+"pos")]
+    def __init__(self, data_folder, num_neg_folder, vocab, batch_size, num_workers=4, shuffle=True, assm=True, replicate=None, test=False):
+        if not test:
+            self.data_folder = data_folder+"pos"
+            self.gene_folder = data_folder+"gene"
+        self.data_files = [fn for fn in os.listdir(self.data_folder)]
 
-        self.num_of_neg_folder = num_neg_folder
-        self.neg_data_folders = [data_folder + str(i)+"_neg" for i in range(num_neg_folder)]
-
-        self.gene_folder = data_folder+"gene"
+        if not test:
+            self.num_of_neg_folder = num_neg_folder
+            self.neg_data_folders = [data_folder + str(i)+"_neg" for i in range(num_neg_folder)]
 
         self.batch_size = batch_size
         self.vocab = vocab
         self.num_workers = num_workers
         self.shuffle = shuffle
         self.assm = assm
+        self.test = test
 
         if replicate is not None: #expand is int
             self.data_files = self.data_files * replicate
@@ -112,18 +113,22 @@ class MolTreeFolderMJ(object):
                 data = pickle.load(pos_f)
             num_pos = len(data)
 
-            for neg_folder_name in self.neg_data_folders:
-                neg_fn = os.path.join(neg_folder_name, fn)
-                with open(neg_fn) as neg_f:
-                    data = data + pickle.load(neg_f)
+            if not self.test:
+                for neg_folder_name in self.neg_data_folders:
+                    neg_fn = os.path.join(neg_folder_name, fn)
+                    with open(neg_fn) as neg_f:
+                        data = data + pickle.load(neg_f)
 
             gene_fn = os.path.join(self.gene_folder, "gene-"+fn.split("-")[1])
             with open(gene_fn, 'rb') as gene_f:
                 gene = pickle.load(gene_f)
-            gene = gene * (self.num_of_neg_folder+1)
+
+            if not self.test:
+                gene = gene * (self.num_of_neg_folder+1)
 
             #For Debugging
             if len(data) != len(gene):
+                print(len(data), len(gene))
                 print("len(data) != len(gene)")
 
             #make label

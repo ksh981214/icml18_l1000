@@ -1,4 +1,4 @@
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import torch
 import torch.nn as nn
 from multiprocessing import Pool
@@ -40,6 +40,7 @@ if __name__ == "__main__":
     parser.add_option("-t", "--train", dest="train_path")
     parser.add_option("-n", "--split", dest="nsplits", default=10)
     parser.add_option("-j", "--jobs", dest="njobs", default=8)
+    parser.add_option("-f", "--file_name", dest="fname")
 
     opts,args = parser.parse_args()
     opts.njobs = int(opts.njobs)
@@ -65,7 +66,7 @@ if __name__ == "__main__":
         st = split_id * le
         sub_data = all_data[st : st + le]
 
-        with open(save_path+'tensors-%d.pkl' % split_id, 'wb') as f:
+        with open(save_path+opts.fname+'-%d.pkl' % split_id, 'wb') as f:
             pickle.dump(sub_data, f, pickle.HIGHEST_PROTOCOL)
 
 

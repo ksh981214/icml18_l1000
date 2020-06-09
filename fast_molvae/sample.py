@@ -6,6 +6,10 @@ import argparse
 from fast_jtnn import *
 import rdkit
 
+## !! Need for GPU
+import gc
+## !! Need for GPU
+
 lg = rdkit.RDLogger.logger()
 lg.setLevel(rdkit.RDLogger.CRITICAL)
 
@@ -36,3 +40,12 @@ model = model.cuda()
 torch.manual_seed(0)
 for i in xrange(args.nsample):
     print model.sample_prior()
+    ## !! Need for GPU
+    for obj in gc.get_objects():
+        try:
+            if torch.is_tensor(obj) or (hasattr(obj, 'data') and torch.is_tensor(obj.data)):
+                del obj
+        except:
+            pass
+    torch.cuda.empty_cache()
+    ## !! Need for GPU
