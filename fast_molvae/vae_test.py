@@ -40,6 +40,7 @@ parser.add_argument('--debug', type=int, default=1)
 ## !! Need for GPU
 ## For plot
 parser.add_argument('--plot', type=int, default=0)
+parser.add_argument('--make_generated', type=int, default=0)
 ## For plot
 
 args = parser.parse_args()
@@ -83,8 +84,14 @@ loader = MolTreeFolder(args.test, vocab, args.batch_size, num_workers=4)
 for batch in loader:
     total_step += 1
     try:
-        loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, (original_SMILE,reproduce_SMILE) = model(batch, beta, test=True)
-        print(original_SMILE, reproduce_SMILE)
+        make_generated = args.make_generated
+        if make_generated:
+            loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, (original_SMILE,reproduce_SMILE) = model(batch, beta, make_generated)
+            print(original_SMILE, reproduce_SMILE)
+        else:
+            loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss = model(batch, beta, make_generated)
+
+        total_step += 1
     except Exception as e:
         print e
         continue
@@ -125,6 +132,20 @@ for batch in loader:
     ## !! Need for GPU
 
 #Plot per 1 epoch
+
+accs /= total_step%args.print_iter
+losses /= total_step%args.print_iter
+
+x_plot.append(total_step)
+kl_plot.append(accs[0])
+word_plot.append(accs[1])
+topo_plot.append(accs[2])
+assm_plot.append(accs[3])
+wloss_plot.append(losses[0])
+tloss_plot.append(losses[1])
+aloss_plot.append(losses[2])
+
+
 if args.plot:
     save_KL_plt(folder_name, 0, x_plot, kl_plot)
     save_Acc_plt(folder_name, 0, x_plot, word_plot, topo_plot, assm_plot)

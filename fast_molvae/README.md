@@ -45,11 +45,14 @@ Please note that this is not necessarily the best annealing strategy. You are we
 
 ```
 python vae_test.py --test ../data/l1000/mw500_pre_test/ --vocab ../data/l1000/mw500/vocab.txt --hidden_size 200 --trained_model ./pre_model/zinc1000_h200/model.iter-170000
-```
-```
+
 if want Plot
 
 python vae_test.py --test ../data/l1000/mw500_pre_test/ --vocab ../data/l1000/mw500/vocab.txt --hidden_size 200 --trained_model ./pre_model/zinc1000_h200/model.iter-170000 --plot 1
+
+if want produce reconstructed molecules(very slow)
+
+add '--make_generated 1'
 
 ```
 

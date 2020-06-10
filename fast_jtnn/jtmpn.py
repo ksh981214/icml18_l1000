@@ -118,6 +118,7 @@ class JTMPN(nn.Module):
             total_atoms += n_atoms
 
         total_bonds = len(all_bonds)
+
         fatoms = torch.stack(fatoms, 0)
         fbonds = torch.stack(fbonds, 0)
         agraph = torch.zeros(total_atoms,MAX_NB).long()

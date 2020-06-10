@@ -70,11 +70,16 @@ class MolTreeFolder(object):
 
             batches = [data[i : i + self.batch_size] for i in xrange(0, len(data), self.batch_size)]
 
+            # print(len(batches))
+            # for x in batches:
+            #     if len(x) != 1:
+            #         print(len(x))
+
             if len(batches) != 0:
                 if len(batches[-1]) < self.batch_size:
                     batches.pop()
                 dataset = MolTreeDataset(batches, self.vocab, self.assm)
-                dataloader = DataLoader(dataset, batch_size=1, shuffle=False, num_workers=self.num_workers, collate_fn=lambda x:x[0])
+                dataloader = DataLoader(dataset, batch_size=1, shuffle=False, num_workers=self.num_workers, collate_fn=lambda x:x[0] if x[0] is not None else x)
 
                 for b in dataloader:
                     yield b
@@ -193,7 +198,11 @@ class MolTreeDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, idx):
-        return tensorize(self.data[idx], self.vocab, assm=self.assm)
+        try:
+            return tensorize(self.data[idx], self.vocab, assm=self.assm)
+        except Exception as e:
+            print e
+            pass
 
 def tensorize(tree_batch, vocab, assm=True):
     set_batch_nodeID(tree_batch, vocab)
