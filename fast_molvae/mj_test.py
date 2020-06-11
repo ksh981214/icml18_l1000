@@ -45,7 +45,12 @@ import gc
 ## !! Need for GPU
 ## For plot
 parser.add_argument('--plot', type=int, default=0)
-parser.add_argument('--make_generated', type=int, default=0)
+parser.add_argument('--mode', type=int, default=-1) #0: generated, 1: reconstructed
+#parser.add_argument('--make_generated', type=int, default=0)
+#parser.add_argument('--make_reconstructed', type=int, default=0)
+
+parser.add_argument('--sample_num', type=int, default=1)
+
 ## For plot
 
 args = parser.parse_args()
@@ -91,13 +96,15 @@ loader = MolTreeFolderMJ(args.test, -1, vocab, args.batch_size, num_workers=4, t
 reproduce_cnt = 0
 for (batch, g, l) in loader:
     try:
-        make_generated = args.make_generated
-        if make_generated:
-            loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, cos_loss, (original_SMILE,reproduce_SMILE) = model(batch, g, l, beta, test=True, n=2)
-            print(original_SMILE, reproduce_SMILE)
+        mode = args.mode
+        sample_num = args.sample_num
+
+        if mode != -1:
+            loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, cos_loss, (original_SMILE,made_SMILE) = model(batch, g, l, beta, mode=mode, n=sample_num)
+            print(original_SMILE, made_SMILE)
             reproduce_cnt = reproduce_cnt+1
         else:
-            loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, cos_loss = model(batch, g, l, beta, test=True)
+            loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, cos_loss = model(batch, g, l, beta)
 
         total_step += 1
         accs = accs + np.array([kl_div, wacc * 100, tacc * 100, sacc * 100])

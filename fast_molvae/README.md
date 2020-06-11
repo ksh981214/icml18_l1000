@@ -65,10 +65,12 @@ python mj_train.py --train ../data/l1000/max30/ --num_neg_folder 5 --gene ../dat
 ```
 ## mj_test.py
 
-if want reproduce more molecule, change the 'n' value in ```loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, cos_loss, (original_SMILE,reproduce_SMILE) = model(batch, g, l, beta, test=True, n=2)```
-
 ```
-python mj_test.py --test ../data/l1000/mw500_mj_test/ --vocab ../data/l1000/mw500/vocab.txt --hidden_size 200 --trained_model ./mj_model/zincl1000_mw500_h200/model.iter-20000 --batch_size 1 --make_generated 1
+mode 0: molecule generation by Gene exp
+mode 1: molecule reconstruction
+mode -1(default): not recommend
+
+python mj_test.py --test ../data/l1000/mw500_mj_test/ --vocab ../data/l1000/mw500/vocab.txt --hidden_size 200 --trained_model ./mj_model/zincl1000_mw500_h200/model.iter-20000 --batch_size 1 --mode 0 --sample_num 5
 ```
 
 ## Testing

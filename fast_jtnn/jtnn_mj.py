@@ -99,7 +99,7 @@ class JTNNMJ(nn.Module):
         z_mol = torch.randn(1, self.latent_size).cuda()
         return self.decode(z_tree, z_mol, prob_decode)
 
-    def forward(self, x_batch, g_batch, l_batch, beta, test=False, n=1):
+    def forward(self, x_batch, g_batch, l_batch, beta, mode=-1, n=1):
         x_batch, x_jtenc_holder, x_mpn_holder, x_jtmpn_holder = x_batch
         x_tree_vecs, x_tree_mess, x_mol_vecs = self.encode(x_jtenc_holder, x_mpn_holder)
 
@@ -113,13 +113,18 @@ class JTNNMJ(nn.Module):
         cos_result = self.cos(g_batch, x_concat)                                      # b.s
         cos_loss = self.cos_loss(torch.tensor(l_batch,dtype=torch.float32).unsqueeze(1).cuda(), cos_result.unsqueeze(1)) / len(l_batch) # scalar
 
-        if test:
-            SMILE_by_gexp=[]
+        made_SMILE=[]
+        if mode == 0: #generated
             for _ in range(n):
                 z_tree_vecs, tree_kl = self.rsample(g_batch[:,:200], self.T_mean, self.T_var)
                 z_mol_vecs, mol_kl = self.rsample(g_batch[:,200:], self.G_mean, self.G_var)
-                SMILE_by_gexp.append(self.decode(z_tree_vecs, z_mol_vecs, prob_decode=False))
-        else:
+                made_SMILE.append(self.decode(z_tree_vecs, z_mol_vecs, prob_decode=False))
+        if mode == 1: #reconstructed
+            for _ in range(n):
+                z_tree_vecs, tree_kl = self.rsample(x_tree_vecs, self.T_mean, self.T_var)
+                z_mol_vecs, mol_kl = self.rsample(x_mol_vecs, self.G_mean, self.G_var)
+                made_SMILE.append(self.decode(z_tree_vecs, z_mol_vecs, prob_decode=False))
+        else: # mode == -1
             z_tree_vecs,tree_kl = self.rsample(x_tree_vecs, self.T_mean, self.T_var)
             z_mol_vecs,mol_kl = self.rsample(x_mol_vecs, self.G_mean, self.G_var)
 
@@ -131,8 +136,8 @@ class JTNNMJ(nn.Module):
 
         kl_div = tree_kl + mol_kl
 
-        if test:
-            return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), cos_loss.item(), (x_batch[0].smiles,SMILE_by_gexp)
+        if mode != -1:
+            return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), cos_loss.item(), (x_batch[0].smiles,made_SMILE)
         else:
             return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), cos_loss.item()
 
