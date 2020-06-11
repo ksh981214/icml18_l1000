@@ -2,26 +2,30 @@
 
 import torch
 import torch.nn as nn
+
 from torch.utils.data import DataLoader
+
 
 import math, random, sys
 import numpy as np
 import argparse
 from collections import deque
 import cPickle as pickle
+import pdb
 
 from fast_jtnn import *
 import rdkit
+
+from datetime import datetime
+from plot import save_KL_plt, save_Acc_plt, save_Norm_plt, save_Loss_plt, save_Beta_plt
 
 lg = rdkit.RDLogger.logger()
 lg.setLevel(rdkit.RDLogger.CRITICAL)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--valid', required=True)
-parser.add_argument('--valid_vocab', required=True)
-
-parser.add_argument('--trained_vocab', required=True)
-parser.add_argument('--trained_model', required=True, type=str)
+parser.add_argument('--test', required=True)
+parser.add_argument('--vocab', required=True)
+parser.add_argument('--trained_model', required=True)
 
 parser.add_argument('--hidden_size', type=int, default=450)
 parser.add_argument('--batch_size', type=int, default=32)
@@ -29,113 +33,100 @@ parser.add_argument('--latent_size', type=int, default=56) #h_T, h_G = 28, 28
 parser.add_argument('--depthT', type=int, default=20)
 parser.add_argument('--depthG', type=int, default=3)
 
-parser.add_argument('--print_iter', type=int, default=10)
+
+parser.add_argument('--beta', type=float, default=0.0)
+
+
+parser.add_argument('--print_iter', type=int, default=50)
 
 ## !! Need for GPU
 parser.add_argument('--debug', type=int, default=1)
 import gc
 ## !! Need for GPU
+## For plot
+parser.add_argument('--plot', type=int, default=0)
+parser.add_argument('--make_generated', type=int, default=0)
+## For plot
 
 args = parser.parse_args()
 print args
 
-print("#########################################################################")
-print("######################## Valid Mode #####################################")
-print("#########################################################################")
 '''
     model initializing
 '''
-trained_vocab = [x.strip("\r\n ") for x in open(args.trained_vocab)]
-valid_vocab = [x.strip("\r\n ") for x in open(args.valid_vocab)]
-dif_vocab = list(set(valid_vocab) - set(trained_vocab))
-vocab = trained_vocab + dif_vocab
+vocab = [x.strip("\r\n ") for x in open(args.vocab)]
 vocab = Vocab(vocab)
-#model = JTNNMJ(vocab, args.hidden_size, args.latent_size, args.depthT, args.depthG).cuda()
-
-# for param in model.parameters():
-#     if param.dim() == 1:
-#         nn.init.constant_(param, 0)
-#     else:
-#         nn.init.xavier_normal_(param)
-
-'''
-    trained model loading
-'''
-#trained_model = JTNNMJ(Vocab(trained_vocab), args.hidden_size, args.latent_size, args.depthT, args.depthG).cuda()
-#trained_model.load_state_dict(torch.load(args.trained_model))
-model = JTNNMJ(Vocab(trained_vocab), args.hidden_size, args.latent_size, args.depthT, args.depthG).cuda()
-for param in model.parameters():
-    if param.dim() == 1:
-        nn.init.constant_(param, 0)
-    else:
-        nn.init.xavier_normal_(param)
+model = JTNNMJ(vocab, args.hidden_size, args.latent_size, args.depthT, args.depthG).cuda()
 
 model.load_state_dict(torch.load(args.trained_model))
-print("load {}".format(args.trained_model))
+print("load model.iter-{}".format(args.trained_model))
 
-'''
-    Modeal Parameter Loading
-'''
-# trained_model_dict = trained_model.state_dict()
-# model_dict = model.state_dict()
-# clear_pre_model_dict={}
-# for k,v in trained_model_dict.items():
-#     if k in model_dict and trained_model_dict[k].size() == model_dict[k].size():
-#         clear_pre_model_dict[k]=v
-# model_dict.update(clear_pre_model_dict)
-# model.load_state_dict(model_dict)
+print "Model #Params: %dK" % (sum([x.nelement() for x in model.parameters()]) / 1000,)
 
-'''
-    Embedding Loading
-'''
-# trained_vocab_dict = {v:k for k,v in enumerate(Vocab(trained_vocab).vocab)}
-# vocab_dict = {v:k for k,v in enumerate(vocab.vocab)}
-#
-# for w in vocab.vocab:
-#     if w in trained_vocab_dict:
-#         model.state_dict()['decoder.embedding.weight'][vocab_dict[w]] = trained_model.state_dict()['decoder.embedding.weight'][trained_vocab_dict[w]]
-#         #print(model.state_dict()['decoder.embedding.weight'][vocab_dict[w]] == trained_model.state_dict()['decoder.embedding.weight'][trained_vocab_dict[w]])
-#         model.state_dict()['jtnn.embedding.weight'][vocab_dict[w]] = trained_model.state_dict()['jtnn.embedding.weight'][trained_vocab_dict[w]]
-# print("Finish Embedding Loading")
-
-param_norm = lambda m: math.sqrt(sum([p.norm().item() ** 2 for p in m.parameters()]))
-grad_norm = lambda m: math.sqrt(sum([p.grad.norm().item() ** 2 for p in m.parameters() if p.grad is not None]))
 
 total_step = 0
+beta = args.beta
+
 accs=np.zeros(4)
 losses = np.zeros(4)
+
+if args.plot:
+    import os # for save plot
+    x_plot,kl_plot,word_plot, topo_plot, assm_plot, wloss_plot, tloss_plot, aloss_plot =[],[],[],[],[],[],[],[]
+    d=datetime.now()
+    now = str(d.year)+'_'+str(d.month)+'_'+str(d.day)+'_'+str(d.hour)+'_'+str(d.minute)
+
+    folder_name = "mj_test_" + now
+    os.makedirs('./plot/'+folder_name+'/KL')        #KL
+    os.makedirs('./plot/'+folder_name+'/Acc')       #Word, Topo, Assm
+    os.makedirs('./plot/'+folder_name+'/Loss')      #Word, Topo, Assm LOSS
+    print("...Finish Making Plot Folder...")
+
 
 accs *= 0
 losses *= 0
 
-from datetime import datetime
-
 start = datetime.now()
-print("TIME: %s " % (str(start)))
-loader = MolTreeFolderMJ(args.valid, -1, vocab, args.batch_size, num_workers=4, valid=True)
-beta=0
-model.eval()
+loader = MolTreeFolderMJ(args.test, -1, vocab, args.batch_size, num_workers=4, test=True)
+reproduce_cnt = 0
 for (batch, g, l) in loader:
-    total_step += 1
     try:
-        _, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, cos_loss = model(batch, g, l, beta)
+        make_generated = args.make_generated
+        if make_generated:
+            loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, cos_loss, (original_SMILE,reproduce_SMILE) = model(batch, g, l, beta, test=True, n=2)
+            print(original_SMILE, reproduce_SMILE)
+            reproduce_cnt = reproduce_cnt+1
+        else:
+            loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, cos_loss = model(batch, g, l, beta, test=True)
+
+        total_step += 1
+        accs = accs + np.array([kl_div, wacc * 100, tacc * 100, sacc * 100])
+        losses = losses + np.array([word_loss, topo_loss, assm_loss, cos_loss])
+
     except Exception as e:
         print e
         continue
-
-    accs = accs + np.array([kl_div, wacc * 100, tacc * 100, sacc * 100])
-    losses = losses + np.array([word_loss, topo_loss, assm_loss, cos_loss])
 
     if total_step % args.print_iter == 0:
         accs /= args.print_iter
         losses /= args.print_iter
 
-        pnorm = param_norm(model)
-        gnorm = grad_norm(model)
-
-        print "[%d] KL: %.2f, Word: %.2f, Topo: %.2f, Assm: %.2f, PNorm: %.2f, GNorm: %.2f" % (total_step, accs[0], accs[1], accs[2], accs[3], pnorm, gnorm)
+        print "[%d] KL: %.2f, Word: %.2f, Topo: %.2f, Assm: %.2f" % (total_step, accs[0], accs[1], accs[2], accs[3])
         print "Wloss: %.2f, Tloss: %.2f, Aloss: %.2f, Closs: %.2f" %(losses[0], losses[1], losses[2], losses[3])
 
+        if args.plot:
+            x_plot.append(total_step)
+            kl_plot.append(accs[0])
+            word_plot.append(accs[1])
+            topo_plot.append(accs[2])
+            assm_plot.append(accs[3])
+            pnorm_plot.append(pnorm)
+            gnorm_plot.append(gnorm)
+            beta_plot.append(beta)
+            wloss_plot.append(losses[0])
+            tloss_plot.append(losses[1])
+            aloss_plot.append(losses[2])
+            closs_plot.append(losses[3])
         sys.stdout.flush()
 
         accs *=0
@@ -151,3 +142,23 @@ for (batch, g, l) in loader:
                 pass
         torch.cuda.empty_cache()
     ## !! Need for GPU
+
+accs /= total_step%args.print_iter
+losses /= total_step%args.print_iter
+
+x_plot.append(total_step)
+kl_plot.append(accs[0])
+word_plot.append(accs[1])
+topo_plot.append(accs[2])
+assm_plot.append(accs[3])
+wloss_plot.append(losses[0])
+tloss_plot.append(losses[1])
+aloss_plot.append(losses[2])
+
+print("The number of generated molecule is {} ".format(reproduce_cnt))
+
+
+if args.plot:
+    save_KL_plt(folder_name, 0, x_plot, kl_plot)
+    save_Acc_plt(folder_name, 0, x_plot, word_plot, topo_plot, assm_plot)
+    save_Loss_plt(folder_name, 0, x_plot, wloss_plot, tloss_plot, aloss_plot)

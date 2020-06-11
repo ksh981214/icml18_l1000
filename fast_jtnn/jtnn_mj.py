@@ -99,7 +99,7 @@ class JTNNMJ(nn.Module):
         z_mol = torch.randn(1, self.latent_size).cuda()
         return self.decode(z_tree, z_mol, prob_decode)
 
-    def forward(self, x_batch, g_batch, l_batch, beta):
+    def forward(self, x_batch, g_batch, l_batch, beta, test=False, n=1):
         x_batch, x_jtenc_holder, x_mpn_holder, x_jtmpn_holder = x_batch
         x_tree_vecs, x_tree_mess, x_mol_vecs = self.encode(x_jtenc_holder, x_mpn_holder)
 
@@ -107,14 +107,21 @@ class JTNNMJ(nn.Module):
             1. cosine sim with x_hat and gene_batch
             2. along the label, calculate the loss
         '''
-        x_hat = torch.cat([x_tree_vecs, x_mol_vecs], dim=-1) # b.s * (2* hidden_size)
+        x_concat = torch.cat([x_tree_vecs, x_mol_vecs], dim=-1) # b.s * (2* hidden_size)
 
         g_batch = self.gene_mlp(torch.tensor(g_batch, dtype=torch.float32).cuda()) # b.s * 978 --> b.s * (2 * hidden_size)
-        cos_result = self.cos(g_batch, x_hat)                                      # b.s
+        cos_result = self.cos(g_batch, x_concat)                                      # b.s
         cos_loss = self.cos_loss(torch.tensor(l_batch,dtype=torch.float32).unsqueeze(1).cuda(), cos_result.unsqueeze(1)) / len(l_batch) # scalar
 
-        z_tree_vecs,tree_kl = self.rsample(x_tree_vecs, self.T_mean, self.T_var)
-        z_mol_vecs,mol_kl = self.rsample(x_mol_vecs, self.G_mean, self.G_var)
+        if test:
+            SMILE_by_gexp=[]
+            for _ in range(n):
+                z_tree_vecs, tree_kl = self.rsample(g_batch[:,:200], self.T_mean, self.T_var)
+                z_mol_vecs, mol_kl = self.rsample(g_batch[:,200:], self.G_mean, self.G_var)
+                SMILE_by_gexp.append(self.decode(z_tree_vecs, z_mol_vecs, prob_decode=False))
+        else:
+            z_tree_vecs,tree_kl = self.rsample(x_tree_vecs, self.T_mean, self.T_var)
+            z_mol_vecs,mol_kl = self.rsample(x_mol_vecs, self.G_mean, self.G_var)
 
         #decode a junction tree T from z_T
         word_loss, topo_loss, word_acc, topo_acc = self.decoder(x_batch, z_tree_vecs)
@@ -124,7 +131,10 @@ class JTNNMJ(nn.Module):
 
         kl_div = tree_kl + mol_kl
 
-        return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), cos_loss.item()
+        if test:
+            return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), cos_loss.item(), (x_batch[0].smiles,SMILE_by_gexp)
+        else:
+            return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), cos_loss.item()
 
     def assm(self, mol_batch, jtmpn_holder, x_mol_vecs, x_tree_mess):
         jtmpn_holder,batch_idx = jtmpn_holder

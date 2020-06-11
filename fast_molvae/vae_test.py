@@ -81,23 +81,24 @@ losses *= 0
 start = datetime.now()
 
 loader = MolTreeFolder(args.test, vocab, args.batch_size, num_workers=4)
+reproduce_cnt = 0
 for batch in loader:
-    total_step += 1
     try:
         make_generated = args.make_generated
         if make_generated:
             loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, (original_SMILE,reproduce_SMILE) = model(batch, beta, make_generated)
             print(original_SMILE, reproduce_SMILE)
+            reproduce_cnt = reproduce_cnt+1
         else:
             loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss = model(batch, beta, make_generated)
 
         total_step += 1
+
+        accs = accs + np.array([kl_div, wacc * 100, tacc * 100, sacc * 100])
+        losses = losses + np.array([word_loss, topo_loss, assm_loss])
     except Exception as e:
         print e
         continue
-
-    accs = accs + np.array([kl_div, wacc * 100, tacc * 100, sacc * 100])
-    losses = losses + np.array([word_loss, topo_loss, assm_loss])
 
     if total_step % args.print_iter == 0:
         accs /= args.print_iter
@@ -144,6 +145,8 @@ assm_plot.append(accs[3])
 wloss_plot.append(losses[0])
 tloss_plot.append(losses[1])
 aloss_plot.append(losses[2])
+
+print("The number of generated molecule is {} ".format(reproduce_cnt))
 
 
 if args.plot:

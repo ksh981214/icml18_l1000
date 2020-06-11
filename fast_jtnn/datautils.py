@@ -90,9 +90,9 @@ class MolTreeFolder(object):
 
 class MolTreeFolderMJ(object):
     def __init__(self, data_folder, num_neg_folder, vocab, batch_size, num_workers=4, shuffle=True, assm=True, replicate=None, test=False):
-        if not test:
-            self.data_folder = data_folder+"pos"
-            self.gene_folder = data_folder+"gene"
+
+        self.data_folder = data_folder+"pos"
+        self.gene_folder = data_folder+"gene"
         self.data_files = [fn for fn in os.listdir(self.data_folder)]
 
         if not test:

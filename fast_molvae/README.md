@@ -57,10 +57,18 @@ add '--make_generated 1'
 ```
 
 ## MJ_training
+
 ```
 Need to change folder name with "processed" to "pos"
 
 python mj_train.py --train ../data/l1000/max30/ --num_neg_folder 5 --gene ../data/l1000/max30/embedding_train_max30.txt --vocab ../data/l1000/max30/train_max30_vocab.txt --save_dir ./mj_model/ --pre_vocab_dir ../data/l1000/max30/train_max30_vocab.txt --pre_model_dir ./pre_model/minbyul/premodel_300_32_max30.iter-30000 --batch_size 32 --hidden_size 300
+```
+## mj_test.py
+
+if want reproduce more molecule, change the 'n' value in ```loss, kl_div, wacc, tacc, sacc, word_loss, topo_loss, assm_loss, cos_loss, (original_SMILE,reproduce_SMILE) = model(batch, g, l, beta, test=True, n=2)```
+
+```
+python mj_test.py --test ../data/l1000/mw500_mj_test/ --vocab ../data/l1000/mw500/vocab.txt --hidden_size 200 --trained_model ./mj_model/zincl1000_mw500_h200/model.iter-20000 --batch_size 1 --make_generated 1
 ```
 
 ## Testing
