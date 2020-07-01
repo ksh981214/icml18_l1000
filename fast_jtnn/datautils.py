@@ -6,7 +6,7 @@ from jtnn_enc import JTNNEncoder
 from mpn import MPN
 from jtmpn import JTMPN
 import cPickle as pickle
-import os, random
+import os, pdb, random
 
 import gc
 
@@ -121,6 +121,7 @@ class MolTreeFolderMJ(object):
             if not self.test:
                 for neg_folder_name in self.neg_data_folders:
                     neg_fn = os.path.join(neg_folder_name, fn)
+                    
                     with open(neg_fn) as neg_f:
                         data = data + pickle.load(neg_f)
 

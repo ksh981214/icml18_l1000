@@ -14,11 +14,12 @@ from chemutils import enum_assemble, set_atommap, copy_edit_mol, attach_mols
 import rdkit
 import rdkit.Chem as Chem
 import copy, math
+import pdb
 
 import numpy as np
 
 class JTNNMJ(nn.Module):
-    def __init__(self, vocab, hidden_size, latent_size, depthT, depthG, loss_type='L1'):
+    def __init__(self, vocab, hidden_size, latent_size, depthT, depthG, loss_type='cos'):
         super(JTNNMJ, self).__init__()
         self.vocab = vocab
         self.hidden_size = hidden_size
@@ -38,22 +39,20 @@ class JTNNMJ(nn.Module):
         self.G_mean = nn.Linear(hidden_size, latent_size)
         self.G_var = nn.Linear(hidden_size, latent_size)
 
-        # self.T_hat_mean = nn.Linear(latent_size, latent_size)
-        # self.T_hat_var = nn.Linear(latent_size, latent_size)
-
         #For MJ
         self.gene_exp_size = 978
 
         self.gene_mlp = nn.Linear(self.gene_exp_size, 2 * hidden_size)
-
-        #self.tree_mlp = nn.Linear(latent_size, hidden_size)
-        #self.mol_mlp = nn.Linear(latent_size, hidden_size)
+        self.gene_mlp2 = nn.Linear(2 * hidden_size, 2 * hidden_size)
 
         self.cos = nn.CosineSimilarity()
-        if loss_type=='L1':
+        self.loss_type = loss_type
+        if loss_type == 'L1':
             self.cos_loss = torch.nn.L1Loss(reduction='elementwise_mean')
-        elif loss_type=='L2':
-            self.cos_loss =torch.nn.MSELoss(reduction='elementwise_mean')
+        elif loss_type == 'L2':
+            self.cos_loss = torch.nn.MSELoss(reduction='elementwise_mean')
+        elif loss_type == 'cos':
+            self.cos_loss = torch.nn.CosineEmbeddingLoss()
 
     def encode(self, jtenc_holder, mpn_holder):
         tree_vecs, tree_mess = self.jtnn(*jtenc_holder)
@@ -99,7 +98,7 @@ class JTNNMJ(nn.Module):
         z_mol = torch.randn(1, self.latent_size).cuda()
         return self.decode(z_tree, z_mol, prob_decode)
 
-    def forward(self, x_batch, g_batch, l_batch, beta, mode=-1, n=1):
+    def forward(self, x_batch, g_batch, l_batch, beta, test=False, n=1):
         x_batch, x_jtenc_holder, x_mpn_holder, x_jtmpn_holder = x_batch
         x_tree_vecs, x_tree_mess, x_mol_vecs = self.encode(x_jtenc_holder, x_mpn_holder)
 
@@ -110,21 +109,22 @@ class JTNNMJ(nn.Module):
         x_concat = torch.cat([x_tree_vecs, x_mol_vecs], dim=-1) # b.s * (2* hidden_size)
 
         g_batch = self.gene_mlp(torch.tensor(g_batch, dtype=torch.float32).cuda()) # b.s * 978 --> b.s * (2 * hidden_size)
-        cos_result = self.cos(g_batch, x_concat)                                      # b.s
-        cos_loss = self.cos_loss(torch.tensor(l_batch,dtype=torch.float32).unsqueeze(1).cuda(), cos_result.unsqueeze(1)) / len(l_batch) # scalar
-
-        made_SMILE=[]
-        if mode == 0: #generated
+        g_batch = F.relu(g_batch)
+        g_batch = self.gene_mlp2(g_batch)
+        g_batch = F.relu(g_batch)
+        
+        if self.loss_type in ['L1', 'L2']:
+            cos_result = self.cos(g_batch, x_concat) # b.s
+            cos_loss = self.cos_loss(torch.tensor(l_batch,dtype=torch.float32).unsqueeze(1).cuda(), cos_result.unsqueeze(1)) / len(l_batch) # scalar
+        elif self.loss_type == 'cos':
+            cos_loss = self.cos_loss(g_batch, x_concat, torch.tensor(l_batch, dtype=torch.float32).unsqueeze(1).cuda())
+        if test:
+            SMILE_by_gexp=[]
             for _ in range(n):
                 z_tree_vecs, tree_kl = self.rsample(g_batch[:,:200], self.T_mean, self.T_var)
                 z_mol_vecs, mol_kl = self.rsample(g_batch[:,200:], self.G_mean, self.G_var)
-                made_SMILE.append(self.decode(z_tree_vecs, z_mol_vecs, prob_decode=False))
-        if mode == 1: #reconstructed
-            for _ in range(n):
-                z_tree_vecs, tree_kl = self.rsample(x_tree_vecs, self.T_mean, self.T_var)
-                z_mol_vecs, mol_kl = self.rsample(x_mol_vecs, self.G_mean, self.G_var)
-                made_SMILE.append(self.decode(z_tree_vecs, z_mol_vecs, prob_decode=False))
-        else: # mode == -1
+                SMILE_by_gexp.append(self.decode(z_tree_vecs, z_mol_vecs, prob_decode=False))
+        else:
             z_tree_vecs,tree_kl = self.rsample(x_tree_vecs, self.T_mean, self.T_var)
             z_mol_vecs,mol_kl = self.rsample(x_mol_vecs, self.G_mean, self.G_var)
 
@@ -136,10 +136,10 @@ class JTNNMJ(nn.Module):
 
         kl_div = tree_kl + mol_kl
 
-        if mode != -1:
-            return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), cos_loss.item(), (x_batch[0].smiles,made_SMILE)
+        if test:
+            return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), cos_loss.item(), (x_batch[0].smiles,SMILE_by_gexp)
         else:
-            return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), cos_loss.item()
+            return word_loss + topo_loss + assm_loss + beta * kl_div + cos_loss, kl_div.item(), word_acc, topo_acc, assm_acc, word_loss.item(), topo_loss.item(), assm_loss.item(), cos_loss.item(), self.cos(g_batch, x_concat), l_batch
 
     def assm(self, mol_batch, jtmpn_holder, x_mol_vecs, x_tree_mess):
         jtmpn_holder,batch_idx = jtmpn_holder
